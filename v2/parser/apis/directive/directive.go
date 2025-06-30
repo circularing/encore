@@ -121,6 +121,26 @@ func (d Directive) GetList(name string) []string {
 	return nil
 }
 
+// ----------------------------------------------------------------------
+// PLUGIN HOOKS
+//
+// DirectiveParser lets you hook custom //encore:<name> handlers.
+type DirectiveParser func(d *Directive, decl *ast.FuncDecl) error
+
+// pluginParsers holds user-registered parsers.
+var pluginParsers = map[string]DirectiveParser{}
+
+// RegisterDirectiveParser registers a custom parser for //encore:<name>.
+func RegisterDirectiveParser(name string, parser DirectiveParser) {
+	name = strings.TrimSpace(name)
+	if name == "" || parser == nil {
+		panic("invalid plugin directive registration")
+	}
+	pluginParsers[name] = parser
+}
+
+// ----------------------------------------------------------------------
+
 // Parse parses the encore:foo directives in cg.
 // It returns the parsed directives, if any, and the
 // remaining doc text after stripping the directive lines.
@@ -150,7 +170,16 @@ func Parse(errs *perr.List, cg *ast.CommentGroup) (dir *Directive, doc string, o
 		}
 	}
 	if len(dirs) == 1 {
-		doc := cg.Text() // skips directives for us
+		// Core directive parsed, now invoke any plugin parser
+		if pp, ok := pluginParsers[dirs[0].Name]; ok {
+			if pe := pp(dirs[0], nil); pe != nil {
+				errs.Add(errRange.New(
+					"Bad Directives",
+					"Plugin parser for "+dirs[0].Name+" failed",
+				))
+				return nil, "", false
+			}
+		}
 		return dirs[0], doc, true
 	} else if len(dirs) > 1 {
 		err := errMultipleDirectives
