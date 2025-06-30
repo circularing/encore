@@ -17,8 +17,8 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"encr.dev/pkg/ansi"
-	"encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/pkg/ansi"
+	"github.com/circularing/encore/proto/encore/daemon"
 )
 
 // CommandOutputStream is the interface for gRPC streams that

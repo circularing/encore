@@ -12,12 +12,12 @@ import (
 	"github.com/logrusorgru/aurora/v3"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/cli/daemon/run"
-	"encr.dev/internal/optracker"
-	"encr.dev/internal/userconfig"
-	"encr.dev/internal/version"
-	"encr.dev/pkg/fns"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/daemon/run"
+	"github.com/circularing/encore/internal/optracker"
+	"github.com/circularing/encore/internal/userconfig"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/pkg/fns"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 // Run runs the application.

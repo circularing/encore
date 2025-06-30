@@ -5,7 +5,7 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 
-	"encr.dev/pkg/errlist"
+	"github.com/circularing/encore/pkg/errlist"
 )
 
 var (

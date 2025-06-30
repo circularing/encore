@@ -8,8 +8,8 @@ import (
 	"sort"
 	"strings"
 
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	"encr.dev/v2/internals/perr"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/v2/internals/perr"
 )
 
 type Type string

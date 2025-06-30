@@ -7,9 +7,9 @@ import (
 
 	qt "github.com/frankban/quicktest"
 
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/testutil"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/testutil"
 )
 
 func TestProcessModule(t *testing.T) {

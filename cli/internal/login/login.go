@@ -7,10 +7,10 @@ import (
 	"encoding/base64"
 	"fmt"
 
-	"encr.dev/cli/internal/browser"
-	"encr.dev/cli/internal/platform"
-	"encr.dev/internal/conf"
-	"encr.dev/internal/env"
+	"github.com/circularing/encore/cli/internal/browser"
+	"github.com/circularing/encore/cli/internal/platform"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/internal/env"
 )
 
 func DecideFlow() (*conf.Config, error) {

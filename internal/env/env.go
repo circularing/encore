@@ -7,11 +7,11 @@ import (
 
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/pkg/option"
+	"github.com/circularing/encore/pkg/option"
 )
 
 // These can be overwritten using
-// `go build -ldflags "-X encr.dev/cli/internal/env.alternativeEncoreRuntimesPath=$HOME/src/github.com/encoredev/encore/runtimes"`.
+// `go build -ldflags "-X github.com/circularing/encore/cli/internal/env.alternativeEncoreRuntimesPath=$HOME/src/github.com/encoredev/encore/runtimes"`.
 var (
 	alternativeEncoreRuntimesPath = ""
 	alternativeEncoreGoPath       = ""

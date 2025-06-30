@@ -12,15 +12,15 @@ import (
 	"github.com/rs/zerolog/log"
 
 	"encore.dev/appruntime/exported/config"
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/cli/daemon/namespace"
-	"encr.dev/cli/daemon/objects"
-	"encr.dev/cli/daemon/pubsub"
-	"encr.dev/cli/daemon/redis"
-	"encr.dev/cli/daemon/sqldb"
-	"encr.dev/internal/optracker"
-	"encr.dev/pkg/environ"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/cli/daemon/namespace"
+	"github.com/circularing/encore/cli/daemon/objects"
+	"github.com/circularing/encore/cli/daemon/pubsub"
+	"github.com/circularing/encore/cli/daemon/redis"
+	"github.com/circularing/encore/cli/daemon/sqldb"
+	"github.com/circularing/encore/internal/optracker"
+	"github.com/circularing/encore/pkg/environ"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 type Type string

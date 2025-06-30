@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"encr.dev/internal/httpcache/test"
+	"github.com/circularing/encore/internal/httpcache/test"
 )
 
 func TestDiskCache(t *testing.T) {

@@ -12,8 +12,8 @@ import (
 	"github.com/gorilla/websocket"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/cli/internal/platform"
-	"encr.dev/pkg/pgproxy"
+	"github.com/circularing/encore/cli/internal/platform"
+	"github.com/circularing/encore/pkg/pgproxy"
 )
 
 // OneshotProxy listens on a random port for a single connection, and proxies that connection to a remote db.

@@ -41,7 +41,7 @@ func (o *Option[T]) UnmarshalJSON(data []byte) error {
 func CmpOpts() []cmp.Option {
 	return []cmp.Option{
 		cmp.Exporter(func(rt reflect.Type) bool {
-			return rt.PkgPath() == "encr.dev/pkg/option" && strings.HasPrefix(rt.Name(), "Option[")
+			return rt.PkgPath() == "github.com/circularing/encore/pkg/option" && strings.HasPrefix(rt.Name(), "Option[")
 		}),
 	}
 }

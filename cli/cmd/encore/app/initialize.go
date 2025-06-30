@@ -11,9 +11,9 @@ import (
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/internal/conf"
-	"encr.dev/pkg/xos"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/pkg/xos"
 )
 
 const (

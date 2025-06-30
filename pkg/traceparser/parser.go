@@ -13,8 +13,8 @@ import (
 
 	"encore.dev/appruntime/exported/model"
 	"encore.dev/appruntime/exported/trace2"
-	"encr.dev/pkg/option"
-	tracepb2 "encr.dev/proto/encore/engine/trace2"
+	"github.com/circularing/encore/pkg/option"
+	tracepb2 "github.com/circularing/encore/proto/encore/engine/trace2"
 )
 
 // ParseEvent parses a single event from the buffer.

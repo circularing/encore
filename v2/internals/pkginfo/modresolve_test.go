@@ -6,7 +6,7 @@ import (
 
 	qt "github.com/frankban/quicktest"
 
-	"encr.dev/pkg/paths"
+	"github.com/circularing/encore/pkg/paths"
 )
 
 func Test_findModule(t *testing.T) {

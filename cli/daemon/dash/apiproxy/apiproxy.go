@@ -9,8 +9,8 @@ import (
 	"github.com/cockroachdb/errors"
 	"golang.org/x/oauth2"
 
-	"encr.dev/internal/conf"
-	"encr.dev/internal/version"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/internal/version"
 )
 
 func New(targetURL string) (*httputil.ReverseProxy, error) {

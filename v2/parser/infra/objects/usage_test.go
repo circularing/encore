@@ -3,9 +3,9 @@ package objects_test
 import (
 	"testing"
 
-	"encr.dev/v2/parser/infra/objects"
-	"encr.dev/v2/parser/resource/usage"
-	"encr.dev/v2/parser/resource/usage/usagetest"
+	"github.com/circularing/encore/v2/parser/infra/objects"
+	"github.com/circularing/encore/v2/parser/resource/usage"
+	"github.com/circularing/encore/v2/parser/resource/usage/usagetest"
 )
 
 func TestResolveBucketUsage(t *testing.T) {

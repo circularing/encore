@@ -16,12 +16,12 @@ import (
 	"github.com/rogpeppe/go-internal/renameio"
 	"github.com/rogpeppe/go-internal/txtar"
 
-	"encr.dev/v2/app"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/compiler/build"
-	"encr.dev/v2/internals/overlay"
-	"encr.dev/v2/internals/testutil"
-	"encr.dev/v2/parser"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/compiler/build"
+	"github.com/circularing/encore/v2/internals/overlay"
+	"github.com/circularing/encore/v2/internals/testutil"
+	"github.com/circularing/encore/v2/parser"
 )
 
 type Case struct {

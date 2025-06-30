@@ -13,10 +13,10 @@ import (
 
 	"github.com/agnivade/levenshtein"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/parsectx"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/parsectx"
 )
 
 // resolvePkgNames resolves package-level names for the given package.

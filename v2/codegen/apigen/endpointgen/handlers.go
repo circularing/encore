@@ -3,10 +3,10 @@ package endpointgen
 import (
 	. "github.com/dave/jennifer/jen"
 
-	"encr.dev/pkg/option"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/codegen/internal/genutil"
-	"encr.dev/v2/parser/apis/api"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/codegen/internal/genutil"
+	"github.com/circularing/encore/v2/parser/apis/api"
 )
 
 type handlerDesc struct {

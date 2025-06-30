@@ -12,14 +12,14 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"encr.dev/cli/daemon/sqldb"
-	"encr.dev/cli/internal/platform"
-	"encr.dev/pkg/appfile"
-	"encr.dev/pkg/builder"
-	"encr.dev/pkg/builder/builderimpl"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/pgproxy"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/daemon/sqldb"
+	"github.com/circularing/encore/cli/internal/platform"
+	"github.com/circularing/encore/pkg/appfile"
+	"github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/builder/builderimpl"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/pgproxy"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 func toRoleType(role daemonpb.DBRole) sqldb.RoleType {

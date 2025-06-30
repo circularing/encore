@@ -7,8 +7,8 @@ import (
 
 	"github.com/golang/protobuf/proto"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/proto/encore/daemon"
 )
 
 // ParseSQLSchema uses SQLC to parse the migration files for an encore database and returns

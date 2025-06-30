@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	. "encr.dev/pkg/errinsrc/internal"
-	"encr.dev/pkg/golden"
+	. "github.com/circularing/encore/pkg/errinsrc/internal"
+	"github.com/circularing/encore/pkg/golden"
 )
 
 func Test_renderSrc_Simple(t *testing.T) {

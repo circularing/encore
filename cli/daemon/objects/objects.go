@@ -7,14 +7,14 @@ import (
 	"net"
 	"net/http"
 
-	"encr.dev/cli/daemon/namespace"
-	"encr.dev/pkg/emulators/storage/gcsemu"
+	"github.com/circularing/encore/cli/daemon/namespace"
+	"github.com/circularing/encore/pkg/emulators/storage/gcsemu"
 	"github.com/cockroachdb/errors"
 	"github.com/rs/xid"
 	"github.com/rs/zerolog/log"
 	"go4.org/syncutil"
 
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 type Server struct {

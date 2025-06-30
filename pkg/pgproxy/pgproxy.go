@@ -18,7 +18,7 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/pkg/fns"
+	"github.com/circularing/encore/pkg/fns"
 )
 
 type LogicalConn interface {

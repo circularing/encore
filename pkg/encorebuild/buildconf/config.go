@@ -5,8 +5,8 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"encr.dev/pkg/encorebuild/buildutil"
-	"encr.dev/pkg/option"
+	"github.com/circularing/encore/pkg/encorebuild/buildutil"
+	"github.com/circularing/encore/pkg/option"
 )
 
 type Config struct {

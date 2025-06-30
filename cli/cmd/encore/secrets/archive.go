@@ -8,8 +8,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/internal/platform"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/internal/platform"
 )
 
 var archiveSecretCmd = &cobra.Command{

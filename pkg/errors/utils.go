@@ -3,7 +3,7 @@ package errors
 import (
 	"go/ast"
 
-	"encr.dev/pkg/option"
+	"github.com/circularing/encore/pkg/option"
 )
 
 // AtOptionalNode returns an error at the given node if it is present.

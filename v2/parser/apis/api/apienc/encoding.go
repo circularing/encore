@@ -6,14 +6,14 @@ import (
 	"sort"
 	"strings"
 
-	"encr.dev/pkg/errors"
-	"encr.dev/pkg/idents"
-	"encr.dev/pkg/option"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
-	"encr.dev/v2/parser/apis/authhandler"
-	"encr.dev/v2/parser/apis/directive"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/pkg/idents"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/parser/apis/authhandler"
+	"github.com/circularing/encore/v2/parser/apis/directive"
 )
 
 // WireLoc is the location of a parameter in the HTTP request/response.

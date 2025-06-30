@@ -59,7 +59,7 @@ func getStack() []*StackFrame {
 	for {
 		frames = append(frames, &StackFrame{
 			PC:       frame.PC,
-			Function: strings.TrimPrefix(frame.Function, "encr.dev/"),
+			Function: strings.TrimPrefix(frame.Function, "github.com/circularing/encore/"),
 			File:     strings.TrimPrefix(frame.File, projectSourcePath),
 			Line:     frame.Line,
 		})

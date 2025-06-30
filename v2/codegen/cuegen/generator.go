@@ -10,8 +10,8 @@ import (
 	"cuelang.org/go/cue/format"
 	"cuelang.org/go/cue/token"
 
-	"encr.dev/v2/app"
-	"encr.dev/v2/parser/infra/config"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/parser/infra/config"
 )
 
 type Generator struct {

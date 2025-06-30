@@ -3,15 +3,15 @@ package app
 import (
 	"go/ast"
 
-	"encr.dev/pkg/errors"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/apis/api"
-	"encr.dev/v2/parser/apis/servicestruct"
-	"encr.dev/v2/parser/infra/pubsub"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/apis/api"
+	"github.com/circularing/encore/v2/parser/apis/servicestruct"
+	"github.com/circularing/encore/v2/parser/infra/pubsub"
 )
 
 func (d *Desc) validatePubSub(pc *parsectx.Context, result *parser.Result) {

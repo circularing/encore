@@ -15,8 +15,8 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/internal/platform"
-	"encr.dev/pkg/appfile"
+	"github.com/circularing/encore/cli/internal/platform"
+	"github.com/circularing/encore/pkg/appfile"
 )
 
 var (

@@ -9,10 +9,10 @@ import (
 	"cuelang.org/go/cue/parser"
 	"cuelang.org/go/cue/token"
 
-	"encr.dev/v2/app"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
 )
 
 // service represents the single generated file we will create for a service

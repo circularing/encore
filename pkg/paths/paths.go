@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"encr.dev/pkg/fns"
+	"github.com/circularing/encore/pkg/fns"
 )
 
 type FileReader func(string) ([]byte, error)

@@ -8,8 +8,8 @@ import (
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/pkg/bits"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/pkg/bits"
 )
 
 var addCmd = &cobra.Command{

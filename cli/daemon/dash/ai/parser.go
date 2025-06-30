@@ -10,18 +10,18 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/internal/env"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/parser/apis"
-	"encr.dev/v2/parser/apis/api"
-	"encr.dev/v2/parser/apis/api/apienc"
-	"encr.dev/v2/parser/resource/resourceparser"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/internal/env"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/parser/apis"
+	"github.com/circularing/encore/v2/parser/apis/api"
+	"github.com/circularing/encore/v2/parser/apis/api/apienc"
+	"github.com/circularing/encore/v2/parser/resource/resourceparser"
 )
 
 // parseErrorList parses a list of errors docs from a doc string.

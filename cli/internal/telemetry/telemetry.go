@@ -13,9 +13,9 @@ import (
 	"github.com/rs/zerolog/log"
 
 	"encore.dev/types/uuid"
-	"encr.dev/internal/conf"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/xos"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/xos"
 )
 
 var singleton = func() *telemetry {

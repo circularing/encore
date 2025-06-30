@@ -7,10 +7,10 @@ import (
 	qt "github.com/frankban/quicktest"
 	"github.com/rogpeppe/go-internal/txtar"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/testutil"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/testutil"
 )
 
 func TestLoader(t *testing.T) {

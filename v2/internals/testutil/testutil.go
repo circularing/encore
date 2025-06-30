@@ -19,13 +19,13 @@ import (
 	"github.com/rogpeppe/go-internal/txtar"
 	"github.com/rs/zerolog"
 
-	"encr.dev/internal/env"
-	"encr.dev/pkg/errinsrc"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
+	"github.com/circularing/encore/internal/env"
+	"github.com/circularing/encore/pkg/errinsrc"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
 )
 
 type Context struct {

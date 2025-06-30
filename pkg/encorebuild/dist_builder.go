@@ -6,11 +6,11 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"encr.dev/internal/version"
-	"encr.dev/pkg/encorebuild/buildconf"
-	. "encr.dev/pkg/encorebuild/buildutil"
-	"encr.dev/pkg/encorebuild/compile"
-	"encr.dev/pkg/encorebuild/githubrelease"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/pkg/encorebuild/buildconf"
+	. "github.com/circularing/encore/pkg/encorebuild/buildutil"
+	"github.com/circularing/encore/pkg/encorebuild/compile"
+	"github.com/circularing/encore/pkg/encorebuild/githubrelease"
 )
 
 // A DistBuilder is a builder for a specific distribution of Encore.
@@ -31,7 +31,7 @@ func (d *DistBuilder) buildEncoreCLI() {
 	d.Cfg.Log.Info().Msg("building encore binary...")
 
 	linkerOpts := []string{
-		"-X", fmt.Sprintf("'encr.dev/internal/version.Version=%s'", d.Cfg.Version),
+		"-X", fmt.Sprintf("'github.com/circularing/encore/internal/version.Version=%s'", d.Cfg.Version),
 	}
 
 	// If we're building a nightly, devel or beta version, we need to set the default config directory
@@ -51,7 +51,7 @@ func (d *DistBuilder) buildEncoreCLI() {
 
 	if versionSuffix != "" {
 		linkerOpts = append(linkerOpts,
-			"-X", "'encr.dev/internal/conf.defaultConfigDirectory=encore"+versionSuffix+"'",
+			"-X", "'github.com/circularing/encore/internal/conf.defaultConfigDirectory=encore"+versionSuffix+"'",
 		)
 	}
 
@@ -81,7 +81,7 @@ func (d *DistBuilder) buildTSBundler() {
 	d.Cfg.Log.Info().Msg("building tsbundler binary...")
 
 	linkerOpts := []string{
-		"-X", fmt.Sprintf("'encr.dev/internal/version.Version=%s'", d.Cfg.Version),
+		"-X", fmt.Sprintf("'github.com/circularing/encore/internal/version.Version=%s'", d.Cfg.Version),
 	}
 
 	compile.GoBinary(

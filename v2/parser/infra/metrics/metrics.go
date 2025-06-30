@@ -6,17 +6,17 @@ import (
 	"go/token"
 	"strings"
 
-	"encr.dev/pkg/errors"
-	"encr.dev/pkg/idents"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
-	literals "encr.dev/v2/parser/infra/internal/literals"
-	parseutil "encr.dev/v2/parser/infra/internal/parseutil"
-	"encr.dev/v2/parser/resource"
-	"encr.dev/v2/parser/resource/resourceparser"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/pkg/idents"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	literals "github.com/circularing/encore/v2/parser/infra/internal/literals"
+	parseutil "github.com/circularing/encore/v2/parser/infra/internal/parseutil"
+	"github.com/circularing/encore/v2/parser/resource"
+	"github.com/circularing/encore/v2/parser/resource/resourceparser"
 )
 
 //go:generate stringer -type=MetricType -output=metrics_string.go

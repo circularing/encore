@@ -3,11 +3,11 @@ package app
 import (
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/root"
+	"github.com/circularing/encore/cli/cmd/encore/root"
 )
 
 // These can be overwritten using
-// `go build -ldflags "-X encr.dev/cli/cmd/encore/app.defaultGitRemoteName=encore"`.
+// `go build -ldflags "-X github.com/circularing/encore/cli/cmd/encore/app.defaultGitRemoteName=encore"`.
 var (
 	defaultGitRemoteName = "encore"
 	defaultGitRemoteURL  = "encore://"

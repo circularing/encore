@@ -1,12 +1,12 @@
 package pubsub
 
 import (
-	"encr.dev/pkg/option"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
-	"encr.dev/v2/parser/resource/usage"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/parser/resource/usage"
 )
 
 type PublishUsage struct {

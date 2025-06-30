@@ -11,10 +11,10 @@ import (
 
 	"github.com/logrusorgru/aurora/v3"
 
-	"encr.dev/cli/daemon/run"
-	"encr.dev/cli/internal/onboarding"
-	"encr.dev/pkg/errlist"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/cli/daemon/run"
+	"github.com/circularing/encore/cli/internal/onboarding"
+	"github.com/circularing/encore/pkg/errlist"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 // OnStart implements run.EventListener.

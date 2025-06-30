@@ -6,13 +6,13 @@ import (
 	"go/token"
 	"slices"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/parser/resource"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/parser/resource"
 )
 
 // ResolveData is the data being passed to usage resolver functions.

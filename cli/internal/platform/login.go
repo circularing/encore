@@ -10,7 +10,7 @@ import (
 
 	"golang.org/x/oauth2"
 
-	"encr.dev/internal/conf"
+	"github.com/circularing/encore/internal/conf"
 )
 
 type CreateOAuthSessionParams struct {

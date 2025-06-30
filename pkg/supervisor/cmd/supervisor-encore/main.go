@@ -13,8 +13,8 @@ import (
 	"github.com/rs/zerolog/log"
 	"google.golang.org/protobuf/proto"
 
-	"encr.dev/pkg/supervisor"
-	runtimev1 "encr.dev/proto/encore/runtime/v1"
+	"github.com/circularing/encore/pkg/supervisor"
+	runtimev1 "github.com/circularing/encore/proto/encore/runtime/v1"
 )
 
 func main() {

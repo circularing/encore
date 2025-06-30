@@ -144,7 +144,7 @@ func frameToModuleFunc(frame uintptr) (module string, name string) {
 		name = name[idx+1:]
 	}
 
-	module = strings.TrimPrefix(module, "encr.dev/")
+	module = strings.TrimPrefix(module, "github.com/circularing/encore/")
 	name = strings.Replace(name, "·", ".", -1)
 	return
 }

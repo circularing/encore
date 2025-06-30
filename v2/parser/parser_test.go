@@ -5,9 +5,9 @@ import (
 
 	qt "github.com/frankban/quicktest"
 
-	"encr.dev/v2/internals/testutil"
-	"encr.dev/v2/parser/infra/sqldb"
-	"encr.dev/v2/parser/resource"
+	"github.com/circularing/encore/v2/internals/testutil"
+	"github.com/circularing/encore/v2/parser/infra/sqldb"
+	"github.com/circularing/encore/v2/parser/resource"
 )
 
 func Test_deduplicateSQLDBResources(t *testing.T) {

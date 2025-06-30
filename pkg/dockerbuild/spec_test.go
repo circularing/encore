@@ -8,10 +8,10 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 
-	"encr.dev/pkg/builder"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/supervisor"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/supervisor"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 func TestBuild_Node(t *testing.T) {

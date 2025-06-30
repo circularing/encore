@@ -1,7 +1,7 @@
 package config
 
 import (
-	"encr.dev/v2/parser/resource/usage"
+	"github.com/circularing/encore/v2/parser/resource/usage"
 )
 
 type ReferenceUsage struct {

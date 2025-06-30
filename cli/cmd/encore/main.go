@@ -8,15 +8,15 @@ import (
 	"github.com/rs/zerolog/log"
 	"golang.org/x/tools/go/packages"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/cmd/encore/root"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/cmd/encore/root"
 
 	// Register commands
-	_ "encr.dev/cli/cmd/encore/app"
-	_ "encr.dev/cli/cmd/encore/config"
-	_ "encr.dev/cli/cmd/encore/k8s"
-	_ "encr.dev/cli/cmd/encore/namespace"
-	_ "encr.dev/cli/cmd/encore/secrets"
+	_ "github.com/circularing/encore/cli/cmd/encore/app"
+	_ "github.com/circularing/encore/cli/cmd/encore/config"
+	_ "github.com/circularing/encore/cli/cmd/encore/k8s"
+	_ "github.com/circularing/encore/cli/cmd/encore/namespace"
+	_ "github.com/circularing/encore/cli/cmd/encore/secrets"
 )
 
 // for backwards compatibility, for now

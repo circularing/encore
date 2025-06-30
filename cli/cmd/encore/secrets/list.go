@@ -14,9 +14,9 @@ import (
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/internal/platform"
-	"encr.dev/cli/internal/platform/gql"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/internal/platform"
+	"github.com/circularing/encore/cli/internal/platform/gql"
 )
 
 var listSecretCmd = &cobra.Command{

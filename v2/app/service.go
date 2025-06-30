@@ -1,12 +1,12 @@
 package app
 
 import (
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/app/apiframework"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/parser/resource"
-	"encr.dev/v2/parser/resource/usage"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/app/apiframework"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/parser/resource"
+	"github.com/circularing/encore/v2/parser/resource/usage"
 )
 
 // Service describes an Encore service.

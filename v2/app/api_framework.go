@@ -1,17 +1,17 @@
 package app
 
 import (
-	"encr.dev/pkg/errors"
-	"encr.dev/pkg/option"
-	"encr.dev/v2/app/apiframework"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/apis/api"
-	"encr.dev/v2/parser/apis/authhandler"
-	"encr.dev/v2/parser/apis/middleware"
-	"encr.dev/v2/parser/apis/servicestruct"
-	"encr.dev/v2/parser/infra/pubsub"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/app/apiframework"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/apis/api"
+	"github.com/circularing/encore/v2/parser/apis/authhandler"
+	"github.com/circularing/encore/v2/parser/apis/middleware"
+	"github.com/circularing/encore/v2/parser/apis/servicestruct"
+	"github.com/circularing/encore/v2/parser/infra/pubsub"
 )
 
 func configureAPIFramework(pc *parsectx.Context, services []*Service, res *parser.Result) option.Option[*apiframework.AppDesc] {

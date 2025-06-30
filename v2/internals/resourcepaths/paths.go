@@ -8,9 +8,9 @@ import (
 	"net/url"
 	"strings"
 
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/schema"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/schema"
 )
 
 // Path represents a parsed path.

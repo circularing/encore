@@ -11,11 +11,11 @@ import (
 	"github.com/rogpeppe/go-internal/txtar"
 	"github.com/rs/zerolog"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/pkg/builder"
-	"encr.dev/pkg/scrub"
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	"encr.dev/v2/v2builder"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/scrub"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/v2/v2builder"
 )
 
 func TestScrub(t *testing.T) {

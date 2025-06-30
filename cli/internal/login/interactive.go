@@ -13,11 +13,11 @@ import (
 
 	"github.com/briandowns/spinner"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/internal/browser"
-	"encr.dev/cli/internal/platform"
-	"encr.dev/internal/conf"
-	"encr.dev/internal/env"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/internal/browser"
+	"github.com/circularing/encore/cli/internal/platform"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/internal/env"
 )
 
 // interactive keeps the state of an ongoing login flow.

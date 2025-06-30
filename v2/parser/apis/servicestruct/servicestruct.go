@@ -5,15 +5,15 @@ import (
 	"go/ast"
 	"go/token"
 
-	"encr.dev/pkg/errors"
-	"encr.dev/pkg/option"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
-	"encr.dev/v2/parser/apis/directive"
-	"encr.dev/v2/parser/internal/utils"
-	"encr.dev/v2/parser/resource"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/parser/apis/directive"
+	"github.com/circularing/encore/v2/parser/internal/utils"
+	"github.com/circularing/encore/v2/parser/resource"
 )
 
 // ServiceStruct describes a dependency injection struct for a service.

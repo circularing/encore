@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	schema "encr.dev/proto/encore/parser/schema/v1"
+	schema "github.com/circularing/encore/proto/encore/parser/schema/v1"
 )
 
 // FieldLocation represents where a field is located in the API request/response

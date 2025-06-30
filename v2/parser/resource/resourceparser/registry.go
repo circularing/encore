@@ -4,9 +4,9 @@ import (
 	"os"
 	"slices"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/pkginfo"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/pkginfo"
 )
 
 func NewRegistry(parsers []*Parser) *Registry {

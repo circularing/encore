@@ -1,17 +1,17 @@
 package app
 
 import (
-	"encr.dev/pkg/errors"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/apis/authhandler"
-	"encr.dev/v2/parser/apis/middleware"
-	"encr.dev/v2/parser/infra/caches"
-	"encr.dev/v2/parser/infra/objects"
-	"encr.dev/v2/parser/infra/pubsub"
-	"encr.dev/v2/parser/infra/secrets"
-	"encr.dev/v2/parser/infra/sqldb"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/apis/authhandler"
+	"github.com/circularing/encore/v2/parser/apis/middleware"
+	"github.com/circularing/encore/v2/parser/infra/caches"
+	"github.com/circularing/encore/v2/parser/infra/objects"
+	"github.com/circularing/encore/v2/parser/infra/pubsub"
+	"github.com/circularing/encore/v2/parser/infra/secrets"
+	"github.com/circularing/encore/v2/parser/infra/sqldb"
 )
 
 // validate checks that the application is in a valid state across all services and compilation units.

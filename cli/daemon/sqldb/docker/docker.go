@@ -15,9 +15,9 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/rs/zerolog"
 
-	"encr.dev/cli/daemon/namespace"
-	"encr.dev/cli/daemon/sqldb"
-	"encr.dev/pkg/idents"
+	"github.com/circularing/encore/cli/daemon/namespace"
+	"github.com/circularing/encore/cli/daemon/sqldb"
+	"github.com/circularing/encore/pkg/idents"
 )
 
 type Driver struct{}

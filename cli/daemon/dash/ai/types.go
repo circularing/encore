@@ -1,7 +1,7 @@
 package ai
 
 import (
-	"encr.dev/v2/parser/apis/api/apienc"
+	"github.com/circularing/encore/v2/parser/apis/api/apienc"
 )
 
 type VisibilityType string

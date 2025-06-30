@@ -11,11 +11,11 @@ import (
 
 	"github.com/fatih/structtag"
 
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
 )
 
 // NewParser constructs a new schema parser.

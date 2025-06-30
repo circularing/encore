@@ -10,9 +10,9 @@ import (
 	"strconv"
 	"strings"
 
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
 )
 
 var noOpCasts = map[paths.Pkg][]string{

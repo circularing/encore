@@ -14,7 +14,7 @@ import (
 	"github.com/cockroachdb/errors"
 	"github.com/rs/zerolog"
 
-	"encr.dev/pkg/logging"
+	"github.com/circularing/encore/pkg/logging"
 )
 
 type SvcProxy struct {

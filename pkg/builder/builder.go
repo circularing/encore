@@ -13,14 +13,14 @@ import (
 	"github.com/rs/zerolog"
 
 	"encore.dev/appruntime/exported/experiments"
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/internal/optracker"
-	"encr.dev/internal/version"
-	"encr.dev/pkg/cueutil"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/internal/optracker"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/pkg/cueutil"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 var LocalBuildTags = []string{

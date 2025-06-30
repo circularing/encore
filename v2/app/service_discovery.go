@@ -4,17 +4,17 @@ import (
 	"cmp"
 	"slices"
 
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/apis/api"
-	"encr.dev/v2/parser/apis/authhandler"
-	"encr.dev/v2/parser/apis/servicestruct"
-	"encr.dev/v2/parser/infra/pubsub"
-	"encr.dev/v2/parser/resource"
-	"encr.dev/v2/parser/resource/usage"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/apis/api"
+	"github.com/circularing/encore/v2/parser/apis/authhandler"
+	"github.com/circularing/encore/v2/parser/apis/servicestruct"
+	"github.com/circularing/encore/v2/parser/infra/pubsub"
+	"github.com/circularing/encore/v2/parser/resource"
+	"github.com/circularing/encore/v2/parser/resource/usage"
 )
 
 // discoverServices discovers the services in the whole application.

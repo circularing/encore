@@ -11,11 +11,11 @@ import (
 	"github.com/briandowns/spinner"
 	"github.com/fatih/color"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/internal/browser"
-	"encr.dev/cli/internal/platform"
-	"encr.dev/internal/conf"
-	"encr.dev/internal/env"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/internal/browser"
+	"github.com/circularing/encore/cli/internal/platform"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/internal/env"
 )
 
 // DeviceAuth logs in the suser with the device auth flow.

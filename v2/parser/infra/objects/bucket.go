@@ -4,12 +4,12 @@ import (
 	"go/ast"
 	"go/token"
 
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/pkginfo"
-	literals "encr.dev/v2/parser/infra/internal/literals"
-	parseutil "encr.dev/v2/parser/infra/internal/parseutil"
-	"encr.dev/v2/parser/resource"
-	"encr.dev/v2/parser/resource/resourceparser"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	literals "github.com/circularing/encore/v2/parser/infra/internal/literals"
+	parseutil "github.com/circularing/encore/v2/parser/infra/internal/parseutil"
+	"github.com/circularing/encore/v2/parser/resource"
+	"github.com/circularing/encore/v2/parser/resource/resourceparser"
 )
 
 type Bucket struct {

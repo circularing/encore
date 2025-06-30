@@ -5,7 +5,7 @@ import (
 	"errors"
 	"time"
 
-	tracepb2 "encr.dev/proto/encore/engine/trace2"
+	tracepb2 "github.com/circularing/encore/proto/encore/engine/trace2"
 )
 
 type Meta struct {

@@ -11,11 +11,11 @@ import (
 
 	"go.encore.dev/platform-sdk/pkg/auth"
 
-	runtimev1 "encr.dev/proto/encore/runtime/v1"
+	runtimev1 "github.com/circularing/encore/proto/encore/runtime/v1"
 
 	encore "encore.dev"
 	"encore.dev/appruntime/exported/config"
-	"encr.dev/pkg/fns"
+	"github.com/circularing/encore/pkg/fns"
 )
 
 func ToLegacy(conf *runtimev1.RuntimeConfig, secretEnvs map[string][]byte) (*config.Runtime, error) {

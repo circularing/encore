@@ -17,9 +17,9 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/rs/zerolog"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/option"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/option"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 // DB represents a single database instance within a cluster.

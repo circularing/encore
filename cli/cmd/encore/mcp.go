@@ -17,9 +17,9 @@ import (
 	"github.com/logrusorgru/aurora/v3"
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/cmd/encore/root"
-	"encr.dev/cli/internal/jsonrpc2"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/cmd/encore/root"
+	"github.com/circularing/encore/cli/internal/jsonrpc2"
 )
 
 var mcpCmd = &cobra.Command{

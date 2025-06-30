@@ -3,8 +3,8 @@ package run
 import (
 	"errors"
 
-	"encr.dev/pkg/errlist"
-	"encr.dev/v2/internals/perr"
+	"github.com/circularing/encore/pkg/errlist"
+	"github.com/circularing/encore/v2/internals/perr"
 )
 
 func AsErrorList(err error) *errlist.List {

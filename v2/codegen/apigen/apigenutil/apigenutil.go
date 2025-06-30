@@ -6,12 +6,12 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"encr.dev/v2/codegen/internal/genutil"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
-	"encr.dev/v2/parser/apis/api/apienc"
+	"github.com/circularing/encore/v2/codegen/internal/genutil"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/parser/apis/api/apienc"
 )
 
 // DecodeHeaders generates code for decoding HTTP headers from the http request

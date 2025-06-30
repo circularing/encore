@@ -10,9 +10,9 @@ import (
 	"github.com/cockroachdb/errors"
 	"github.com/golang/protobuf/proto"
 
-	"encr.dev/pkg/idents"
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	schema "encr.dev/proto/encore/parser/schema/v1"
+	"github.com/circularing/encore/pkg/idents"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	schema "github.com/circularing/encore/proto/encore/parser/schema/v1"
 )
 
 // ParameterLocation is the request/response home of the parameter

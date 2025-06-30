@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"encr.dev/pkg/emulators/storage/gcsutil"
+	"github.com/circularing/encore/pkg/emulators/storage/gcsutil"
 	"google.golang.org/api/storage/v1"
 )
 

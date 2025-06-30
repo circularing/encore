@@ -1,8 +1,8 @@
 package app
 
 import (
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/resource/usage"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/resource/usage"
 )
 
 // locateResourceBinds finds all resource binds and assigns them to the appropriate service.

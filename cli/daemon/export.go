@@ -3,8 +3,8 @@ package daemon
 import (
 	"go/scanner"
 
-	"encr.dev/cli/daemon/export"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/daemon/export"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 // Export exports the app.

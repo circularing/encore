@@ -1,7 +1,7 @@
 package authhandler
 
 import (
-	"encr.dev/pkg/errors"
+	"github.com/circularing/encore/pkg/errors"
 )
 
 const authLink = "For more information on auth handlers and how to define them, see https://encore.dev/docs/develop/auth"

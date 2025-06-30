@@ -13,8 +13,8 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/tailscale/hujson"
 
-	"encr.dev/parser/encoding"
-	"encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/parser/encoding"
+	v1 "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 type ApiCallParams struct {

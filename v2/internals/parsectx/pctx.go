@@ -15,11 +15,11 @@ import (
 	"github.com/rs/zerolog"
 
 	"encore.dev/appruntime/exported/experiments"
-	"encr.dev/pkg/builder"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/perr"
+	"github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/perr"
 )
 
 // Context holds all the context for parsing.

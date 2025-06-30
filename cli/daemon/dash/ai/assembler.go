@@ -5,9 +5,9 @@ import (
 	"slices"
 	"strings"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/idents"
-	"encr.dev/v2/parser/apis/api/apienc"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/idents"
+	"github.com/circularing/encore/v2/parser/apis/api/apienc"
 )
 
 // partialEndpoint is a helper struct that is used to assemble the endpoint

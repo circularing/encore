@@ -8,9 +8,9 @@ import (
 	"strings"
 	"sync"
 
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
 )
 
 // Packages scans and parses the Go packages for all subdirectories in the root.

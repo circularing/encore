@@ -6,13 +6,13 @@ import (
 
 	"github.com/cockroachdb/errors"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/internal/version"
-	"encr.dev/pkg/builder"
-	"encr.dev/pkg/builder/builderimpl"
-	"encr.dev/pkg/cueutil"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/vcs"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/builder/builderimpl"
+	"github.com/circularing/encore/pkg/cueutil"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/vcs"
 )
 
 type CheckParams struct {

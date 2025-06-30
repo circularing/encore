@@ -9,11 +9,11 @@ import (
 	"github.com/rs/zerolog/log"
 	"golang.org/x/mod/modfile"
 
-	"encr.dev/cli/daemon/run"
-	"encr.dev/internal/optracker"
-	"encr.dev/pkg/appfile"
-	"encr.dev/pkg/paths"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/daemon/run"
+	"github.com/circularing/encore/internal/optracker"
+	"github.com/circularing/encore/pkg/appfile"
+	"github.com/circularing/encore/pkg/paths"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 // ExecScript executes a one-off script.

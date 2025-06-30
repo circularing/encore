@@ -16,11 +16,11 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 
 	"encore.dev/appruntime/exported/trace"
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/cli/daemon/internal/sym"
-	"encr.dev/pkg/eerror"
-	tracepb "encr.dev/proto/encore/engine/trace"
-	metapb "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/cli/daemon/internal/sym"
+	"github.com/circularing/encore/pkg/eerror"
+	tracepb "github.com/circularing/encore/proto/encore/engine/trace"
+	metapb "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 type ID [16]byte

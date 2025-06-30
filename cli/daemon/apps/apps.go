@@ -15,15 +15,15 @@ import (
 	"go4.org/syncutil"
 
 	"encore.dev/appruntime/exported/experiments"
-	"encr.dev/cli/internal/manifest"
-	"encr.dev/internal/conf"
-	"encr.dev/internal/env"
-	"encr.dev/internal/goldfish"
-	"encr.dev/pkg/appfile"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/watcher"
-	"encr.dev/pkg/xos"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/cli/internal/manifest"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/internal/env"
+	"github.com/circularing/encore/internal/goldfish"
+	"github.com/circularing/encore/pkg/appfile"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/watcher"
+	"github.com/circularing/encore/pkg/xos"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 var ErrNotFound = errors.New("app not found")

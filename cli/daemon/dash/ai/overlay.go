@@ -11,14 +11,14 @@ import (
 
 	"golang.org/x/exp/maps"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/pkg/errinsrc"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/idents"
-	"encr.dev/pkg/paths"
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/perr"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/pkg/errinsrc"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/idents"
+	"github.com/circularing/encore/pkg/paths"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/perr"
 )
 
 // servicePaths is a helper struct to manage mapping between service names, pkg paths and filepaths

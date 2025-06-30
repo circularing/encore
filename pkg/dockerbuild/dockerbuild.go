@@ -23,8 +23,8 @@ import (
 	"github.com/google/go-containerregistry/pkg/v1/tarball"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/option"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/option"
 )
 
 // DefaultCACertsPath is the default path for where to write CA Certs.

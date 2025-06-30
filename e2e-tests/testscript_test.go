@@ -18,8 +18,8 @@ import (
 	"github.com/nsqio/go-nsq"
 	ts "github.com/rogpeppe/go-internal/testscript"
 
-	"encr.dev/cli/daemon/run"
-	"encr.dev/pkg/golden"
+	"github.com/circularing/encore/cli/daemon/run"
+	"github.com/circularing/encore/pkg/golden"
 )
 
 // headerRe matches valid headers in the form "Header=value".

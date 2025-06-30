@@ -18,8 +18,8 @@ import (
 
 	"golang.org/x/mod/semver"
 
-	"encr.dev/internal/conf"
-	"encr.dev/internal/version"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/internal/version"
 )
 
 var ErrUnknownVersion = errors.New("unknown version")

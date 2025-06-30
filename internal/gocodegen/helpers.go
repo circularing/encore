@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	schema "encr.dev/proto/encore/parser/schema/v1"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	schema "github.com/circularing/encore/proto/encore/parser/schema/v1"
 
 	. "github.com/dave/jennifer/jen"
 )

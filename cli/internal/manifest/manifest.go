@@ -11,7 +11,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"encr.dev/pkg/xos"
+	"github.com/circularing/encore/pkg/xos"
 )
 
 // Manifest represents the persisted manifest for

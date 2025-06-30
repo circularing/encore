@@ -11,9 +11,9 @@ import (
 
 	"golang.org/x/tools/go/packages"
 
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/perr"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/perr"
 )
 
 // New creates a new Loader.

@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"encr.dev/pkg/xos"
+	"github.com/circularing/encore/pkg/xos"
 )
 
 type Event struct {

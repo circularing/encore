@@ -7,15 +7,15 @@ import (
 	"reflect"
 	"strings"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/posmap"
-	"encr.dev/v2/parser/infra/sqldb"
-	"encr.dev/v2/parser/resource"
-	"encr.dev/v2/parser/resource/usage"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/posmap"
+	"github.com/circularing/encore/v2/parser/infra/sqldb"
+	"github.com/circularing/encore/v2/parser/resource"
+	"github.com/circularing/encore/v2/parser/resource/usage"
 )
 
 // computeResult computes the combined resource description.

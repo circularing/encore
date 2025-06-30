@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"encore.dev/storage/cache"
-	"encr.dev/pkg/paths"
+	"github.com/circularing/encore/pkg/paths"
 )
 
 var constants = map[paths.Pkg]map[string]any{

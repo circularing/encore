@@ -15,9 +15,9 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"encr.dev/internal/version"
-	"encr.dev/pkg/xos"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/pkg/xos"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 func IsDaemonRunning(ctx context.Context) bool {

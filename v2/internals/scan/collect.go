@@ -6,9 +6,9 @@ import (
 
 	"golang.org/x/mod/modfile"
 
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
 )
 
 // ProcessModule parses all the packages in the module located at modRoot.

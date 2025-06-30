@@ -3,10 +3,10 @@ package ai
 import (
 	"context"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/paths"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/paths"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 var ErrorCodeMap = map[string]int64{

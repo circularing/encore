@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"encr.dev/pkg/xos"
+	"github.com/circularing/encore/pkg/xos"
 	"github.com/cockroachdb/errors"
 	"github.com/pelletier/go-toml"
 )

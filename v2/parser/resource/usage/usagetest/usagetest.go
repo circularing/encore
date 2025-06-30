@@ -9,9 +9,9 @@ import (
 	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/rogpeppe/go-internal/txtar"
 
-	"encr.dev/v2/internals/testutil"
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/resource/usage"
+	"github.com/circularing/encore/v2/internals/testutil"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/resource/usage"
 )
 
 type Case struct {

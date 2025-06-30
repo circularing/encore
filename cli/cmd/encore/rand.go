@@ -13,8 +13,8 @@ import (
 	"github.com/gofrs/uuid"
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/pkg/words"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/pkg/words"
 )
 
 var randCmd = &cobra.Command{

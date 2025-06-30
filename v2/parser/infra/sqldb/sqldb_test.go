@@ -3,7 +3,7 @@ package sqldb
 import (
 	"testing"
 
-	"encr.dev/v2/parser/resource/resourcetest"
+	"github.com/circularing/encore/v2/parser/resource/resourcetest"
 )
 
 func TestParseDatabase(t *testing.T) {

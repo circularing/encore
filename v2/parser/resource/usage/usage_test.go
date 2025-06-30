@@ -15,11 +15,11 @@ import (
 	gocmp "github.com/google/go-cmp/cmp"
 	"github.com/rogpeppe/go-internal/txtar"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/testutil"
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/resource/usage"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/testutil"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/resource/usage"
 )
 
 var goldenUpdate = flag.Bool("golden-update", os.Getenv("GOLDEN_UPDATE") != "", "update golden files")

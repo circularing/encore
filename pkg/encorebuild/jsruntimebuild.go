@@ -9,10 +9,10 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"encr.dev/pkg/encorebuild/buildconf"
-	. "encr.dev/pkg/encorebuild/buildutil"
-	"encr.dev/pkg/encorebuild/compile"
-	"encr.dev/pkg/encorebuild/gentypedefs"
+	"github.com/circularing/encore/pkg/encorebuild/buildconf"
+	. "github.com/circularing/encore/pkg/encorebuild/buildutil"
+	"github.com/circularing/encore/pkg/encorebuild/compile"
+	"github.com/circularing/encore/pkg/encorebuild/gentypedefs"
 )
 
 func NewJSRuntimeBuilder(cfg *buildconf.Config) *JSRuntimeBuilder {
@@ -109,7 +109,7 @@ func (b *JSRuntimeBuilder) makeDistFolder() {
 	// Sanity-check the runtime dir configuration so we don't delete the wrong thing.
 	base := filepath.Base(b.cfg.RepoDir)
 	parentBase := filepath.Base(filepath.Dir(b.cfg.RepoDir))
-	if b.cfg.RepoDir == "" || (base != "encore" && base != "encr.dev" && parentBase != "encore.worktrees") {
+	if b.cfg.RepoDir == "" || (base != "encore" && base != "github.com/circularing/encore" && parentBase != "encore.worktrees") {
 		Bailf("invalid repo directory %q, aborting", b.cfg.RepoDir)
 	}
 

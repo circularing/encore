@@ -7,11 +7,11 @@ import (
 	"regexp"
 	"strings"
 
-	"encr.dev/pkg/errinsrc/srcerrors"
-	"encr.dev/pkg/errors"
-	"encr.dev/pkg/idents"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/parser/infra/internal/literals"
+	"github.com/circularing/encore/pkg/errinsrc/srcerrors"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/pkg/idents"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/parser/infra/internal/literals"
 )
 
 const resourceNameMaxLength int = 63

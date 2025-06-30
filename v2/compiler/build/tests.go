@@ -10,10 +10,10 @@ import (
 	"os/exec"
 	"strings"
 
-	"encr.dev/internal/etrace"
-	builderpkg "encr.dev/pkg/builder"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/perr"
+	"github.com/circularing/encore/internal/etrace"
+	builderpkg "github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/perr"
 )
 
 type TestConfig struct {

@@ -5,8 +5,8 @@ import (
 
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	"encr.dev/cli/internal/telemetry"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/internal/telemetry"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 func (s *Server) Telemetry(ctx context.Context, req *daemonpb.TelemetryConfig) (*emptypb.Empty, error) {

@@ -11,8 +11,8 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/gorilla/websocket"
 
-	"encr.dev/pkg/fns"
-	metav1 "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/pkg/fns"
+	metav1 "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 type CreateAppParams struct {

@@ -4,7 +4,7 @@ import (
 	"go/ast"
 	"sort"
 
-	"encr.dev/pkg/option"
+	"github.com/circularing/encore/pkg/option"
 )
 
 func Build[NodeLike ast.Node](nodes ...NodeLike) Map[NodeLike] {

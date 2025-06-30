@@ -10,10 +10,10 @@ import (
 	"github.com/golang/protobuf/proto"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/option"
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	runtimev1 "encr.dev/proto/encore/runtime/v1"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/option"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	runtimev1 "github.com/circularing/encore/proto/encore/runtime/v1"
 )
 
 type ResourceID interface {

@@ -5,13 +5,13 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"encr.dev/pkg/namealloc"
-	"encr.dev/pkg/option"
-	"encr.dev/v2/app"
-	"encr.dev/v2/app/apiframework"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/codegen/internal/genutil"
-	"encr.dev/v2/parser/apis/api"
+	"github.com/circularing/encore/pkg/namealloc"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/app/apiframework"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/codegen/internal/genutil"
+	"github.com/circularing/encore/v2/parser/apis/api"
 )
 
 // Gen generates the encore.gen.go file containing user-facing

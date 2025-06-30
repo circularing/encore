@@ -14,10 +14,10 @@ import (
 	"github.com/cockroachdb/errors"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/cli/daemon/run"
-	"encr.dev/pkg/watcher"
-	"encr.dev/pkg/xos"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/cli/daemon/run"
+	"github.com/circularing/encore/pkg/watcher"
+	"github.com/circularing/encore/pkg/xos"
 )
 
 func (s *Server) watchApps() {

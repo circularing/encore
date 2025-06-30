@@ -7,9 +7,9 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"encr.dev/pkg/scrub"
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	schema "encr.dev/proto/encore/parser/schema/v1"
+	"github.com/circularing/encore/pkg/scrub"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	schema "github.com/circularing/encore/proto/encore/parser/schema/v1"
 )
 
 // New constructs a new Computer for the given metadata.

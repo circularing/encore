@@ -9,11 +9,11 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/internal/manifest"
-	"encr.dev/pkg/appfile"
-	"encr.dev/pkg/clientgen"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/internal/manifest"
+	"github.com/circularing/encore/pkg/appfile"
+	"github.com/circularing/encore/pkg/clientgen"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 func init() {

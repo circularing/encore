@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"testing"
 
-	"encr.dev/v2/app"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/codegen/apigen"
-	"encr.dev/v2/codegen/apigen/maingen"
-	"encr.dev/v2/codegen/internal/codegentest"
-	"encr.dev/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/codegen/apigen"
+	"github.com/circularing/encore/v2/codegen/apigen/maingen"
+	"github.com/circularing/encore/v2/codegen/internal/codegentest"
+	"github.com/circularing/encore/v2/internals/pkginfo"
 )
 
 func TestCodegen(t *testing.T) {

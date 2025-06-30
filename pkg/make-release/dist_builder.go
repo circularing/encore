@@ -11,7 +11,7 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/internal/version"
+	"github.com/circularing/encore/internal/version"
 )
 
 // A DistBuilder is a builder for a specific distribution of Encore.
@@ -37,7 +37,7 @@ func (d *DistBuilder) buildEncoreCLI() error {
 	d.log.Info().Msg("building encore binary...")
 
 	linkerOpts := []string{
-		"-X", fmt.Sprintf("'encr.dev/internal/version.Version=%s'", d.Version),
+		"-X", fmt.Sprintf("'github.com/circularing/encore/internal/version.Version=%s'", d.Version),
 	}
 
 	// If we're building a nightly, devel or beta version, we need to set the default config directory
@@ -57,7 +57,7 @@ func (d *DistBuilder) buildEncoreCLI() error {
 
 	if versionSuffix != "" {
 		linkerOpts = append(linkerOpts,
-			"-X", "'encr.dev/internal/conf.defaultConfigDirectory=encore"+versionSuffix+"'",
+			"-X", "'github.com/circularing/encore/internal/conf.defaultConfigDirectory=encore"+versionSuffix+"'",
 		)
 	}
 
@@ -99,7 +99,7 @@ func (d *DistBuilder) buildTSBundler() error {
 	d.log.Info().Msg("building tsbundler binary...")
 
 	linkerOpts := []string{
-		"-X", fmt.Sprintf("'encr.dev/internal/version.Version=%s'", d.Version),
+		"-X", fmt.Sprintf("'github.com/circularing/encore/internal/version.Version=%s'", d.Version),
 	}
 
 	err := CompileGoBinary(

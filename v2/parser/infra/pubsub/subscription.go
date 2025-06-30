@@ -8,15 +8,15 @@ import (
 
 	"golang.org/x/tools/go/ast/astutil"
 
-	"encr.dev/pkg/errors"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema/schemautil"
-	"encr.dev/v2/parser/infra/internal/literals"
-	"encr.dev/v2/parser/infra/internal/parseutil"
-	"encr.dev/v2/parser/resource"
-	"encr.dev/v2/parser/resource/resourceparser"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/parser/infra/internal/literals"
+	"github.com/circularing/encore/v2/parser/infra/internal/parseutil"
+	"github.com/circularing/encore/v2/parser/resource"
+	"github.com/circularing/encore/v2/parser/resource/resourceparser"
 )
 
 type Subscription struct {

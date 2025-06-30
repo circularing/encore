@@ -10,8 +10,8 @@ import (
 	"github.com/logrusorgru/aurora/v3"
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/internal/update"
-	"encr.dev/internal/version"
+	"github.com/circularing/encore/cli/internal/update"
+	"github.com/circularing/encore/internal/version"
 )
 
 var versionCmd = &cobra.Command{

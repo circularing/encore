@@ -16,13 +16,13 @@ import (
 
 	"github.com/cockroachdb/errors"
 
-	"encr.dev/internal/version"
-	"encr.dev/parser/encoding"
-	"encr.dev/pkg/clientgen/clientgentypes"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/idents"
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	schema "encr.dev/proto/encore/parser/schema/v1"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/parser/encoding"
+	"github.com/circularing/encore/pkg/clientgen/clientgentypes"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/idents"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	schema "github.com/circularing/encore/proto/encore/parser/schema/v1"
 )
 
 /* The TypeScript generator generates code that looks like this:

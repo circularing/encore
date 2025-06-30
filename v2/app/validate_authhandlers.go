@@ -1,8 +1,8 @@
 package app
 
 import (
-	"encr.dev/v2/app/apiframework"
-	"encr.dev/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/app/apiframework"
+	"github.com/circularing/encore/v2/internals/parsectx"
 )
 
 func (d *Desc) validateAuthHandlers(pc *parsectx.Context, fw *apiframework.AppDesc) {

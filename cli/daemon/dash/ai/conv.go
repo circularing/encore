@@ -4,10 +4,10 @@ import (
 	"slices"
 	"strings"
 
-	"encr.dev/pkg/clientgen"
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	schema "encr.dev/proto/encore/parser/schema/v1"
-	"encr.dev/v2/internals/resourcepaths"
+	"github.com/circularing/encore/pkg/clientgen"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	schema "github.com/circularing/encore/proto/encore/parser/schema/v1"
+	"github.com/circularing/encore/v2/internals/resourcepaths"
 )
 
 func toPathSegments(p *resourcepaths.Path, docs map[string]string) []PathSegment {

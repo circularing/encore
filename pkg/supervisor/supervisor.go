@@ -21,8 +21,8 @@ import (
 	"github.com/rs/zerolog"
 	"go4.org/syncutil"
 
-	"encr.dev/pkg/noopgateway"
-	runtimev1 "encr.dev/proto/encore/runtime/v1"
+	"github.com/circularing/encore/pkg/noopgateway"
+	runtimev1 "github.com/circularing/encore/proto/encore/runtime/v1"
 )
 
 // Config is the configuration used by the supervisor.

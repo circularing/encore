@@ -10,12 +10,12 @@ import (
 	qt "github.com/frankban/quicktest"
 	"github.com/rogpeppe/go-internal/txtar"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/pkg/builder"
-	"encr.dev/pkg/clientgen/clientgentypes"
-	"encr.dev/pkg/golden"
-	"encr.dev/v2/tsbuilder"
-	"encr.dev/v2/v2builder"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/clientgen/clientgentypes"
+	"github.com/circularing/encore/pkg/golden"
+	"github.com/circularing/encore/v2/tsbuilder"
+	"github.com/circularing/encore/v2/v2builder"
 )
 
 func TestMain(m *testing.M) {

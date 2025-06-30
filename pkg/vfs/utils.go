@@ -4,7 +4,7 @@ import (
 	"io/fs"
 	"os"
 
-	"encr.dev/pkg/eerror"
+	"github.com/circularing/encore/pkg/eerror"
 )
 
 // FromDir creates a Virtual File System (VFS) from the workingDir on the local computer

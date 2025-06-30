@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 
-	"encr.dev/cli/internal/gosym"
+	"github.com/circularing/encore/cli/internal/gosym"
 )
 
 // This code is a simplified version of $GOROOT/src/cmd/internal/objfile/pe.go.

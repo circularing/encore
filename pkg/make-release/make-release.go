@@ -9,7 +9,7 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/internal/version"
+	"github.com/circularing/encore/internal/version"
 )
 
 func join(strs ...string) string {
@@ -42,7 +42,7 @@ func main() {
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to get working directory")
 	} else if _, err := os.Stat(join(root, "go.mod")); err != nil {
-		log.Fatal().Err(err).Msg("expected to run make-release.go from encr.dev repository root")
+		log.Fatal().Err(err).Msg("expected to run make-release.go from github.com/circularing/encore repository root")
 	}
 
 	*dst, err = filepath.Abs(*dst)

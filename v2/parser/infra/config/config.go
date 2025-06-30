@@ -5,15 +5,15 @@ import (
 	"go/ast"
 	"go/token"
 
-	"encr.dev/pkg/errors"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
-	"encr.dev/v2/parser/infra/internal/parseutil"
-	"encr.dev/v2/parser/resource"
-	"encr.dev/v2/parser/resource/resourceparser"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/parser/infra/internal/parseutil"
+	"github.com/circularing/encore/v2/parser/resource"
+	"github.com/circularing/encore/v2/parser/resource/resourceparser"
 )
 
 // Load represents a config load statement.

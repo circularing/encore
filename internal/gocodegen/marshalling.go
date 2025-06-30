@@ -6,7 +6,7 @@ import (
 	"github.com/cockroachdb/errors"
 	. "github.com/dave/jennifer/jen"
 
-	schema "encr.dev/proto/encore/parser/schema/v1"
+	schema "github.com/circularing/encore/proto/encore/parser/schema/v1"
 )
 
 const UnknownPkgPath = "__unknown_path__"

@@ -14,14 +14,14 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/rs/xid"
 
-	"encr.dev/pkg/appfile"
-	"encr.dev/pkg/builder"
-	"encr.dev/pkg/noopgateway"
-	"encr.dev/pkg/noopgwdesc"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	"encr.dev/pkg/supervisor"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/pkg/appfile"
+	"github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/noopgateway"
+	"github.com/circularing/encore/pkg/noopgwdesc"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/pkg/supervisor"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 type ImageSpecFile struct {

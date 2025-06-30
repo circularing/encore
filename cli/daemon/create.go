@@ -3,8 +3,8 @@ package daemon
 import (
 	"context"
 
-	"encr.dev/cli/daemon/apps"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/daemon/apps"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 // CreateApp adds tracking for a new app

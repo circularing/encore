@@ -25,7 +25,7 @@ func (e *InterfaceCodecExtension) DecorateDecoder(typ reflect2.Type, decoder jso
 	return decoder
 }
 
-const gqlPackage = "encr.dev/cli/internal/platform/gql"
+const gqlPackage = "github.com/circularing/encore/cli/internal/platform/gql"
 
 type interfaceCodec struct {
 	typ     reflect2.Type

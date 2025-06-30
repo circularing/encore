@@ -8,8 +8,8 @@ import (
 
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
 )
 
 func FromGoASTNodeWithTypeAndText(fileset *token.FileSet, node ast.Node, typ LocationType, text string, fileReaders ...paths.FileReader) option.Option[*SrcLocation] {

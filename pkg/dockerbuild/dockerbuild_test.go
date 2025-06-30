@@ -9,10 +9,10 @@ import (
 
 	qt "github.com/frankban/quicktest"
 
-	"encr.dev/pkg/builder"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 func TestBuildImage(t *testing.T) {

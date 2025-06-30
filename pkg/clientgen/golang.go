@@ -12,13 +12,13 @@ import (
 	. "github.com/dave/jennifer/jen"
 	"github.com/fatih/structtag"
 
-	"encr.dev/internal/gocodegen"
-	"encr.dev/internal/version"
-	"encr.dev/parser/encoding"
-	"encr.dev/pkg/clientgen/clientgentypes"
-	"encr.dev/pkg/idents"
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	schema "encr.dev/proto/encore/parser/schema/v1"
+	"github.com/circularing/encore/internal/gocodegen"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/parser/encoding"
+	"github.com/circularing/encore/pkg/clientgen/clientgentypes"
+	"github.com/circularing/encore/pkg/idents"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	schema "github.com/circularing/encore/proto/encore/parser/schema/v1"
 )
 
 // goGenVersion allows us to introduce breaking changes in the generated code but behind a switch

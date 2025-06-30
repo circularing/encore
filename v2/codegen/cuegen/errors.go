@@ -1,6 +1,6 @@
 package cuegen
 
-import "encr.dev/pkg/errors"
+import "github.com/circularing/encore/pkg/errors"
 
 var (
 	errRange = errors.Range(

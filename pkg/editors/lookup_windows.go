@@ -16,7 +16,7 @@ import (
 	"golang.org/x/sync/errgroup"
 	"golang.org/x/sys/windows/registry"
 
-	"encr.dev/pkg/fns"
+	"github.com/circularing/encore/pkg/fns"
 )
 
 type WindowsExternalEditor struct {

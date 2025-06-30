@@ -20,9 +20,9 @@ import (
 	"golang.org/x/text/encoding/unicode"
 	"golang.org/x/text/transform"
 
-	"encr.dev/pkg/eerror"
-	"encr.dev/pkg/errinsrc/srcerrors"
-	"encr.dev/pkg/fns"
+	"github.com/circularing/encore/pkg/eerror"
+	"github.com/circularing/encore/pkg/errinsrc/srcerrors"
+	"github.com/circularing/encore/pkg/fns"
 )
 
 // LoadFromFS takes a given filesystem object and the app-relative path to the service's root package

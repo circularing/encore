@@ -1,7 +1,7 @@
 package parseutil
 
 import (
-	"encr.dev/pkg/errors"
+	"github.com/circularing/encore/pkg/errors"
 )
 
 var (

@@ -8,11 +8,11 @@ import (
 
 	"github.com/pkg/errors"
 
-	encerrors "encr.dev/pkg/errors"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
+	encerrors "github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
 
-	. "encr.dev/pkg/errinsrc/internal"
+	. "github.com/circularing/encore/pkg/errinsrc/internal"
 )
 
 // ErrInSrc represents an error which occurred due to the source code

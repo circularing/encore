@@ -9,9 +9,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"encr.dev/pkg/errinsrc"
-	"encr.dev/pkg/errinsrc/srcerrors"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/pkg/errinsrc"
+	"github.com/circularing/encore/pkg/errinsrc/srcerrors"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 // Verbose controls whether the error list prints all errors

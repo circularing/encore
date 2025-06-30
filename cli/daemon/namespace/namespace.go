@@ -8,8 +8,8 @@ import (
 	"github.com/cockroachdb/errors"
 	"github.com/rs/xid"
 
-	"encr.dev/cli/daemon/apps"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/daemon/apps"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 var (

@@ -8,7 +8,7 @@ import (
 
 	"github.com/mark3labs/mcp-go/mcp"
 
-	"encr.dev/pkg/emulators/storage/gcsemu"
+	"github.com/circularing/encore/pkg/emulators/storage/gcsemu"
 )
 
 func (m *Manager) registerBucketTools() {

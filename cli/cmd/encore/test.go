@@ -17,8 +17,8 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 var testCmd = &cobra.Command{

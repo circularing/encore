@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"go/ast"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/idents"
-	"encr.dev/pkg/paths"
-	schema "encr.dev/proto/encore/parser/schema/v1"
-	"encr.dev/v2/internals/pkginfo"
-	schemav2 "encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/idents"
+	"github.com/circularing/encore/pkg/paths"
+	schema "github.com/circularing/encore/proto/encore/parser/schema/v1"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	schemav2 "github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
 )
 
 func (b *builder) builtinType(typ schemav2.BuiltinType) schema.Builtin {

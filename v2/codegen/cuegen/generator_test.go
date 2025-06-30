@@ -10,10 +10,10 @@ import (
 	qt "github.com/frankban/quicktest"
 	"github.com/rogpeppe/go-internal/txtar"
 
-	"encr.dev/pkg/golden"
-	"encr.dev/v2/app"
-	"encr.dev/v2/internals/testutil"
-	"encr.dev/v2/parser"
+	"github.com/circularing/encore/pkg/golden"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/internals/testutil"
+	"github.com/circularing/encore/v2/parser"
 )
 
 func TestMain(m *testing.M) {

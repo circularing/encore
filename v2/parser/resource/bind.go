@@ -4,8 +4,8 @@ import (
 	"go/ast"
 	"go/token"
 
-	"encr.dev/pkg/option"
-	"encr.dev/v2/internals/pkginfo"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/internals/pkginfo"
 )
 
 type Bind interface {

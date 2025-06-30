@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"encr.dev/pkg/xos"
-	"encr.dev/v2/compiler/build"
+	"github.com/circularing/encore/pkg/xos"
+	"github.com/circularing/encore/v2/compiler/build"
 	"github.com/cockroachdb/errors"
 	"github.com/rs/zerolog/log"
 )

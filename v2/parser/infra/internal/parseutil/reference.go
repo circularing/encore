@@ -3,11 +3,11 @@ package parseutil
 import (
 	"go/ast"
 
-	"encr.dev/pkg/option"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/parser/infra/internal/locations"
-	"encr.dev/v2/parser/resource/resourceparser"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/parser/infra/internal/locations"
+	"github.com/circularing/encore/v2/parser/resource/resourceparser"
 )
 
 type ReferenceSpec struct {

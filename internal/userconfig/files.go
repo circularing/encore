@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"encr.dev/internal/goldfish"
+	"github.com/circularing/encore/internal/goldfish"
 	"github.com/cockroachdb/errors"
 	"github.com/knadh/koanf/parsers/toml/v2"
 	"github.com/knadh/koanf/providers/file"

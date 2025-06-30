@@ -5,10 +5,10 @@ import (
 
 	"github.com/golang/protobuf/ptypes/empty"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/cli/daemon/namespace"
-	"encr.dev/pkg/fns"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/cli/daemon/namespace"
+	"github.com/circularing/encore/pkg/fns"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 func (s *Server) CreateNamespace(ctx context.Context, req *daemonpb.CreateNamespaceRequest) (*daemonpb.Namespace, error) {

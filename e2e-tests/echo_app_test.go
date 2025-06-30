@@ -18,16 +18,16 @@ import (
 	"github.com/rs/zerolog/log"
 	"go.uber.org/goleak"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/cli/daemon/namespace"
-	. "encr.dev/cli/daemon/run"
-	"encr.dev/cli/daemon/run/infra"
-	. "encr.dev/internal/optracker"
-	"encr.dev/pkg/clientgen"
-	"encr.dev/pkg/clientgen/clientgentypes"
-	"encr.dev/pkg/golden"
-	"encr.dev/pkg/svcproxy"
-	"encr.dev/v2/v2builder"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/cli/daemon/namespace"
+	. "github.com/circularing/encore/cli/daemon/run"
+	"github.com/circularing/encore/cli/daemon/run/infra"
+	. "github.com/circularing/encore/internal/optracker"
+	"github.com/circularing/encore/pkg/clientgen"
+	"github.com/circularing/encore/pkg/clientgen/clientgentypes"
+	"github.com/circularing/encore/pkg/golden"
+	"github.com/circularing/encore/pkg/svcproxy"
+	"github.com/circularing/encore/v2/v2builder"
 )
 
 type Data[K any, V any] struct {

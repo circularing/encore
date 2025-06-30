@@ -8,12 +8,12 @@ import (
 
 	"github.com/mark3labs/mcp-go/server"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/cli/daemon/engine/trace2"
-	"encr.dev/cli/daemon/namespace"
-	"encr.dev/cli/daemon/objects"
-	"encr.dev/cli/daemon/run"
-	"encr.dev/cli/daemon/sqldb"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/cli/daemon/engine/trace2"
+	"github.com/circularing/encore/cli/daemon/namespace"
+	"github.com/circularing/encore/cli/daemon/objects"
+	"github.com/circularing/encore/cli/daemon/run"
+	"github.com/circularing/encore/cli/daemon/sqldb"
 )
 
 type Manager struct {

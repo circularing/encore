@@ -5,8 +5,8 @@ import (
 
 	"github.com/google/go-cmp/cmp/cmpopts"
 
-	"encr.dev/v2/internals/schema/schematest"
-	"encr.dev/v2/parser/resource/resourcetest"
+	"github.com/circularing/encore/v2/internals/schema/schematest"
+	"github.com/circularing/encore/v2/parser/resource/resourcetest"
 )
 
 func TestParseMetrics(t *testing.T) {

@@ -20,13 +20,13 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v4
         with:
-          path: encr.dev
+          path: github.com/circularing/encore
 
       - name: Trigger release script
         env:
           NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
         run: |
-          cd ${{ github.workspace }}/encr.dev
+          cd ${{ github.workspace }}/github.com/circularing/encore
           go run ./pkg/encorebuild/cmd/make-release/ -dst "${{ github.workspace	}}/build" -v "${{ github.event.inputs.version }}" -publish-npm=true
 
       - name: Publish artifact (darwin_amd64)
@@ -70,9 +70,9 @@ jobs:
 
       - name: Copy linux artifacts to docker context folder
         run: |
-          mkdir -p ${{ github.workspace }}/encr.dev/.github/dockerimg/artifacts
-          cp ${{ github.workspace }}/build/artifacts/encore-${{ github.event.inputs.version }}-linux_amd64.tar.gz ${{ github.workspace }}/encr.dev/.github/dockerimg/artifacts/encore-linux_amd64.tar.gz
-          cp ${{ github.workspace }}/build/artifacts/encore-${{ github.event.inputs.version }}-linux_arm64.tar.gz ${{ github.workspace }}/encr.dev/.github/dockerimg/artifacts/encore-linux_arm64.tar.gz
+          mkdir -p ${{ github.workspace }}/github.com/circularing/encore/.github/dockerimg/artifacts
+          cp ${{ github.workspace }}/build/artifacts/encore-${{ github.event.inputs.version }}-linux_amd64.tar.gz ${{ github.workspace }}/github.com/circularing/encore/.github/dockerimg/artifacts/encore-linux_amd64.tar.gz
+          cp ${{ github.workspace }}/build/artifacts/encore-${{ github.event.inputs.version }}-linux_arm64.tar.gz ${{ github.workspace }}/github.com/circularing/encore/.github/dockerimg/artifacts/encore-linux_arm64.tar.gz
 
       - name: Create metadata (tags, labels) for Docker image
         id: docker-meta
@@ -95,7 +95,7 @@ jobs:
       - name: Build and push docker images
         uses: docker/build-push-action@v4
         with:
-          context: encr.dev/.github/dockerimg
+          context: github.com/circularing/encore/.github/dockerimg
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ steps.docker-meta.outputs.tags }}

@@ -12,10 +12,10 @@ import (
 	"github.com/cockroachdb/errors"
 	"github.com/peterbourgon/diskv"
 
-	"encr.dev/internal/conf"
-	"encr.dev/internal/httpcache"
-	"encr.dev/internal/httpcache/diskcache"
-	"encr.dev/internal/version"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/internal/httpcache"
+	"github.com/circularing/encore/internal/httpcache/diskcache"
+	"github.com/circularing/encore/internal/version"
 )
 
 func New(targetURL string) (*httputil.ReverseProxy, error) {

@@ -13,10 +13,10 @@ import (
 	"golang.org/x/exp/maps"
 
 	"encore.dev/appruntime/exported/config/infra"
-	"encr.dev/pkg/appfile"
-	"encr.dev/pkg/dockerbuild"
-	"encr.dev/pkg/fns"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/pkg/appfile"
+	"github.com/circularing/encore/pkg/dockerbuild"
+	"github.com/circularing/encore/pkg/fns"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 var (

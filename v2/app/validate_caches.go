@@ -3,12 +3,12 @@ package app
 import (
 	"fmt"
 
-	"encr.dev/pkg/errors"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/resourcepaths"
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/infra/caches"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/resourcepaths"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/infra/caches"
 )
 
 func (d *Desc) validateCaches(pc *parsectx.Context, results *parser.Result) {

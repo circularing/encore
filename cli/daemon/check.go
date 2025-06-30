@@ -1,8 +1,8 @@
 package daemon
 
 import (
-	"encr.dev/cli/daemon/run"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/daemon/run"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 // Check checks the app for compilation errors.

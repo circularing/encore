@@ -18,16 +18,16 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/tailscale/hujson"
 
-	"encr.dev/cli/cmd/encore/auth"
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/internal/platform"
-	"encr.dev/cli/internal/telemetry"
-	"encr.dev/internal/conf"
-	"encr.dev/internal/env"
-	"encr.dev/internal/version"
-	"encr.dev/pkg/github"
-	"encr.dev/pkg/xos"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/cmd/encore/auth"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/internal/platform"
+	"github.com/circularing/encore/cli/internal/telemetry"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/internal/env"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/pkg/github"
+	"github.com/circularing/encore/pkg/xos"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 var (

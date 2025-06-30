@@ -1,17 +1,17 @@
 package app
 
 import (
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/app/apiframework"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/apis/api"
-	"encr.dev/v2/parser/apis/middleware"
-	"encr.dev/v2/parser/resource"
-	"encr.dev/v2/parser/resource/usage"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/app/apiframework"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/apis/api"
+	"github.com/circularing/encore/v2/parser/apis/middleware"
+	"github.com/circularing/encore/v2/parser/resource"
+	"github.com/circularing/encore/v2/parser/resource/usage"
 )
 
 // Desc describes an Encore application.

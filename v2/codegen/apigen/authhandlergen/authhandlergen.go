@@ -3,13 +3,13 @@ package authhandlergen
 import (
 	. "github.com/dave/jennifer/jen"
 
-	"encr.dev/pkg/option"
-	"encr.dev/v2/app"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/codegen/apigen/apigenutil"
-	"encr.dev/v2/internals/schema/schemautil"
-	"encr.dev/v2/parser/apis/api/apienc"
-	"encr.dev/v2/parser/apis/authhandler"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/codegen/apigen/apigenutil"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/parser/apis/api/apienc"
+	"github.com/circularing/encore/v2/parser/apis/authhandler"
 )
 
 func Gen(gen *codegen.Generator, appDesc *app.Desc, ah *authhandler.AuthHandler, svcStruct option.Option[*codegen.VarDecl]) *codegen.VarDecl {

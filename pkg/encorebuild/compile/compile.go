@@ -8,8 +8,8 @@ import (
 	"strings"
 	"sync"
 
-	"encr.dev/pkg/encorebuild/buildconf"
-	. "encr.dev/pkg/encorebuild/buildutil"
+	"github.com/circularing/encore/pkg/encorebuild/buildconf"
+	. "github.com/circularing/encore/pkg/encorebuild/buildutil"
 )
 
 // GoBinary compiles a Go binary for the given OS and architecture with GCP enabled

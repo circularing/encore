@@ -8,9 +8,9 @@ import (
 
 	"cuelang.org/go/cue/ast"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
 )
 
 // definitionGenerator is used to count the number of types a specific named type

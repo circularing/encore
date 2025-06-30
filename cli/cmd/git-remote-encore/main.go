@@ -12,7 +12,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"encr.dev/internal/conf"
+	"github.com/circularing/encore/internal/conf"
 )
 
 func main() {

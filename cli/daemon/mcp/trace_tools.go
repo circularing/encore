@@ -10,8 +10,8 @@ import (
 
 	"github.com/mark3labs/mcp-go/mcp"
 
-	"encr.dev/cli/daemon/engine/trace2"
-	tracepb2 "encr.dev/proto/encore/engine/trace2"
+	"github.com/circularing/encore/cli/daemon/engine/trace2"
+	tracepb2 "github.com/circularing/encore/proto/encore/engine/trace2"
 )
 
 func (m *Manager) registerTraceResources() {

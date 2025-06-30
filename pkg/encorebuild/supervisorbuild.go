@@ -8,9 +8,9 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"encr.dev/pkg/encorebuild/buildconf"
-	. "encr.dev/pkg/encorebuild/buildutil"
-	"encr.dev/pkg/encorebuild/compile"
+	"github.com/circularing/encore/pkg/encorebuild/buildconf"
+	. "github.com/circularing/encore/pkg/encorebuild/buildutil"
+	"github.com/circularing/encore/pkg/encorebuild/compile"
 )
 
 func NewSupervisorBuilder(cfg *buildconf.Config) *SupervisorBuilder {

@@ -1,10 +1,10 @@
 package app
 
 import (
-	"encr.dev/pkg/errors"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/infra/sqldb"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/infra/sqldb"
 )
 
 func (d *Desc) validateDatabases(pc *parsectx.Context, result *parser.Result) {

@@ -11,11 +11,11 @@ import (
 	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/rogpeppe/go-internal/txtar"
 
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
-	. "encr.dev/v2/internals/schema/schematest"
-	"encr.dev/v2/internals/testutil"
-	"encr.dev/v2/parser/apis/directive"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
+	. "github.com/circularing/encore/v2/internals/schema/schematest"
+	"github.com/circularing/encore/v2/internals/testutil"
+	"github.com/circularing/encore/v2/parser/apis/directive"
 )
 
 func TestParseAuthHandler(t *testing.T) {

@@ -3,11 +3,11 @@ package app
 import (
 	"fmt"
 
-	"encr.dev/pkg/errors"
-	"encr.dev/v2/app/apiframework"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/parser/apis/middleware"
-	"encr.dev/v2/parser/apis/selector"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/v2/app/apiframework"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/parser/apis/middleware"
+	"github.com/circularing/encore/v2/parser/apis/selector"
 )
 
 func (d *Desc) validateMiddleware(pc *parsectx.Context, fw *apiframework.AppDesc) {

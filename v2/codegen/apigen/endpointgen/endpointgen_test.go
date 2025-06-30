@@ -3,12 +3,12 @@ package endpointgen
 import (
 	"testing"
 
-	"encr.dev/pkg/option"
-	"encr.dev/v2/app"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/codegen/apigen/servicestructgen"
-	"encr.dev/v2/codegen/apigen/userfacinggen"
-	"encr.dev/v2/codegen/internal/codegentest"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/codegen/apigen/servicestructgen"
+	"github.com/circularing/encore/v2/codegen/apigen/userfacinggen"
+	"github.com/circularing/encore/v2/codegen/internal/codegentest"
 )
 
 func TestCodegen(t *testing.T) {

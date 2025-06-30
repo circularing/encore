@@ -5,7 +5,7 @@ import (
 	"slices"
 	"sort"
 
-	"encr.dev/pkg/option"
+	"github.com/circularing/encore/pkg/option"
 )
 
 type LocationType uint8

@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"encr.dev/internal/userconfig"
-	"encr.dev/pkg/xos"
+	"github.com/circularing/encore/internal/userconfig"
+	"github.com/circularing/encore/pkg/xos"
 )
 
 func main() {

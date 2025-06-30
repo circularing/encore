@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	"encr.dev/internal/httpcache"
+	"github.com/circularing/encore/internal/httpcache"
 )
 
 // Cache excercises a httpcache.Cache implementation.

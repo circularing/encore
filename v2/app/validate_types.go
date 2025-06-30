@@ -3,11 +3,11 @@ package app
 import (
 	"go/ast"
 
-	"encr.dev/pkg/errors"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
-	"encr.dev/v2/parser/apis/api/apienc"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/parser/apis/api/apienc"
 )
 
 // validateType validates the type of a field can be marshalled.

@@ -9,9 +9,9 @@ import (
 
 	cueerrors "cuelang.org/go/cue/errors"
 
-	"encr.dev/pkg/errinsrc"
-	. "encr.dev/pkg/errinsrc/internal"
-	schema "encr.dev/proto/encore/parser/schema/v1"
+	"github.com/circularing/encore/pkg/errinsrc"
+	. "github.com/circularing/encore/pkg/errinsrc/internal"
+	schema "github.com/circularing/encore/proto/encore/parser/schema/v1"
 )
 
 func handleCUEError(err error, pathPrefix string, param ErrParams) error {

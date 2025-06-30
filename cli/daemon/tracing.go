@@ -4,7 +4,7 @@ import (
 	"context"
 	"path/filepath"
 
-	"encr.dev/internal/etrace"
+	"github.com/circularing/encore/internal/etrace"
 )
 
 func (s *Server) beginTracing(ctx context.Context, appRoot, workingDir string, traceFile *string) (context.Context, *etrace.Tracer, error) {

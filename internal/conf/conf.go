@@ -16,15 +16,15 @@ import (
 
 	"golang.org/x/oauth2"
 
-	"encr.dev/internal/goldfish"
-	"encr.dev/pkg/xos"
+	"github.com/circularing/encore/internal/goldfish"
+	"github.com/circularing/encore/pkg/xos"
 )
 
 var ErrInvalidRefreshToken = errors.New("invalid refresh token")
 var ErrNotLoggedIn = errors.New("not logged in: run 'encore auth login' first")
 
 // These can be overwritten using
-// `go build -ldflags "-X encr.dev/cli/internal/conf.defaultPlatformURL=https://api.encore.dev"`.
+// `go build -ldflags "-X github.com/circularing/encore/cli/internal/conf.defaultPlatformURL=https://api.encore.dev"`.
 var (
 	defaultPlatformURL     = "https://api.encore.cloud"
 	defaultDevDashURL      = "https://devdash.encore.dev"

@@ -12,9 +12,9 @@ import (
 	"github.com/jackc/pgproto3/v2"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/cli/daemon/namespace"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/pgproxy"
+	"github.com/circularing/encore/cli/daemon/namespace"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/pgproxy"
 )
 
 // ServeProxy serves the database proxy using the given listener.

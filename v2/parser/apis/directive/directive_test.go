@@ -9,7 +9,7 @@ import (
 	qt "github.com/frankban/quicktest"
 	"github.com/google/go-cmp/cmp/cmpopts"
 
-	"encr.dev/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/perr"
 )
 
 func TestParseDirective(t *testing.T) {

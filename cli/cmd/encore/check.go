@@ -8,8 +8,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 var (

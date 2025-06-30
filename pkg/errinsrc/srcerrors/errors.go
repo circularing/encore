@@ -10,9 +10,9 @@ import (
 
 	"golang.org/x/tools/go/packages"
 
-	"encr.dev/pkg/errinsrc"
-	. "encr.dev/pkg/errinsrc/internal"
-	"encr.dev/pkg/paths"
+	"github.com/circularing/encore/pkg/errinsrc"
+	. "github.com/circularing/encore/pkg/errinsrc/internal"
+	"github.com/circularing/encore/pkg/paths"
 )
 
 // UnhandledPanic is an error we use to wrap a panic that was not handled

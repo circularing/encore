@@ -3,10 +3,10 @@ package middlewaregen
 import (
 	. "github.com/dave/jennifer/jen"
 
-	"encr.dev/pkg/option"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/parser/apis/middleware"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/parser/apis/middleware"
 )
 
 func Gen(gen *codegen.Generator, mws []*middleware.Middleware, svcStruct option.Option[*codegen.VarDecl]) map[*middleware.Middleware]*codegen.VarDecl {

@@ -14,7 +14,7 @@ import (
 	"reflect"
 	"testing"
 
-	"encr.dev/cli/internal/jsonrpc2"
+	"github.com/circularing/encore/cli/internal/jsonrpc2"
 )
 
 var logRPC = flag.Bool("logrpc", false, "Enable jsonrpc2 communication logging")

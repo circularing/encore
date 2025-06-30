@@ -21,9 +21,9 @@ import (
 	"golang.org/x/sync/singleflight"
 
 	"encore.dev/appruntime/exported/experiments"
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/cli/internal/platform"
-	"encr.dev/pkg/xos"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/cli/internal/platform"
+	"github.com/circularing/encore/pkg/xos"
 )
 
 // New returns a new manager.

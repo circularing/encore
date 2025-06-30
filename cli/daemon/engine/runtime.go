@@ -9,8 +9,8 @@ import (
 	"github.com/cockroachdb/errors"
 
 	tracemodel "encore.dev/appruntime/exported/trace2"
-	"encr.dev/cli/daemon/engine/trace2"
-	"encr.dev/cli/daemon/run"
+	"github.com/circularing/encore/cli/daemon/engine/trace2"
+	"github.com/circularing/encore/cli/daemon/run"
 )
 
 type server struct {

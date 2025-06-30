@@ -11,9 +11,9 @@ import (
 
 	"github.com/logrusorgru/aurora/v3"
 
-	"encr.dev/pkg/ansi"
-	"encr.dev/pkg/errlist"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/pkg/ansi"
+	"github.com/circularing/encore/pkg/errlist"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 type OutputStream interface {

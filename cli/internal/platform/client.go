@@ -13,10 +13,10 @@ import (
 	jsoniter "github.com/json-iterator/go"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/cli/internal/platform/gql"
-	"encr.dev/internal/conf"
-	"encr.dev/internal/version"
-	"encr.dev/pkg/fns"
+	"github.com/circularing/encore/cli/internal/platform/gql"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/pkg/fns"
 )
 
 type Error struct {

@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"encr.dev/internal/env"
+	"github.com/circularing/encore/internal/env"
 )
 
 var (

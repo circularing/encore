@@ -11,13 +11,13 @@ import (
 	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/rogpeppe/go-internal/txtar"
 
-	"encr.dev/pkg/option"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/resourcepaths"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/testutil"
-	"encr.dev/v2/parser/apis/directive"
-	"encr.dev/v2/parser/apis/selector"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/resourcepaths"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/testutil"
+	"github.com/circularing/encore/v2/parser/apis/directive"
+	"github.com/circularing/encore/v2/parser/apis/selector"
 )
 
 func TestParseRPC(t *testing.T) {

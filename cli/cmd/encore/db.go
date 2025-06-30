@@ -15,9 +15,9 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/daemon/sqldb/docker"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/daemon/sqldb/docker"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 var dbCmd = &cobra.Command{

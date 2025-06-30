@@ -7,10 +7,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	daemonpkg "encr.dev/cli/cmd/encore/daemon"
-	"encr.dev/internal/env"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	daemonpkg "github.com/circularing/encore/cli/cmd/encore/daemon"
+	"github.com/circularing/encore/internal/env"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 var daemonizeForeground bool

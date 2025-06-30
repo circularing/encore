@@ -9,12 +9,12 @@ import (
 
 	"golang.org/x/mod/semver"
 
-	"encr.dev/internal/conf"
-	"encr.dev/internal/env"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/internal/env"
 )
 
 // Version is the version of the encore binary.
-// It is set using `go build -ldflags "-X encr.dev/internal/version.Version=v1.2.3"`.
+// It is set using `go build -ldflags "-X github.com/circularing/encore/internal/version.Version=v1.2.3"`.
 var Version string
 
 // Channel tells us which ReleaseChannel this build of Encore is under

@@ -3,7 +3,7 @@ package secrets
 import (
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/root"
+	"github.com/circularing/encore/cli/cmd/encore/root"
 )
 
 var secretCmd = &cobra.Command{

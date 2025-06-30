@@ -5,16 +5,16 @@ import (
 	"go/ast"
 	"path"
 
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/parser/apis/api"
-	"encr.dev/v2/parser/apis/authhandler"
-	"encr.dev/v2/parser/apis/middleware"
-	"encr.dev/v2/parser/apis/servicestruct"
-	"encr.dev/v2/parser/infra/pubsub"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/parser/apis/api"
+	"github.com/circularing/encore/v2/parser/apis/authhandler"
+	"github.com/circularing/encore/v2/parser/apis/middleware"
+	"github.com/circularing/encore/v2/parser/apis/servicestruct"
+	"github.com/circularing/encore/v2/parser/infra/pubsub"
 )
 
 func newTraceNodes(b *builder) *TraceNodes {

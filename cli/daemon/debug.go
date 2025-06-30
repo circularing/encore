@@ -10,12 +10,12 @@ import (
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
 
-	"encr.dev/internal/version"
-	"encr.dev/pkg/builder"
-	"encr.dev/pkg/builder/builderimpl"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/vcs"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/builder/builderimpl"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/vcs"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 func (s *Server) DumpMeta(ctx context.Context, req *daemonpb.DumpMetaRequest) (*daemonpb.DumpMetaResponse, error) {

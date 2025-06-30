@@ -14,8 +14,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"encr.dev/pkg/encorebuild/buildconf"
-	. "encr.dev/pkg/encorebuild/buildutil"
+	"github.com/circularing/encore/pkg/encorebuild/buildconf"
+	. "github.com/circularing/encore/pkg/encorebuild/buildutil"
 	"github.com/cockroachdb/errors"
 )
 

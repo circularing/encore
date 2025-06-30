@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"slices"
 
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 // Options for the client generator.

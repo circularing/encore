@@ -6,7 +6,7 @@ import (
 	qt "github.com/frankban/quicktest"
 	jsoniter "github.com/json-iterator/go"
 
-	"encr.dev/cli/internal/platform/gql"
+	"github.com/circularing/encore/cli/internal/platform/gql"
 )
 
 func TestInterfaceDecoder(t *testing.T) {

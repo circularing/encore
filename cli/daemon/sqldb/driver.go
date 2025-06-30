@@ -6,8 +6,8 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"encr.dev/cli/daemon/namespace"
-	"encr.dev/internal/optracker"
+	"github.com/circularing/encore/cli/daemon/namespace"
+	"github.com/circularing/encore/internal/optracker"
 )
 
 var ErrUnsupported = errors.New("unsupported operation")

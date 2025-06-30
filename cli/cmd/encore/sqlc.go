@@ -13,7 +13,7 @@ import (
 	"github.com/sqlc-dev/sqlc/pkg/cli"
 	"google.golang.org/protobuf/encoding/protojson"
 
-	"encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/proto/encore/daemon"
 )
 
 type sqlcSQL struct {

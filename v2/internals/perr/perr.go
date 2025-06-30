@@ -14,12 +14,12 @@ import (
 
 	"golang.org/x/tools/go/packages"
 
-	"encr.dev/pkg/errinsrc"
-	"encr.dev/pkg/errinsrc/srcerrors"
-	"encr.dev/pkg/errlist"
-	"encr.dev/pkg/errors"
-	"encr.dev/pkg/paths"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/pkg/errinsrc"
+	"github.com/circularing/encore/pkg/errinsrc/srcerrors"
+	"github.com/circularing/encore/pkg/errlist"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/pkg/paths"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 // NewList constructs a new list.

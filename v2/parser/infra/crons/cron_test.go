@@ -3,8 +3,8 @@ package crons
 import (
 	"testing"
 
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/parser/resource/resourcetest"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/parser/resource/resourcetest"
 )
 
 func TestParseJob(t *testing.T) {

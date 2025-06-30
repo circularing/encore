@@ -3,11 +3,11 @@ package servicestructgen
 import (
 	. "github.com/dave/jennifer/jen"
 
-	"encr.dev/pkg/option"
-	"encr.dev/v2/app"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/parser/apis/servicestruct"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/parser/apis/servicestruct"
 )
 
 func Gen(gen *codegen.Generator, svc *app.Service, s *servicestruct.ServiceStruct) *codegen.VarDecl {

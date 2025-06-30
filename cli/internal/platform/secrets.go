@@ -5,7 +5,7 @@ import (
 
 	"github.com/cockroachdb/errors"
 
-	"encr.dev/cli/internal/platform/gql"
+	"github.com/circularing/encore/cli/internal/platform/gql"
 )
 
 func ListSecretGroups(ctx context.Context, appSlug string, keys []string) ([]*gql.Secret, error) {

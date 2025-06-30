@@ -14,10 +14,10 @@ import (
 	"github.com/mark3labs/mcp-go/mcp"
 	"google.golang.org/protobuf/encoding/protojson"
 
-	"encr.dev/cli/daemon/run"
-	"encr.dev/pkg/builder"
-	metav1 "encr.dev/proto/encore/parser/meta/v1"
-	schema "encr.dev/proto/encore/parser/schema/v1"
+	"github.com/circularing/encore/cli/daemon/run"
+	"github.com/circularing/encore/pkg/builder"
+	metav1 "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	schema "github.com/circularing/encore/proto/encore/parser/schema/v1"
 )
 
 func (m *Manager) registerAPITools() {

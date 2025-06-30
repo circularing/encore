@@ -9,9 +9,9 @@ import (
 	"slices"
 	"strings"
 
-	"encr.dev/pkg/errors"
-	"encr.dev/pkg/idents"
-	"encr.dev/v2/internals/perr"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/pkg/idents"
+	"github.com/circularing/encore/v2/internals/perr"
 )
 
 // Directive represents a parsed "encore:" directive.

@@ -6,7 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
 )
 
 var cloneAppCmd = &cobra.Command{

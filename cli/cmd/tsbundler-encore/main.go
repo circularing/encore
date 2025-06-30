@@ -10,7 +10,7 @@ import (
 
 	"github.com/evanw/esbuild/pkg/api"
 
-	"encr.dev/internal/version"
+	"github.com/circularing/encore/internal/version"
 
 	flag "github.com/spf13/pflag"
 )

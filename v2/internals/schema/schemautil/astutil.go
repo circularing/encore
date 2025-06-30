@@ -3,7 +3,7 @@ package schemautil
 import (
 	"go/ast"
 
-	"encr.dev/pkg/option"
+	"github.com/circularing/encore/pkg/option"
 )
 
 // GetArgument gets the n'th argument from the field list.

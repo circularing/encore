@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"io"
 
-	"encr.dev/cli/internal/gosym"
+	"github.com/circularing/encore/cli/internal/gosym"
 )
 
 func load(r io.ReaderAt) (*Table, error) {

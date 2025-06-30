@@ -23,13 +23,13 @@ import (
 	"encore.dev/appruntime/apisdk/api/transport"
 	"encore.dev/appruntime/exported/config"
 	"encore.dev/appruntime/exported/experiments"
-	"encr.dev/cli/daemon/internal/sym"
-	"encr.dev/internal/lookpath"
-	"encr.dev/pkg/builder"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/noopgateway"
-	"encr.dev/pkg/noopgwdesc"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/cli/daemon/internal/sym"
+	"github.com/circularing/encore/internal/lookpath"
+	"github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/noopgateway"
+	"github.com/circularing/encore/pkg/noopgwdesc"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 type procGroupOptions struct {

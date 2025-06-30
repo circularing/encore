@@ -12,9 +12,9 @@ import (
 	"github.com/rs/zerolog/log"
 	"golang.org/x/sync/singleflight"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/cli/daemon/namespace"
-	"encr.dev/cli/daemon/secret"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/cli/daemon/namespace"
+	"github.com/circularing/encore/cli/daemon/secret"
 )
 
 // NewClusterManager creates a new ClusterManager.

@@ -23,14 +23,14 @@ import (
 	"google.golang.org/protobuf/types/known/durationpb"
 
 	"encore.dev/appruntime/exported/config"
-	encoreEnv "encr.dev/internal/env"
-	"encr.dev/pkg/appfile"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/rtconfgen"
-	"encr.dev/pkg/svcproxy"
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	runtimev1 "encr.dev/proto/encore/runtime/v1"
+	encoreEnv "github.com/circularing/encore/internal/env"
+	"github.com/circularing/encore/pkg/appfile"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/rtconfgen"
+	"github.com/circularing/encore/pkg/svcproxy"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	runtimev1 "github.com/circularing/encore/proto/encore/runtime/v1"
 )
 
 const (

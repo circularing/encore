@@ -10,10 +10,10 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"encr.dev/cli/daemon/run"
-	"encr.dev/pkg/builder"
-	"encr.dev/pkg/fns"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/daemon/run"
+	"github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/fns"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 // Test runs tests.

@@ -5,13 +5,13 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"encr.dev/pkg/idents"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
-	"encr.dev/v2/parser/infra/metrics"
+	"github.com/circularing/encore/pkg/idents"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/parser/infra/metrics"
 )
 
 func Gen(gen *codegen.Generator, pkg *pkginfo.Package, metrics []*metrics.Metric) {

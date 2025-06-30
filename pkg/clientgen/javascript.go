@@ -12,13 +12,13 @@ import (
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 
-	"encr.dev/pkg/clientgen/clientgentypes"
-	"encr.dev/pkg/idents"
+	"github.com/circularing/encore/pkg/clientgen/clientgentypes"
+	"github.com/circularing/encore/pkg/idents"
 
-	"encr.dev/internal/version"
-	"encr.dev/parser/encoding"
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	schema "encr.dev/proto/encore/parser/schema/v1"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/parser/encoding"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	schema "github.com/circularing/encore/proto/encore/parser/schema/v1"
 )
 
 /* The JavaScript generator generates code that looks like this:

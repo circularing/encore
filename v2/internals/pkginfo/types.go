@@ -11,8 +11,8 @@ import (
 	"golang.org/x/mod/modfile"
 	"golang.org/x/tools/go/ast/inspector"
 
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
 )
 
 // Module describes a Go module.

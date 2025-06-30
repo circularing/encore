@@ -13,7 +13,7 @@ import (
 	"strings"
 	"sync"
 
-	"encr.dev/cli/internal/jsonrpc2"
+	"github.com/circularing/encore/cli/internal/jsonrpc2"
 )
 
 // Connector is the interface used to connect to a server.

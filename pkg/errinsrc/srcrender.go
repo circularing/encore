@@ -13,7 +13,7 @@ import (
 	auroraPkg "github.com/logrusorgru/aurora/v3"
 	"github.com/rs/zerolog/log"
 
-	. "encr.dev/pkg/errinsrc/internal"
+	. "github.com/circularing/encore/pkg/errinsrc/internal"
 )
 
 const grayLevelOnLineNumbers = 12

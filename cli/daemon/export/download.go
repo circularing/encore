@@ -13,10 +13,10 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/internal/conf"
-	"encr.dev/internal/env"
-	"encr.dev/internal/version"
-	"encr.dev/pkg/dockerbuild"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/internal/env"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/pkg/dockerbuild"
 )
 
 const (

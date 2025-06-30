@@ -4,8 +4,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/pkg/watcher"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/pkg/watcher"
 )
 
 // watch watches the given app for changes, and reports

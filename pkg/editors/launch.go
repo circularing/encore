@@ -10,7 +10,7 @@ import (
 	"github.com/pkg/browser"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/pkg/xos"
+	"github.com/circularing/encore/pkg/xos"
 )
 
 // LaunchExternalEditor opens a given file or folder in the desired external editor.

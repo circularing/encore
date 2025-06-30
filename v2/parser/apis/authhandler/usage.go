@@ -1,8 +1,8 @@
 package authhandler
 
 import (
-	"encr.dev/pkg/errors"
-	"encr.dev/v2/parser/resource/usage"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/v2/parser/resource/usage"
 )
 
 func ResolveAuthHandlerUsage(data usage.ResolveData, handler *AuthHandler) usage.Usage {

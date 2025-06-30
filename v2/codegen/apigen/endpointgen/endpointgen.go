@@ -6,14 +6,14 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"encr.dev/pkg/option"
-	"encr.dev/v2/app"
-	"encr.dev/v2/app/apiframework"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/internals/resourcepaths"
-	"encr.dev/v2/parser/apis/api"
-	"encr.dev/v2/parser/apis/middleware"
-	"encr.dev/v2/parser/apis/selector"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/app/apiframework"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/internals/resourcepaths"
+	"github.com/circularing/encore/v2/parser/apis/api"
+	"github.com/circularing/encore/v2/parser/apis/middleware"
+	"github.com/circularing/encore/v2/parser/apis/selector"
 )
 
 func Gen(gen *codegen.Generator, appDesc *app.Desc, svc *app.Service, svcStruct option.Option[*codegen.VarDecl], svcMiddleware map[*middleware.Middleware]*codegen.VarDecl) map[*api.Endpoint]*codegen.VarDecl {

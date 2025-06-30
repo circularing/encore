@@ -6,8 +6,8 @@ import (
 	"slices"
 	"strings"
 
-	"encr.dev/pkg/noopgateway"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/pkg/noopgateway"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 // Describe computes a Description based on the given metadata and service discovery configuration.

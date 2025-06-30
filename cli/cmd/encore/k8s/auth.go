@@ -6,9 +6,9 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/cmd/encore/k8s/types"
-	"encr.dev/internal/conf"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/cmd/encore/k8s/types"
+	"github.com/circularing/encore/internal/conf"
 )
 
 var genAuthCmd = &cobra.Command{

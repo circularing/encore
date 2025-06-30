@@ -14,9 +14,9 @@ import (
 	"github.com/spf13/cobra"
 	"google.golang.org/protobuf/encoding/protojson"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/cmd/encore/root"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/cmd/encore/root"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 var nsCmd = &cobra.Command{

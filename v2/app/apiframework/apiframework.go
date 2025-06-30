@@ -1,12 +1,12 @@
 package apiframework
 
 import (
-	"encr.dev/pkg/option"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/parser/apis/api"
-	"encr.dev/v2/parser/apis/authhandler"
-	"encr.dev/v2/parser/apis/middleware"
-	"encr.dev/v2/parser/apis/servicestruct"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/parser/apis/api"
+	"github.com/circularing/encore/v2/parser/apis/authhandler"
+	"github.com/circularing/encore/v2/parser/apis/middleware"
+	"github.com/circularing/encore/v2/parser/apis/servicestruct"
 )
 
 // AppDesc describes an Encore Framework-based application.

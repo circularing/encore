@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"encr.dev/internal/version"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/internal/version"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 func doNotEditHeader() string {

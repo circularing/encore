@@ -15,11 +15,11 @@ import (
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/cmd/encore/k8s/types"
-	"encr.dev/cli/internal/platform"
-	"encr.dev/internal/conf"
-	"encr.dev/pkg/xos"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/cmd/encore/k8s/types"
+	"github.com/circularing/encore/cli/internal/platform"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/pkg/xos"
 
 	"sigs.k8s.io/yaml"
 )

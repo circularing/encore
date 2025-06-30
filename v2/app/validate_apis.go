@@ -3,18 +3,18 @@ package app
 import (
 	"fmt"
 
-	"encr.dev/pkg/errors"
-	"encr.dev/v2/app/apiframework"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/resourcepaths"
-	"encr.dev/v2/internals/schema/schemautil"
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/apis/api"
-	"encr.dev/v2/parser/apis/authhandler"
-	"encr.dev/v2/parser/apis/servicestruct"
-	"encr.dev/v2/parser/infra/crons"
-	"encr.dev/v2/parser/infra/pubsub"
-	"encr.dev/v2/parser/resource"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/v2/app/apiframework"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/resourcepaths"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/apis/api"
+	"github.com/circularing/encore/v2/parser/apis/authhandler"
+	"github.com/circularing/encore/v2/parser/apis/servicestruct"
+	"github.com/circularing/encore/v2/parser/infra/crons"
+	"github.com/circularing/encore/v2/parser/infra/pubsub"
+	"github.com/circularing/encore/v2/parser/resource"
 )
 
 func (d *Desc) validateAPIs(pc *parsectx.Context, fw *apiframework.AppDesc, result *parser.Result) {

@@ -10,11 +10,11 @@ import (
 	"slices"
 	"strconv"
 
-	"encr.dev/pkg/errors"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
 )
 
 // IsNamed reports whether a given type is a named type with the given

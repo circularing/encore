@@ -17,14 +17,14 @@ import (
 	"github.com/cockroachdb/errors"
 	"google.golang.org/protobuf/proto"
 
-	"encr.dev/internal/env"
-	"encr.dev/internal/lookpath"
-	"encr.dev/internal/version"
-	"encr.dev/pkg/builder"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	metav1 "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/internal/env"
+	"github.com/circularing/encore/internal/lookpath"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	metav1 "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 func New() *BuilderImpl {

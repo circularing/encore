@@ -6,8 +6,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/internal/platform"
-	"encr.dev/internal/conf"
+	"github.com/circularing/encore/cli/internal/platform"
+	"github.com/circularing/encore/internal/conf"
 )
 
 func AutoCompleteFromStaticList(args ...string) func(cmd *cobra.Command, _ []string, toComplete string) ([]string, cobra.ShellCompDirective) {

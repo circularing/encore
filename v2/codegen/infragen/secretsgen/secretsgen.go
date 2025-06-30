@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"strconv"
 
-	"encr.dev/pkg/option"
-	"encr.dev/v2/app"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/parser/infra/secrets"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/parser/infra/secrets"
 )
 
 func Gen(gen *codegen.Generator, svc option.Option[*app.Service], pkg *pkginfo.Package, secrets []*secrets.Secrets) {

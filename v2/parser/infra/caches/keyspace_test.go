@@ -3,11 +3,11 @@ package caches
 import (
 	"testing"
 
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/resourcepaths"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schematest"
-	"encr.dev/v2/parser/resource/resourcetest"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/resourcepaths"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schematest"
+	"github.com/circularing/encore/v2/parser/resource/resourcetest"
 )
 
 func TestParseKeyspace(t *testing.T) {

@@ -1,4 +1,4 @@
-module encr.dev
+module github.com/circularing/encore
 
 go 1.23.0
 

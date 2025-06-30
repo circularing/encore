@@ -5,13 +5,13 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"encr.dev/v2/codegen/apigen/apigenutil"
-	"encr.dev/v2/codegen/internal/genutil"
-	"encr.dev/v2/internals/resourcepaths"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
-	"encr.dev/v2/parser/apis/api"
-	"encr.dev/v2/parser/apis/api/apienc"
+	"github.com/circularing/encore/v2/codegen/apigen/apigenutil"
+	"github.com/circularing/encore/v2/codegen/internal/genutil"
+	"github.com/circularing/encore/v2/internals/resourcepaths"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/parser/apis/api"
+	"github.com/circularing/encore/v2/parser/apis/api/apienc"
 )
 
 const jsonIterPkg = "github.com/json-iterator/go"

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 
-	"encr.dev/cli/internal/gosym"
+	"github.com/circularing/encore/cli/internal/gosym"
 )
 
 type Table struct {

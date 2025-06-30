@@ -3,10 +3,10 @@ package configgen_test
 import (
 	"testing"
 
-	"encr.dev/v2/app"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/codegen/infragen"
-	"encr.dev/v2/codegen/internal/codegentest"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/codegen/infragen"
+	"github.com/circularing/encore/v2/codegen/internal/codegentest"
 )
 
 func TestCodegen(t *testing.T) {

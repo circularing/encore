@@ -6,13 +6,13 @@ import (
 	"slices"
 	"strconv"
 
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/app/legacymeta"
-	"encr.dev/v2/codegen/internal/genutil"
-	"encr.dev/v2/codegen/rewrite"
-	"encr.dev/v2/internals/overlay"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/pkginfo"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/app/legacymeta"
+	"github.com/circularing/encore/v2/codegen/internal/genutil"
+	"github.com/circularing/encore/v2/codegen/rewrite"
+	"github.com/circularing/encore/v2/internals/overlay"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/pkginfo"
 )
 
 type Generator struct {

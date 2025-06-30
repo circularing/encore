@@ -12,8 +12,8 @@ import (
 	"strconv"
 	"strings"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/paths"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/paths"
 )
 
 // File pkgparse implements parsing of packages.

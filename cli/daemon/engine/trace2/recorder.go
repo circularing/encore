@@ -10,8 +10,8 @@ import (
 	"github.com/rs/zerolog/log"
 
 	"encore.dev/appruntime/exported/trace2"
-	"encr.dev/pkg/traceparser"
-	tracepb2 "encr.dev/proto/encore/engine/trace2"
+	"github.com/circularing/encore/pkg/traceparser"
+	tracepb2 "github.com/circularing/encore/proto/encore/engine/trace2"
 )
 
 type Recorder struct {

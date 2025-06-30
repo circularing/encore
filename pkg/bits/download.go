@@ -8,12 +8,12 @@ import (
 	"github.com/cockroachdb/errors"
 	"github.com/rs/zerolog"
 
-	"encr.dev/pkg/github"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/app"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/parser"
+	"github.com/circularing/encore/pkg/github"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/parser"
 )
 
 // Extract downloads and extracts a bit into a given directory.

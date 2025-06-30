@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"encr.dev/pkg/option"
+	"github.com/circularing/encore/pkg/option"
 )
 
 func TestGetArgument(t *testing.T) {

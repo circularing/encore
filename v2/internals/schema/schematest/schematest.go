@@ -5,8 +5,8 @@ package schematest
 import (
 	"go/token"
 
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
 )
 
 func Ptr(elem schema.Type) schema.Type {

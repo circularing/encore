@@ -6,14 +6,14 @@ import (
 	. "github.com/dave/jennifer/jen"
 
 	"encore.dev/appruntime/exported/config"
-	"encr.dev/pkg/option"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/app"
-	"encr.dev/v2/app/apiframework"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/parser/apis/api"
-	"encr.dev/v2/parser/apis/middleware"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/app/apiframework"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/parser/apis/api"
+	"github.com/circularing/encore/v2/parser/apis/middleware"
 )
 
 type GenParams struct {

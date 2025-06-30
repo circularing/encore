@@ -13,10 +13,10 @@ import (
 	"golang.org/x/crypto/ssh/terminal"
 	"google.golang.org/grpc/status"
 
-	"encr.dev/cli/internal/manifest"
-	"encr.dev/pkg/appfile"
-	"encr.dev/pkg/errinsrc"
-	"encr.dev/pkg/errlist"
+	"github.com/circularing/encore/cli/internal/manifest"
+	"github.com/circularing/encore/pkg/appfile"
+	"github.com/circularing/encore/pkg/errinsrc"
+	"github.com/circularing/encore/pkg/errlist"
 )
 
 var (

@@ -3,10 +3,10 @@ package app
 import (
 	"fmt"
 
-	"encr.dev/pkg/errors"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/apis/servicestruct"
+	"github.com/circularing/encore/pkg/errors"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/apis/servicestruct"
 )
 
 func (d *Desc) validateServiceStructs(pc *parsectx.Context, result *parser.Result) {

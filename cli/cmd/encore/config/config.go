@@ -5,9 +5,9 @@ import (
 	"os"
 	"strings"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/cmd/encore/root"
-	"encr.dev/internal/userconfig"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/cmd/encore/root"
+	"github.com/circularing/encore/internal/userconfig"
 	"github.com/spf13/cobra"
 )
 

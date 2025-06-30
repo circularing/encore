@@ -14,7 +14,7 @@ import (
 
 	"google.golang.org/api/storage/v1"
 
-	"encr.dev/pkg/emulators/storage/gcsemu"
+	"github.com/circularing/encore/pkg/emulators/storage/gcsemu"
 )
 
 // Fallback is a function that returns a store for a given namespace.

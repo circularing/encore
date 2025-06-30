@@ -9,10 +9,10 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/internal/version"
-	"encr.dev/pkg/encorebuild"
-	"encr.dev/pkg/encorebuild/buildconf"
-	"encr.dev/pkg/option"
+	"github.com/circularing/encore/internal/version"
+	"github.com/circularing/encore/pkg/encorebuild"
+	"github.com/circularing/encore/pkg/encorebuild/buildconf"
+	"github.com/circularing/encore/pkg/option"
 )
 
 func join(strs ...string) string {
@@ -36,7 +36,7 @@ func main() {
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to get working directory")
 	} else if _, err := os.Stat(join(root, ".git")); err != nil {
-		log.Fatal().Err(err).Msg("expected to run build-local-binary from encr.dev repository root")
+		log.Fatal().Err(err).Msg("expected to run build-local-binary from github.com/circularing/encore repository root")
 	}
 
 	userCacheDir, err := os.UserCacheDir()

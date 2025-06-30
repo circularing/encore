@@ -9,9 +9,9 @@ import (
 	"github.com/cockroachdb/errors"
 	"github.com/getkin/kin-openapi/openapi3"
 
-	"encr.dev/parser/encoding"
-	"encr.dev/pkg/clientgen/clientgentypes"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/parser/encoding"
+	"github.com/circularing/encore/pkg/clientgen/clientgentypes"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 type GenVersion int

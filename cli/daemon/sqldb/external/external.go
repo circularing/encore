@@ -6,8 +6,8 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"encr.dev/cli/daemon/namespace"
-	"encr.dev/cli/daemon/sqldb"
+	"github.com/circularing/encore/cli/daemon/namespace"
+	"github.com/circularing/encore/cli/daemon/sqldb"
 )
 
 type Driver struct {

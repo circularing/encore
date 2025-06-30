@@ -3,9 +3,9 @@ package pubsub_test
 import (
 	"testing"
 
-	"encr.dev/v2/parser/infra/pubsub"
-	"encr.dev/v2/parser/resource/usage"
-	"encr.dev/v2/parser/resource/usage/usagetest"
+	"github.com/circularing/encore/v2/parser/infra/pubsub"
+	"github.com/circularing/encore/v2/parser/resource/usage"
+	"github.com/circularing/encore/v2/parser/resource/usage/usagetest"
 )
 
 func TestResolveTopicUsage(t *testing.T) {

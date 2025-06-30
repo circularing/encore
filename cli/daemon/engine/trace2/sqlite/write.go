@@ -14,9 +14,9 @@ import (
 	"github.com/rs/zerolog/log"
 	"google.golang.org/protobuf/encoding/protojson"
 
-	"encr.dev/cli/daemon/engine/trace2"
-	"encr.dev/pkg/fns"
-	tracepbcli "encr.dev/proto/encore/engine/trace2"
+	"github.com/circularing/encore/cli/daemon/engine/trace2"
+	"github.com/circularing/encore/pkg/fns"
+	tracepbcli "github.com/circularing/encore/proto/encore/engine/trace2"
 )
 
 // New creates a new store backed by the given db.

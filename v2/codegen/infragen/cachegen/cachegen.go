@@ -7,13 +7,13 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/resourcepaths"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
-	"encr.dev/v2/parser/infra/caches"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/resourcepaths"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/parser/infra/caches"
 )
 
 func GenKeyspace(gen *codegen.Generator, pkg *pkginfo.Package, keyspaces []*caches.Keyspace) {

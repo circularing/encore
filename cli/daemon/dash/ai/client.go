@@ -10,7 +10,7 @@ import (
 	"github.com/hasura/go-graphql-client/pkg/jsonutil"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/internal/conf"
+	"github.com/circularing/encore/internal/conf"
 )
 
 type TaskMessage struct {

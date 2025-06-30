@@ -1,7 +1,7 @@
 package api
 
 import (
-	"encr.dev/pkg/errors"
+	"github.com/circularing/encore/pkg/errors"
 )
 
 const rawHint = `hint: signature must be func(http.ResponseWriter, *http.Request)

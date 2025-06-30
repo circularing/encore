@@ -3,7 +3,7 @@ package perr
 import (
 	"fmt"
 
-	"encr.dev/pkg/errinsrc"
+	"github.com/circularing/encore/pkg/errinsrc"
 )
 
 // ListAsErr is a wrapper around a List that implements the error interface

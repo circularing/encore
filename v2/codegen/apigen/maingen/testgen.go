@@ -2,8 +2,8 @@ package maingen
 
 import (
 	"encore.dev/appruntime/exported/config"
-	"encr.dev/pkg/option"
-	"encr.dev/v2/codegen"
+	"github.com/circularing/encore/pkg/option"
+	"github.com/circularing/encore/v2/codegen"
 )
 
 func genTestConfigs(p GenParams, test codegen.TestConfig) *config.Static {

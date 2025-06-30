@@ -12,7 +12,7 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/pkg/eerror"
+	"github.com/circularing/encore/pkg/eerror"
 )
 
 type Watcher struct {

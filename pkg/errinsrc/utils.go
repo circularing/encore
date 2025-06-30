@@ -4,7 +4,7 @@ import (
 	"go/ast"
 	"go/token"
 
-	. "encr.dev/pkg/errinsrc/internal"
+	. "github.com/circularing/encore/pkg/errinsrc/internal"
 )
 
 type ErrorList interface {

@@ -11,9 +11,9 @@ import (
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"encr.dev/cli/daemon/engine/trace2"
-	"encr.dev/pkg/fns"
-	tracepb2 "encr.dev/proto/encore/engine/trace2"
+	"github.com/circularing/encore/cli/daemon/engine/trace2"
+	"github.com/circularing/encore/pkg/fns"
+	tracepb2 "github.com/circularing/encore/proto/encore/engine/trace2"
 )
 
 func (s *Store) List(ctx context.Context, q *trace2.Query, iter trace2.ListEntryIterator) error {

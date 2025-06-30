@@ -17,15 +17,15 @@ import (
 	"golang.org/x/tools/go/packages"
 	"golang.org/x/tools/imports"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/internal/env"
-	"encr.dev/pkg/fns"
-	"encr.dev/pkg/paths"
-	"encr.dev/v2/codegen/rewrite"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/parser/apis/api/apienc"
-	"encr.dev/v2/parser/apis/directive"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/internal/env"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/v2/codegen/rewrite"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/parser/apis/api/apienc"
+	"github.com/circularing/encore/v2/parser/apis/directive"
 )
 
 const defAuthHandler = `package auth

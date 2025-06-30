@@ -11,13 +11,13 @@ import (
 
 	encore "encore.dev"
 	"encore.dev/appruntime/exported/config"
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/cli/daemon/objects"
-	"encr.dev/cli/daemon/run/infra"
-	"encr.dev/cli/daemon/secret"
-	"encr.dev/cli/daemon/sqldb"
-	"encr.dev/pkg/errlist"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/cli/daemon/objects"
+	"github.com/circularing/encore/cli/daemon/run/infra"
+	"github.com/circularing/encore/cli/daemon/secret"
+	"github.com/circularing/encore/cli/daemon/sqldb"
+	"github.com/circularing/encore/pkg/errlist"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 // Manager manages the set of running applications.

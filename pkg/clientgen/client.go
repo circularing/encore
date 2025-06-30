@@ -8,10 +8,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"encr.dev/pkg/clientgen/clientgentypes"
-	"encr.dev/pkg/clientgen/openapi"
-	"encr.dev/pkg/errinsrc/srcerrors"
-	meta "encr.dev/proto/encore/parser/meta/v1"
+	"github.com/circularing/encore/pkg/clientgen/clientgentypes"
+	"github.com/circularing/encore/pkg/clientgen/openapi"
+	"github.com/circularing/encore/pkg/errinsrc/srcerrors"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
 )
 
 // Lang represents a programming language or dialect that we support generating code for.

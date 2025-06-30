@@ -17,10 +17,10 @@ import (
 	"github.com/spf13/cobra"
 	"golang.org/x/crypto/ssh/terminal"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/internal/platform"
-	"encr.dev/cli/internal/platform/gql"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/internal/platform"
+	"github.com/circularing/encore/cli/internal/platform/gql"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 var setSecretCmd = &cobra.Command{

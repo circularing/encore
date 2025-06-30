@@ -5,9 +5,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/cli/daemon/namespace"
-	"encr.dev/pkg/emulators/storage/gcsemu"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/cli/daemon/namespace"
+	"github.com/circularing/encore/pkg/emulators/storage/gcsemu"
 )
 
 // NewClusterManager creates a new ClusterManager.

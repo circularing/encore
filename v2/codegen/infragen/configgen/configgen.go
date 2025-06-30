@@ -10,15 +10,15 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"encr.dev/pkg/eerror"
-	"encr.dev/v2/app"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/codegen/internal/genutil"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
-	"encr.dev/v2/parser/infra/config"
+	"github.com/circularing/encore/pkg/eerror"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/codegen/internal/genutil"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/v2/parser/infra/config"
 )
 
 func Gen(gen *codegen.Generator, svc *app.Service, pkg *pkginfo.Package, loads []*config.Load) {

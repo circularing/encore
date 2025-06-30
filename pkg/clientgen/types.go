@@ -5,9 +5,9 @@ import (
 	"reflect"
 	"sort"
 
-	"encr.dev/pkg/clientgen/clientgentypes"
-	meta "encr.dev/proto/encore/parser/meta/v1"
-	schema "encr.dev/proto/encore/parser/schema/v1"
+	"github.com/circularing/encore/pkg/clientgen/clientgentypes"
+	meta "github.com/circularing/encore/proto/encore/parser/meta/v1"
+	schema "github.com/circularing/encore/proto/encore/parser/schema/v1"
 )
 
 func getNamedTypes(md *meta.Data, set clientgentypes.ServiceSet) *typeRegistry {

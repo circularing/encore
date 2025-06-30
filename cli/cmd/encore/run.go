@@ -12,10 +12,10 @@ import (
 	"github.com/spf13/cobra"
 	"golang.org/x/term"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/cmd/encore/root"
-	"encr.dev/cli/internal/onboarding"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/cmd/encore/root"
+	"github.com/circularing/encore/cli/internal/onboarding"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 var (

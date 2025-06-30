@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"encr.dev/pkg/paths"
+	"github.com/circularing/encore/pkg/paths"
 )
 
 // File describes a file to generate or rewrite.

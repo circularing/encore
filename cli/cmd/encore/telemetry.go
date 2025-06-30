@@ -11,11 +11,11 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/cmd/encore/root"
-	"encr.dev/cli/internal/telemetry"
-	"encr.dev/pkg/fns"
-	daemonpb "encr.dev/proto/encore/daemon"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/cmd/encore/root"
+	"github.com/circularing/encore/cli/internal/telemetry"
+	"github.com/circularing/encore/pkg/fns"
+	daemonpb "github.com/circularing/encore/proto/encore/daemon"
 )
 
 var TelemetryDisabledByEnvVar = os.Getenv("DISABLE_ENCORE_TELEMETRY") == "1"

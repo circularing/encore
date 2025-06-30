@@ -10,9 +10,9 @@ import (
 	"github.com/logrusorgru/aurora/v3"
 	"github.com/spf13/cobra"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
-	"encr.dev/cli/internal/platform"
-	"encr.dev/pkg/appfile"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/internal/platform"
+	"github.com/circularing/encore/pkg/appfile"
 )
 
 var (

@@ -18,7 +18,7 @@ import (
 	"github.com/charmbracelet/lipgloss"
 	"github.com/tailscale/hujson"
 
-	"encr.dev/cli/cmd/encore/cmdutil"
+	"github.com/circularing/encore/cli/cmd/encore/cmdutil"
 )
 
 const (

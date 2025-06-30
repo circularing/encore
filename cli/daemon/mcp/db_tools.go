@@ -10,8 +10,8 @@ import (
 	"github.com/lib/pq"
 	"github.com/mark3labs/mcp-go/mcp"
 
-	"encr.dev/cli/daemon/sqldb"
-	"encr.dev/pkg/fns"
+	"github.com/circularing/encore/cli/daemon/sqldb"
+	"github.com/circularing/encore/pkg/fns"
 )
 
 func (m *Manager) registerDatabaseTools() {

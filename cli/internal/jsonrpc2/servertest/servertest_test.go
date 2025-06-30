@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"encr.dev/cli/internal/jsonrpc2"
+	"github.com/circularing/encore/cli/internal/jsonrpc2"
 )
 
 type msg struct {

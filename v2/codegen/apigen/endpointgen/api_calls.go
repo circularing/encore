@@ -5,10 +5,10 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"encr.dev/v2/app"
-	"encr.dev/v2/codegen"
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/apis/api"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/codegen"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/apis/api"
 )
 
 func rewriteAPICalls(gen *codegen.Generator, parse *parser.Result, svc *app.Service, ep *api.Endpoint, desc *handlerDesc) {

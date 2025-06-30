@@ -3,10 +3,10 @@ package legacymeta
 import (
 	"fmt"
 
-	"encr.dev/v2/app"
-	"encr.dev/v2/parser"
-	"encr.dev/v2/parser/apis/api"
-	"encr.dev/v2/parser/apis/selector"
+	"github.com/circularing/encore/v2/app"
+	"github.com/circularing/encore/v2/parser"
+	"github.com/circularing/encore/v2/parser/apis/api"
+	"github.com/circularing/encore/v2/parser/apis/selector"
 )
 
 // selectorLookup is a helper cache for looking up services and RPC's by selector

@@ -21,14 +21,14 @@ import (
 	"golang.org/x/mod/modfile"
 
 	"encore.dev/appruntime/exported/config"
-	"encr.dev/internal/etrace"
-	builderpkg "encr.dev/pkg/builder"
-	"encr.dev/pkg/errinsrc/srcerrors"
-	"encr.dev/pkg/paths"
-	"encr.dev/pkg/xos"
-	"encr.dev/v2/internals/overlay"
-	"encr.dev/v2/internals/parsectx"
-	"encr.dev/v2/internals/perr"
+	"github.com/circularing/encore/internal/etrace"
+	builderpkg "github.com/circularing/encore/pkg/builder"
+	"github.com/circularing/encore/pkg/errinsrc/srcerrors"
+	"github.com/circularing/encore/pkg/paths"
+	"github.com/circularing/encore/pkg/xos"
+	"github.com/circularing/encore/v2/internals/overlay"
+	"github.com/circularing/encore/v2/internals/parsectx"
+	"github.com/circularing/encore/v2/internals/perr"
 )
 
 type Config struct {
@@ -280,7 +280,7 @@ func (b *builder) buildMain() {
 		}
 
 		args = append(args, b.cfg.MainPkg.String())
-		
+
 		goroot := build.GOROOT
 		cmd := exec.Command(goroot.Join("bin", "go"+b.exe()).ToIO(), args...)
 

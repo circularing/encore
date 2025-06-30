@@ -7,9 +7,9 @@ import (
 
 	qt "github.com/frankban/quicktest"
 
-	"encr.dev/pkg/errinsrc"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/schema"
+	"github.com/circularing/encore/pkg/errinsrc"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/schema"
 )
 
 func init() {

@@ -8,11 +8,11 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"encr.dev/pkg/fns"
-	"encr.dev/v2/internals/perr"
-	"encr.dev/v2/internals/pkginfo"
-	"encr.dev/v2/internals/schema"
-	"encr.dev/v2/internals/schema/schemautil"
+	"github.com/circularing/encore/pkg/fns"
+	"github.com/circularing/encore/v2/internals/perr"
+	"github.com/circularing/encore/v2/internals/pkginfo"
+	"github.com/circularing/encore/v2/internals/schema"
+	"github.com/circularing/encore/v2/internals/schema/schemautil"
 )
 
 func NewHelper(errs *perr.List) *Helper {

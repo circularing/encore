@@ -11,16 +11,16 @@ import (
 	"github.com/gorilla/websocket"
 	"github.com/rs/zerolog/log"
 
-	"encr.dev/cli/daemon/apps"
-	"encr.dev/cli/daemon/dash/ai"
-	"encr.dev/cli/daemon/dash/apiproxy"
-	"encr.dev/cli/daemon/dash/dashproxy"
-	"encr.dev/cli/daemon/engine/trace2"
-	"encr.dev/cli/daemon/namespace"
-	"encr.dev/cli/daemon/run"
-	"encr.dev/cli/internal/jsonrpc2"
-	"encr.dev/internal/conf"
-	"encr.dev/pkg/fns"
+	"github.com/circularing/encore/cli/daemon/apps"
+	"github.com/circularing/encore/cli/daemon/dash/ai"
+	"github.com/circularing/encore/cli/daemon/dash/apiproxy"
+	"github.com/circularing/encore/cli/daemon/dash/dashproxy"
+	"github.com/circularing/encore/cli/daemon/engine/trace2"
+	"github.com/circularing/encore/cli/daemon/namespace"
+	"github.com/circularing/encore/cli/daemon/run"
+	"github.com/circularing/encore/cli/internal/jsonrpc2"
+	"github.com/circularing/encore/internal/conf"
+	"github.com/circularing/encore/pkg/fns"
 )
 
 var upgrader = websocket.Upgrader{

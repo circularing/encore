@@ -135,7 +135,7 @@ var docComments = (func() map[string]string {
 	}
 
 	// Compute package documentation with examples.
-	p, err := doc.NewFromFiles(fset, []*ast.File{f}, "encr.dev/internal/userconfig")
+	p, err := doc.NewFromFiles(fset, []*ast.File{f}, "github.com/circularing/encore/internal/userconfig")
 	if err != nil {
 		panic(fmt.Sprintf("userconfig/config.go is invalid: %v", err))
 	}

@@ -5,7 +5,7 @@ import (
 	"path"
 	"testing"
 
-	"encr.dev/pkg/golden"
+	"github.com/circularing/encore/pkg/golden"
 )
 
 var testDataFullPath string
