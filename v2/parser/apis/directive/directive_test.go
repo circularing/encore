@@ -2,6 +2,7 @@ package directive
 
 import (
 	"context"
+	"go/ast"
 	"go/token"
 	"regexp"
 	"testing"
@@ -69,6 +70,32 @@ func TestParseDirective(t *testing.T) {
 			},
 		},
 		{
+			desc: "nats with subject",
+			line: "nats orders.created",
+			expected: Directive{
+				Name:    "nats",
+				Options: []Field{{Value: "orders.created"}},
+			},
+		},
+		{
+			desc: "nats wildcard subject",
+			line: "nats orders.*",
+			expected: Directive{
+				Name:    "nats",
+				Options: []Field{{Value: "orders.*"}},
+			},
+		},
+		{
+			desc:    "nats invalid subject character",
+			line:    "nats orders/created",
+			wantErr: `(?m)Invalid option name "orders/created"\.`,
+		},
+		{
+			desc:    "nats duplicate subject option",
+			line:    "nats orders.created orders.created",
+			wantErr: `(?m)The option "orders.created" is already defined on this directive\.`,
+		},
+		{
 			desc:    "middleware empty target",
 			line:    "middleware target=",
 			wantErr: `(?m)Directive fields must have a value\.`,
@@ -97,4 +124,25 @@ func TestParseDirective(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestParse_StandardDirectiveKeepsDocText(t *testing.T) {
+	c := qt.New(t)
+
+	fs := token.NewFileSet()
+	errList := perr.NewList(context.Background(), fs)
+
+	decl := &ast.FuncDecl{
+		Doc: &ast.CommentGroup{List: []*ast.Comment{
+			{Text: "//encore:api public"},
+			{Text: "// Hello from docs"},
+		}},
+	}
+
+	dir, doc, ok := Parse(errList, decl)
+	c.Assert(ok, qt.IsTrue)
+	c.Assert(dir, qt.IsNotNil)
+	c.Assert(dir.Name, qt.Equals, "api")
+	c.Assert(doc, qt.Not(qt.Contains), "encore:api")
+	c.Assert(doc, qt.Contains, "Hello from docs")
 }
