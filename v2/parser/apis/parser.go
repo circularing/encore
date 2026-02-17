@@ -1,6 +1,7 @@
 package apis
 
 import (
+	"fmt"
 	"go/ast"
 	"go/token"
 
@@ -8,6 +9,7 @@ import (
 	"github.com/circularing/encore/v2/parser/apis/authhandler"
 	"github.com/circularing/encore/v2/parser/apis/directive"
 	"github.com/circularing/encore/v2/parser/apis/middleware"
+	"github.com/circularing/encore/v2/parser/apis/nats"
 	"github.com/circularing/encore/v2/parser/apis/servicestruct"
 	"github.com/circularing/encore/v2/parser/resource/resourceparser"
 )
@@ -25,7 +27,7 @@ var Parser = &resourceparser.Parser{
 						continue
 					}
 
-					dir, doc, ok := directive.Parse(p.Errs, decl.Doc)
+					dir, doc, ok := directive.Parse(p.Errs, decl)
 					if !ok {
 						continue
 					} else if dir == nil {
@@ -52,6 +54,21 @@ var Parser = &resourceparser.Parser{
 							// wrapper function that forwards to the service struct
 							// method in that case.
 							p.AddNamedBind(file, ep.Decl.AST.Name, ep)
+						}
+
+					case "pubsub":
+						sub := nats.Parse(nats.ParseData{
+							Errs: p.Errs,
+							File: file,
+							Func: decl,
+							Dir:  dir,
+							Doc:  doc,
+						})
+
+						if sub != nil {
+							p.RegisterResource(sub)
+							p.AddNamedBind(file, decl.Name, sub)
+							fmt.Println("sub", sub)
 						}
 
 					case "authhandler":
@@ -98,7 +115,7 @@ var Parser = &resourceparser.Parser{
 						continue
 					}
 
-					dir, doc, ok := directive.Parse(p.Errs, decl.Doc)
+					dir, doc, ok := directive.Parse(p.Errs, decl)
 					if !ok {
 						continue
 					} else if dir == nil {

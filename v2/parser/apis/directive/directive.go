@@ -144,7 +144,19 @@ func RegisterDirectiveParser(name string, parser DirectiveParser) {
 // Parse parses the encore:foo directives in cg.
 // It returns the parsed directives, if any, and the
 // remaining doc text after stripping the directive lines.
-func Parse(errs *perr.List, cg *ast.CommentGroup) (dir *Directive, doc string, ok bool) {
+func Parse[T *ast.FuncDecl | *ast.GenDecl](errs *perr.List, decl T) (dir *Directive, doc string, ok bool) {
+	var cg *ast.CommentGroup
+	var funcDecl *ast.FuncDecl
+	// var genDecl *ast.GenDecl
+	switch v := any(decl).(type) {
+	case *ast.FuncDecl:
+		cg = v.Doc
+		funcDecl = v
+	case *ast.GenDecl:
+		cg = v.Doc
+		// genDecl = v
+	}
+
 	if cg == nil {
 		return nil, "", true
 	}
@@ -170,9 +182,11 @@ func Parse(errs *perr.List, cg *ast.CommentGroup) (dir *Directive, doc string, o
 		}
 	}
 	if len(dirs) == 1 {
+		fmt.Println("dirs[0].Name", dirs[0].Name)
+		fmt.Println("pluginParsers", pluginParsers)
 		// Core directive parsed, now invoke any plugin parser
 		if pp, ok := pluginParsers[dirs[0].Name]; ok {
-			if pe := pp(dirs[0], nil); pe != nil {
+			if pe := pp(dirs[0], funcDecl); pe != nil {
 				errs.Add(errRange.New(
 					"Bad Directives",
 					"Plugin parser for "+dirs[0].Name+" failed",
@@ -235,7 +249,7 @@ func Parse(errs *perr.List, cg *ast.CommentGroup) (dir *Directive, doc string, o
 
 var (
 	// nameRe is the regexp for validating option names and field names.
-	nameRe = regexp.MustCompile(`^[a-z]+$`)
+	nameRe = regexp.MustCompile(`^[a-z.]+$`)
 	// tagRe is the regexp for validating tag values.
 	tagRe = regexp.MustCompile(`^[a-z]([-_a-z0-9]*[a-z0-9])?$`)
 )

@@ -17,6 +17,9 @@ import (
 	_ "github.com/circularing/encore/cli/cmd/encore/k8s"
 	_ "github.com/circularing/encore/cli/cmd/encore/namespace"
 	_ "github.com/circularing/encore/cli/cmd/encore/secrets"
+
+	// register plugins
+	_ "github.com/circularing/encore/v2/parser/plugin/natspubsub"
 )
 
 // for backwards compatibility, for now

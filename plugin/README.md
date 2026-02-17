@@ -109,7 +109,8 @@ Then rebuild:
 
 ```bash
 cd path/to/encore
-go build -o ~/.local/bin/encore ./cli
+go build -o $ENCORE_INSTALL/bin/encore ./cli/cmd/encore
+go build -o $ENCORE_INSTALL/bin/git-remote-encore ./cli/cmd/git-remote-encore
 ```
 
 Now, whenever the parser sees
