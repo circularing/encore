@@ -26,6 +26,8 @@ import (
 const (
 	defaultTracerName = "pubsub"
 	defaultStreamTTL  = 24 * time.Hour
+	replyHeaderName   = "Encore-NATS-Reply"
+	replyHeaderValue  = "1"
 )
 
 var streamNameSanitizer = regexp.MustCompile(`[^A-Za-z0-9_-]+`)
@@ -345,9 +347,105 @@ func (t *Topic[T]) Publish(ctx context.Context, event *T) (string, error) {
 	return "", nil
 }
 
+// Request sends req on the topic subject and waits for a typed reply.
+// The request/reply exchange uses core NATS semantics and the caller's context deadline/cancellation.
+func Request[Req any, Resp any](ctx context.Context, topic *Topic[Req], req *Req) (*Resp, error) {
+	if topic == nil || topic.client == nil || topic.client.nc == nil {
+		return nil, errors.New("nats request: topic client is not initialized")
+	}
+	if ctx == nil {
+		ctx = context.Background()
+	}
+
+	data, err := json.Marshal(req)
+	if err != nil {
+		topic.client.metrics.errorCounter.WithLabelValues(topic.subject, "marshal").Inc()
+		return nil, err
+	}
+
+	inbox := nats.NewInbox()
+	sub, err := topic.client.nc.SubscribeSync(inbox)
+	if err != nil {
+		topic.client.metrics.errorCounter.WithLabelValues(topic.subject, "request").Inc()
+		return nil, err
+	}
+	defer sub.Unsubscribe()
+
+	outbound := nats.NewMsg(topic.subject)
+	outbound.Reply = inbox
+	outbound.Data = data
+	if err := topic.client.nc.PublishMsg(outbound); err != nil {
+		topic.client.metrics.errorCounter.WithLabelValues(topic.subject, "request").Inc()
+		return nil, err
+	}
+
+	var msg *nats.Msg
+	for {
+		msg, err = sub.NextMsgWithContext(ctx)
+		if err != nil {
+			topic.client.metrics.errorCounter.WithLabelValues(topic.subject, "request").Inc()
+			return nil, err
+		}
+		if msg != nil && msg.Header.Get(replyHeaderName) == replyHeaderValue {
+			break
+		}
+	}
+
+	var out Resp
+	if err := json.Unmarshal(msg.Data, &out); err != nil {
+		topic.client.metrics.errorCounter.WithLabelValues(topic.subject, "unmarshal").Inc()
+		return nil, err
+	}
+	topic.client.metrics.publishCounter.WithLabelValues(topic.subject).Inc()
+	return &out, nil
+}
+
 // SubscriptionConfig[T] holds your handler for T.
 type SubscriptionConfig[T any] struct {
 	Handler func(context.Context, *T) error
+}
+
+type natsMsgCtxKey struct{}
+
+func withNATSMessage(ctx context.Context, msg *nats.Msg) context.Context {
+	if msg == nil {
+		return ctx
+	}
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	return context.WithValue(ctx, natsMsgCtxKey{}, msg)
+}
+
+func natsMessageFromContext(ctx context.Context) (*nats.Msg, bool) {
+	if ctx == nil {
+		return nil, false
+	}
+	msg, ok := ctx.Value(natsMsgCtxKey{}).(*nats.Msg)
+	if !ok || msg == nil {
+		return nil, false
+	}
+	return msg, true
+}
+
+// Reply sends a request/reply response on the NATS reply subject carried in ctx.
+// It is a no-op if ctx does not contain a NATS message or if the message has no reply subject.
+func Reply[T any](ctx context.Context, payload *T) error {
+	if payload == nil {
+		return nil
+	}
+	msg, ok := natsMessageFromContext(ctx)
+	if !ok || strings.TrimSpace(msg.Reply) == "" {
+		return nil
+	}
+	data, err := json.Marshal(payload)
+	if err != nil {
+		return err
+	}
+	reply := nats.NewMsg(msg.Reply)
+	reply.Header.Set(replyHeaderName, replyHeaderValue)
+	reply.Data = data
+	return msg.RespondMsg(reply)
 }
 
 // Subscribe starts consuming events.
@@ -362,6 +460,7 @@ func (t *Topic[T]) Subscribe(durable string, cfg SubscriptionConfig[T]) error {
 			trace.WithAttributes(attribute.String("subject", t.subject)),
 		)
 		defer span.End()
+		ctx = withNATSMessage(ctx, msg)
 
 		isJS := isJetStreamMessage(msg)
 

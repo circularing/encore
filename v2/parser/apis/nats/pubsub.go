@@ -27,6 +27,7 @@ type Subscription struct {
 	Decl        *ast.FuncDecl
 	Doc         string
 	MessageType *schema.TypeDeclRef
+	ReplyType   *schema.TypeDeclRef
 	Cfg         SubscriptionConfig
 	NATS        NATSConfig
 }
@@ -116,7 +117,9 @@ func Parse(d ParseData) *Subscription {
 	}
 	subject := opts[0].Value
 
-	// Signature must be: func(context.Context, *T) error
+	// Signature must be either:
+	//   - func(context.Context, *Req) error
+	//   - func(context.Context, *Req) (*Resp, error)
 	sig := d.Func.Type
 	if sig.Params == nil || len(sig.Params.List) != 2 {
 		d.Errs.Addf(d.Func.Pos(), "nats handler must have two parameters (context.Context, *Event)")
@@ -130,26 +133,44 @@ func Parse(d ParseData) *Subscription {
 		d.Errs.Addf(d.Func.Pos(), "nats second handler parameter must be a pointer type (*Event)")
 		return nil
 	}
-	if sig.Results == nil || len(sig.Results.List) != 1 {
-		d.Errs.Addf(d.Func.Pos(), "nats handler must return exactly one value (error)")
+	if sig.Results == nil || (len(sig.Results.List) != 1 && len(sig.Results.List) != 2) {
+		d.Errs.Addf(d.Func.Pos(), "nats handler must return error or (*Reply, error)")
 		return nil
 	}
-	if ident, ok := sig.Results.List[0].Type.(*ast.Ident); !ok || ident.Name != "error" {
-		d.Errs.Addf(d.Func.Pos(), "nats handler must return error")
-		return nil
+	if len(sig.Results.List) == 1 {
+		if ident, ok := sig.Results.List[0].Type.(*ast.Ident); !ok || ident.Name != "error" {
+			d.Errs.Addf(d.Func.Pos(), "nats handler must return error")
+			return nil
+		}
+	} else {
+		if _, ok := sig.Results.List[0].Type.(*ast.StarExpr); !ok {
+			d.Errs.Addf(d.Func.Pos(), "nats reply type must be a pointer type (*Reply)")
+			return nil
+		}
+		if ident, ok := sig.Results.List[1].Type.(*ast.Ident); !ok || ident.Name != "error" {
+			d.Errs.Addf(d.Func.Pos(), "nats handler second return value must be error")
+			return nil
+		}
 	}
 	if d.Func.Recv != nil {
 		d.Errs.Addf(d.Func.Pos(), "nats handler must be a package-level function")
 		return nil
 	}
 
-	var msgType *schema.TypeDeclRef
+	var msgType, replyType *schema.TypeDeclRef
 	if d.Schema != nil {
 		var ok bool
 		msgType, ok = schemautil.ResolveNamedStruct(d.Schema.ParseType(d.File, sig.Params.List[1].Type), true)
 		if !ok {
 			d.Errs.Addf(d.Func.Pos(), "nats second handler parameter must be pointer to a named struct type")
 			return nil
+		}
+		if len(sig.Results.List) == 2 {
+			replyType, ok = schemautil.ResolveNamedStruct(d.Schema.ParseType(d.File, sig.Results.List[0].Type), true)
+			if !ok {
+				d.Errs.Addf(d.Func.Pos(), "nats reply type must be pointer to a named struct type")
+				return nil
+			}
 		}
 	}
 
@@ -164,6 +185,7 @@ func Parse(d ParseData) *Subscription {
 		Decl:        d.Func,
 		Doc:         d.Doc,
 		MessageType: msgType,
+		ReplyType:   replyType,
 		Cfg:         cfg,
 		NATS:        parseNATSConfig(d.Dir),
 	}

@@ -38,7 +38,9 @@ func parsePubSub(d *directive.Directive, decl *ast.FuncDecl) error {
 		return err
 	}
 
-	// Validate handler signature: func(context.Context, *T) error
+	// Validate handler signature:
+	//   - func(context.Context, *T) error
+	//   - func(context.Context, *T) (*R, error)
 	if len(decl.Type.Params.List) != 2 {
 		return fmt.Errorf("nats: handler must have two parameters (context.Context, *Event)")
 	}
@@ -48,11 +50,20 @@ func parsePubSub(d *directive.Directive, decl *ast.FuncDecl) error {
 	if _, ok := decl.Type.Params.List[1].Type.(*ast.StarExpr); !ok {
 		return fmt.Errorf("nats: second handler parameter must be a pointer type (*Event)")
 	}
-	if decl.Type.Results == nil || len(decl.Type.Results.List) != 1 {
-		return fmt.Errorf("nats: handler must return exactly one value (error)")
+	if decl.Type.Results == nil || (len(decl.Type.Results.List) != 1 && len(decl.Type.Results.List) != 2) {
+		return fmt.Errorf("nats: handler must return error or (*Reply, error)")
 	}
-	if ident, ok := decl.Type.Results.List[0].Type.(*ast.Ident); !ok || ident.Name != "error" {
-		return fmt.Errorf("nats: handler must return error")
+	if len(decl.Type.Results.List) == 1 {
+		if ident, ok := decl.Type.Results.List[0].Type.(*ast.Ident); !ok || ident.Name != "error" {
+			return fmt.Errorf("nats: handler must return error")
+		}
+	} else {
+		if _, ok := decl.Type.Results.List[0].Type.(*ast.StarExpr); !ok {
+			return fmt.Errorf("nats: reply type must be a pointer type (*Reply)")
+		}
+		if ident, ok := decl.Type.Results.List[1].Type.(*ast.Ident); !ok || ident.Name != "error" {
+			return fmt.Errorf("nats: second return value must be error")
+		}
 	}
 
 	return nil

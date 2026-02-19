@@ -43,10 +43,16 @@ func Gen(gen *codegen.Generator, pkg *pkginfo.Package, subs []*nats.Subscription
 		}
 		msgTypeBySubject[sub.Subject] = msgType
 		typeArg := messageTypeArg(sub)
+		replyEnabled := sub.ReplyType != nil
+		effectiveMode := sub.NATS.Mode
+		if replyEnabled {
+			// Request/reply must run on core NATS so the reply inbox is preserved.
+			effectiveMode = nats.ModeAtMostOnce
+		}
 
 		streamName, streamSubjects := effectiveStreamDefaults(sub)
 		maxInflight := effectiveMaxInflight(sub)
-		topicKey := sub.Subject + "|" + streamName + "|" + strings.Join(streamSubjects, ",") + "|" + string(sub.NATS.Mode) +
+		topicKey := sub.Subject + "|" + streamName + "|" + strings.Join(streamSubjects, ",") + "|" + string(effectiveMode) +
 			"|" + fmt.Sprint(sub.NATS.AckWait.Nanoseconds()) + "|" + fmt.Sprint(maxInflight) + "|" + sub.NATS.QueueGroup
 		topicVar, ok := topicsByKey[topicKey]
 		if !ok {
@@ -62,7 +68,7 @@ func Gen(gen *codegen.Generator, pkg *pkginfo.Package, subs []*nats.Subscription
 					Lit(sub.NATS.QueueGroup),
 				),
 			}
-			if sub.NATS.Mode == nats.ModeAtMostOnce {
+			if effectiveMode == nats.ModeAtMostOnce {
 				opts = append(opts, Qual("encr.dev/v2/parser/plugin/natspubsub", "WithAtMostOnce").Call())
 			} else {
 				opts = append(opts, Qual("encr.dev/v2/parser/plugin/natspubsub", "WithAtLeastOnce").Call())
@@ -78,6 +84,27 @@ func Gen(gen *codegen.Generator, pkg *pkginfo.Package, subs []*nats.Subscription
 			)
 		}
 
+		handlerExpr := Id(sub.HandlerName)
+		if replyEnabled {
+			wrapperName := fmt.Sprintf("encoreInternalNATSReplyHandler_%s", sanitizeIdent(uniqueName(sub.Name, sub.HandlerName)))
+			file.Add(
+				Func().Id(wrapperName).Params(
+					Id("ctx").Qual("context", "Context"),
+					Id("evt").Op("*").Add(gen.Util.Type(typeArg)),
+				).Error().Block(
+					List(Id("resp"), Err()).Op(":=").Id(sub.HandlerName).Call(Id("ctx"), Id("evt")),
+					If(Err().Op("!=").Nil()).Block(
+						Return(Err()),
+					),
+					If(Id("resp").Op("==").Nil()).Block(
+						Return(Nil()),
+					),
+					Return(Qual("encr.dev/v2/parser/plugin/natspubsub", "Reply").Call(Id("ctx"), Id("resp"))),
+				),
+			)
+			handlerExpr = Id(wrapperName)
+		}
+
 		file.Add(
 			Func().Id("init").Params().Block(
 				If(
@@ -86,12 +113,17 @@ func Gen(gen *codegen.Generator, pkg *pkginfo.Package, subs []*nats.Subscription
 						Qual("encr.dev/v2/parser/plugin/natspubsub", "SubscriptionConfig").Types(
 							gen.Util.Type(typeArg),
 						).Values(Dict{
-							Id("Handler"): Id(sub.HandlerName),
+							Id("Handler"): handlerExpr,
 						}),
 					),
 					Err().Op("!=").Nil(),
 				).Block(
-					Panic(Err()),
+					If(
+						Op("!").Qual("strings", "Contains").Call(Err().Dot("Error").Call(), Lit("already bound")).Op("&&").
+							Op("!").Qual("strings", "Contains").Call(Err().Dot("Error").Call(), Lit("consumer is already bound")),
+					).Block(
+						Panic(Err()),
+					),
 				),
 			),
 		)
@@ -191,4 +223,3 @@ func effectiveMaxInflight(sub *nats.Subscription) int {
 	}
 	return sub.NATS.MaxInflight
 }
-
