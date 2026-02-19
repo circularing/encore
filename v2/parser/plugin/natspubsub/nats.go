@@ -377,7 +377,7 @@ func (t *Topic[T]) Subscribe(durable string, cfg SubscriptionConfig[T]) error {
 			}
 			return
 		}
-		t.client.logger.Info("nats subscriber received message",
+		t.client.logger.Debug("nats subscriber received message",
 			zap.String("subject", t.subject),
 		)
 
@@ -424,7 +424,7 @@ func (t *Topic[T]) Subscribe(durable string, cfg SubscriptionConfig[T]) error {
 				return err
 			}
 			t.client.keepSub(sub)
-			t.client.logger.Info("nats queue subscription registered",
+			t.client.logger.Debug("nats queue subscription registered",
 				zap.String("subject", t.subject),
 				zap.String("queue_group", t.cfg.QueueGroup),
 				zap.String("durable", durable),
@@ -440,7 +440,7 @@ func (t *Topic[T]) Subscribe(durable string, cfg SubscriptionConfig[T]) error {
 			return err
 		}
 		t.client.keepSub(sub)
-		t.client.logger.Info("nats subscription registered",
+		t.client.logger.Debug("nats subscription registered",
 			zap.String("subject", t.subject),
 			zap.String("durable", durable),
 		)
@@ -453,7 +453,7 @@ func (t *Topic[T]) Subscribe(durable string, cfg SubscriptionConfig[T]) error {
 			return err
 		}
 		t.client.keepSub(sub)
-		t.client.logger.Info("nats core queue subscription registered",
+		t.client.logger.Debug("nats core queue subscription registered",
 			zap.String("subject", t.subject),
 			zap.String("queue_group", t.cfg.QueueGroup),
 		)
@@ -464,7 +464,7 @@ func (t *Topic[T]) Subscribe(durable string, cfg SubscriptionConfig[T]) error {
 		return err
 	}
 	t.client.keepSub(sub)
-	t.client.logger.Info("nats core subscription registered",
+	t.client.logger.Debug("nats core subscription registered",
 		zap.String("subject", t.subject),
 	)
 	return nil
