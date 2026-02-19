@@ -3,9 +3,15 @@ package nats
 import (
 	"go/ast"
 	"go/token"
+	"strconv"
+	"strings"
+	"time"
+	"unicode"
 
 	"encr.dev/v2/internals/perr"
 	"encr.dev/v2/internals/pkginfo"
+	"encr.dev/v2/internals/schema"
+	"encr.dev/v2/internals/schema/schemautil"
 	"encr.dev/v2/parser/apis/directive"
 	"encr.dev/v2/parser/resource"
 	"encr.dev/v2/parser/resource/resourceparser"
@@ -14,11 +20,41 @@ import (
 
 // Subscription models a NATS subscription resource.
 type Subscription struct {
-	Name    string // Go fn name, e.g. HandleOrderCreated
-	Subject string // NATS subject, e.g. "orders.created"
-	File    *pkginfo.File
-	Decl    *ast.FuncDecl
-	Doc     string
+	Name        string // Unique subscription name, used at runtime (kebab-case).
+	HandlerName string // Go fn name, e.g. HandleOrderCreated.
+	Subject     string // NATS subject, e.g. "orders.created".
+	File        *pkginfo.File
+	Decl        *ast.FuncDecl
+	Doc         string
+	MessageType *schema.TypeDeclRef
+	Cfg         SubscriptionConfig
+	NATS        NATSConfig
+}
+
+type SubscriptionConfig struct {
+	AckDeadline      time.Duration
+	MessageRetention time.Duration
+	MinRetryBackoff  time.Duration
+	MaxRetryBackoff  time.Duration
+	MaxRetries       int
+	MaxConcurrency   int
+}
+
+type DeliveryMode string
+
+const (
+	ModeAtLeastOnce DeliveryMode = "at-least-once"
+	ModeAtMostOnce  DeliveryMode = "at-most-once"
+)
+
+type NATSConfig struct {
+	Mode           DeliveryMode
+	AckWait        time.Duration
+	MaxInflight    int
+	MaxInflightSet bool
+	QueueGroup     string
+	StreamName     string
+	StreamSubjects []string
 }
 
 var Parser = &resourceparser.Parser{
@@ -58,11 +94,12 @@ func runParser(p *resourceparser.Pass) {
 
 // ParseData carries everything needed to parse a pubsub directive.
 type ParseData struct {
-	Errs *perr.List
-	File *pkginfo.File
-	Func *ast.FuncDecl
-	Dir  *directive.Directive
-	Doc  string
+	Errs   *perr.List
+	File   *pkginfo.File
+	Func   *ast.FuncDecl
+	Dir    *directive.Directive
+	Doc    string
+	Schema *schema.Parser
 }
 
 // Parse validates and builds a Subscription or returns nil on error.
@@ -101,14 +138,34 @@ func Parse(d ParseData) *Subscription {
 		d.Errs.Addf(d.Func.Pos(), "nats handler must return error")
 		return nil
 	}
+	if d.Func.Recv != nil {
+		d.Errs.Addf(d.Func.Pos(), "nats handler must be a package-level function")
+		return nil
+	}
+
+	var msgType *schema.TypeDeclRef
+	if d.Schema != nil {
+		var ok bool
+		msgType, ok = schemautil.ResolveNamedStruct(d.Schema.ParseType(d.File, sig.Params.List[1].Type), true)
+		if !ok {
+			d.Errs.Addf(d.Func.Pos(), "nats second handler parameter must be pointer to a named struct type")
+			return nil
+		}
+	}
+
+	cfg := parseConfig(d.Dir)
 
 	// All good—return our Subscription resource
 	return &Subscription{
-		Name:    d.Func.Name.Name,
-		Subject: subject,
-		File:    d.File,
-		Decl:    d.Func,
-		Doc:     d.Doc,
+		Name:        toKebab(d.Func.Name.Name),
+		HandlerName: d.Func.Name.Name,
+		Subject:     subject,
+		File:        d.File,
+		Decl:        d.Func,
+		Doc:         d.Doc,
+		MessageType: msgType,
+		Cfg:         cfg,
+		NATS:        parseNATSConfig(d.Dir),
 	}
 }
 
@@ -122,6 +179,105 @@ func isContextParam(expr ast.Expr) bool {
 		return false
 	}
 	return pkg.Name == "context" && sel.Sel != nil && sel.Sel.Name == "Context"
+}
+
+func parseConfig(dir *directive.Directive) SubscriptionConfig {
+	cfg := SubscriptionConfig{
+		AckDeadline:      30 * time.Second,
+		MessageRetention: 7 * 24 * time.Hour,
+		MinRetryBackoff:  10 * time.Second,
+		MaxRetryBackoff:  10 * time.Minute,
+		MaxRetries:       100,
+		MaxConcurrency:   100,
+	}
+
+	if dir == nil {
+		return cfg
+	}
+
+	if v := strings.TrimSpace(dir.Get("ackwait")); v != "" {
+		if d, err := time.ParseDuration(v); err == nil && d > 0 {
+			cfg.AckDeadline = d
+		}
+	}
+	if v := strings.TrimSpace(dir.Get("maxinflight")); v != "" {
+		if n, err := strconv.Atoi(v); err == nil && n > 0 {
+			cfg.MaxConcurrency = n
+		}
+	}
+	return cfg
+}
+
+func parseNATSConfig(dir *directive.Directive) NATSConfig {
+	cfg := NATSConfig{
+		Mode:        ModeAtLeastOnce,
+		AckWait:     30 * time.Second,
+		MaxInflight: 1,
+	}
+	if dir == nil {
+		return cfg
+	}
+
+	if v := strings.TrimSpace(dir.Get("mode")); v == string(ModeAtMostOnce) {
+		cfg.Mode = ModeAtMostOnce
+	}
+	if v := strings.TrimSpace(dir.Get("ackwait")); v != "" {
+		if d, err := time.ParseDuration(v); err == nil && d > 0 {
+			cfg.AckWait = d
+		}
+	}
+	if v := strings.TrimSpace(dir.Get("maxinflight")); v != "" {
+		if n, err := strconv.Atoi(v); err == nil && n > 0 {
+			cfg.MaxInflight = n
+			cfg.MaxInflightSet = true
+		}
+	}
+	cfg.QueueGroup = strings.TrimSpace(dir.Get("queue"))
+	cfg.StreamName = strings.TrimSpace(dir.Get("stream"))
+
+	rawSubjects := strings.TrimSpace(dir.Get("subjects"))
+	if rawSubjects != "" {
+		parts := strings.Split(rawSubjects, ",")
+		for _, p := range parts {
+			p = strings.TrimSpace(p)
+			if p != "" {
+				cfg.StreamSubjects = append(cfg.StreamSubjects, p)
+			}
+		}
+	}
+	return cfg
+}
+
+func toKebab(name string) string {
+	if name == "" {
+		return "subscription"
+	}
+	var b strings.Builder
+	lastWasDash := false
+	for i, r := range name {
+		if unicode.IsUpper(r) {
+			if i > 0 && !lastWasDash {
+				b.WriteByte('-')
+			}
+			b.WriteRune(unicode.ToLower(r))
+			lastWasDash = false
+			continue
+		}
+		if unicode.IsLetter(r) || unicode.IsDigit(r) {
+			b.WriteRune(unicode.ToLower(r))
+			lastWasDash = false
+			continue
+		}
+		if !lastWasDash {
+			b.WriteByte('-')
+			lastWasDash = true
+		}
+	}
+	out := strings.Trim(b.String(), "-")
+	if out == "" {
+		return "subscription"
+	}
+	return out
 }
 
 // Implement resource.Resource:

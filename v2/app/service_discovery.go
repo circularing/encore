@@ -11,6 +11,7 @@ import (
 	"encr.dev/v2/parser"
 	"encr.dev/v2/parser/apis/api"
 	"encr.dev/v2/parser/apis/authhandler"
+	"encr.dev/v2/parser/apis/nats"
 	"encr.dev/v2/parser/apis/servicestruct"
 	"encr.dev/v2/parser/infra/pubsub"
 	"encr.dev/v2/parser/resource"
@@ -53,6 +54,8 @@ func discoverServices(pc *parsectx.Context, result *parser.Result) []*Service {
 		case *api.Endpoint:
 			sd.possibleServiceRoot(r.Decl.File.Pkg, false)
 		case *pubsub.Subscription:
+			sd.possibleServiceRoot(r.File.Pkg, false)
+		case *nats.Subscription:
 			sd.possibleServiceRoot(r.File.Pkg, false)
 		case *authhandler.AuthHandler:
 			sd.possibleServiceRoot(r.Decl.File.Pkg, false)

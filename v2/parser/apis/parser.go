@@ -58,11 +58,12 @@ var Parser = &resourceparser.Parser{
 
 					case "nats":
 						sub := nats.Parse(nats.ParseData{
-							Errs: p.Errs,
-							File: file,
-							Func: decl,
-							Dir:  dir,
-							Doc:  doc,
+							Errs:   p.Errs,
+							File:   file,
+							Func:   decl,
+							Dir:    dir,
+							Doc:    doc,
+							Schema: p.SchemaParser,
 						})
 
 						if sub != nil {

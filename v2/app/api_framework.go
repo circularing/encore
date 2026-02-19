@@ -10,6 +10,7 @@ import (
 	"encr.dev/v2/parser/apis/api"
 	"encr.dev/v2/parser/apis/authhandler"
 	"encr.dev/v2/parser/apis/middleware"
+	"encr.dev/v2/parser/apis/nats"
 	"encr.dev/v2/parser/apis/servicestruct"
 	"encr.dev/v2/parser/infra/pubsub"
 )
@@ -21,9 +22,10 @@ func configureAPIFramework(pc *parsectx.Context, services []*Service, res *parse
 		authHandlers   = parser.Resources[*authhandler.AuthHandler](res)
 		serviceStructs = parser.Resources[*servicestruct.ServiceStruct](res)
 		subscriptions  = parser.Resources[*pubsub.Subscription](res)
+		natsSubs       = parser.Resources[*nats.Subscription](res)
 	)
 
-	if len(endpoints) == 0 && len(middlewares) == 0 && len(authHandlers) == 0 && len(serviceStructs) == 0 && len(subscriptions) == 0 {
+	if len(endpoints) == 0 && len(middlewares) == 0 && len(authHandlers) == 0 && len(serviceStructs) == 0 && len(subscriptions) == 0 && len(natsSubs) == 0 {
 		return option.None[*apiframework.AppDesc]()
 	}
 
@@ -115,6 +117,9 @@ func configureAPIFramework(pc *parsectx.Context, services []*Service, res *parse
 	// modify the framework description, to actually tag the package as a service.
 	for _, ss := range subscriptions {
 		modifySvcDesc(ss.Package(), nil, func(svc *Service, desc *apiframework.ServiceDesc) {})
+	}
+	for _, ns := range natsSubs {
+		modifySvcDesc(ns.Package(), nil, func(svc *Service, desc *apiframework.ServiceDesc) {})
 	}
 	for _, ah := range authHandlers {
 		modifySvcDesc(ah.Package(), nil, func(svc *Service, desc *apiframework.ServiceDesc) {})

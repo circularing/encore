@@ -7,6 +7,7 @@ import (
 	gotoken "go/token"
 	"slices"
 	"sort"
+	"strings"
 
 	"encr.dev/pkg/fns"
 	"encr.dev/pkg/paths"
@@ -19,6 +20,7 @@ import (
 	"encr.dev/v2/parser/apis/api"
 	"encr.dev/v2/parser/apis/authhandler"
 	"encr.dev/v2/parser/apis/middleware"
+	"encr.dev/v2/parser/apis/nats"
 	"encr.dev/v2/parser/apis/servicestruct"
 	"encr.dev/v2/parser/infra/caches"
 	"encr.dev/v2/parser/infra/config"
@@ -202,6 +204,7 @@ func (b *builder) Build() *meta.Data {
 		dependent []resource.Resource
 
 		topicMap   = make(map[pkginfo.QualifiedName]*meta.PubSubTopic)
+		natsTopics = make(map[string]*meta.PubSubTopic)
 		clusterMap = make(map[pkginfo.QualifiedName]*meta.CacheCluster)
 	)
 
@@ -461,7 +464,7 @@ func (b *builder) Build() *meta.Data {
 				b.nodes.addServiceStruct(r, svc.Name)
 			}
 
-		case *pubsub.Subscription, *caches.Keyspace:
+		case *pubsub.Subscription, *nats.Subscription, *caches.Keyspace:
 			dependent = append(dependent, r)
 		}
 	}
@@ -498,6 +501,40 @@ func (b *builder) Build() *meta.Data {
 			})
 
 			b.nodes.addSub(r, svc.Name, topic.Name)
+
+		case *nats.Subscription:
+			topic, ok := natsTopics[r.Subject]
+			if !ok {
+				topic = &meta.PubSubTopic{
+					Name:              r.Subject,
+					Doc:               zeroNil(r.Doc),
+					MessageType:       b.typeDeclRefUnwrapPointer(r.MessageType),
+					OrderingKey:       "",
+					DeliveryGuarantee: meta.PubSubTopic_AT_LEAST_ONCE,
+				}
+				md.PubsubTopics = append(md.PubsubTopics, topic)
+				natsTopics[r.Subject] = topic
+			}
+
+			svc, ok := b.app.ServiceForPath(r.File.Pkg.FSPath)
+			if !ok {
+				b.errs.Addf(r.Decl.Pos(), "nats subscription %q must be defined within a service", r.Name)
+				continue
+			}
+
+			topic.Subscriptions = append(topic.Subscriptions, &meta.PubSubTopic_Subscription{
+				Name:             r.Name + "-" + strings.ToLower(r.HandlerName),
+				ServiceName:      svc.Name,
+				AckDeadline:      r.Cfg.AckDeadline.Nanoseconds(),
+				MessageRetention: r.Cfg.MessageRetention.Nanoseconds(),
+				MaxConcurrency:   zeroNil(int32(r.Cfg.MaxConcurrency)),
+				RetryPolicy: &meta.PubSubTopic_RetryPolicy{
+					MinBackoff: r.Cfg.MinRetryBackoff.Nanoseconds(),
+					MaxBackoff: r.Cfg.MaxRetryBackoff.Nanoseconds(),
+					MaxRetries: int64(r.Cfg.MaxRetries),
+				},
+			})
+			b.nodes.addNATSSub(r, svc.Name, topic.Name)
 
 		case *caches.Keyspace:
 			cluster, ok := clusterMap[r.Cluster]

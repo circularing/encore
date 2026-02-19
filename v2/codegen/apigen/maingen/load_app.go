@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"slices"
 	"sort"
+	"strings"
 
 	. "github.com/dave/jennifer/jen"
 
@@ -20,6 +21,7 @@ import (
 	"encr.dev/v2/internals/pkginfo"
 	"encr.dev/v2/parser/apis/api"
 	"encr.dev/v2/parser/apis/api/apienc"
+	"encr.dev/v2/parser/apis/nats"
 	"encr.dev/v2/parser/infra/pubsub"
 )
 
@@ -67,6 +69,7 @@ func pubsubTopics(gen *codegen.Generator, appDesc *app.Desc) map[string]*config.
 	var (
 		topics      []*pubsub.Topic
 		subsByTopic = make(map[pkginfo.QualifiedName][]*pubsub.Subscription)
+		natsSubs    []*nats.Subscription
 	)
 	for _, r := range appDesc.Parse.Resources() {
 		switch r := r.(type) {
@@ -74,6 +77,8 @@ func pubsubTopics(gen *codegen.Generator, appDesc *app.Desc) map[string]*config.
 			topics = append(topics, r)
 		case *pubsub.Subscription:
 			subsByTopic[r.Topic] = append(subsByTopic[r.Topic], r)
+		case *nats.Subscription:
+			natsSubs = append(natsSubs, r)
 		}
 	}
 
@@ -105,6 +110,35 @@ func pubsubTopics(gen *codegen.Generator, appDesc *app.Desc) map[string]*config.
 		result[topic.Name] = &config.StaticPubsubTopic{
 			Subscriptions: subs,
 			ScrubPaths:    scrubDesc.Payload,
+		}
+	}
+
+	for _, sub := range natsSubs {
+		if sub == nil || sub.MessageType == nil {
+			continue
+		}
+		topic, ok := result[sub.Subject]
+		if !ok {
+			var scrubMode typescrub.ParseMode
+			if gen.Build.DisableSensitiveScrubbing {
+				scrubMode |= typescrub.DisableScrubbing
+			}
+			scrubDesc := gen.TypeScrubber.Compute(sub.MessageType.ToType(), scrubMode)
+			topic = &config.StaticPubsubTopic{
+				Subscriptions: map[string]*config.StaticPubsubSubscription{},
+				ScrubPaths:    scrubDesc.Payload,
+			}
+			result[sub.Subject] = topic
+		}
+
+		if svc, ok := appDesc.ServiceForPath(sub.File.Pkg.FSPath); ok {
+			subName := sub.Name + "-" + strings.ToLower(sub.HandlerName)
+			topic.Subscriptions[subName] = &config.StaticPubsubSubscription{
+				Service:    svc.Name,
+				SvcNum:     uint16(svc.Num),
+				TraceIdx:   gen.TraceNodes.NATSSub(sub),
+				ScrubPaths: topic.ScrubPaths,
+			}
 		}
 	}
 

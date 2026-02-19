@@ -50,6 +50,7 @@ type Client struct {
 
 	setupMutex sync.Mutex
 	streams    map[string]struct{}
+	subs       []*nats.Subscription
 }
 
 type metrics struct {
@@ -119,6 +120,9 @@ func (c *Client) Close() error {
 	if c == nil || c.nc == nil {
 		return nil
 	}
+	c.setupMutex.Lock()
+	c.subs = nil
+	c.setupMutex.Unlock()
 	if err := c.nc.Drain(); err != nil {
 		c.nc.Close()
 		return err
@@ -214,7 +218,7 @@ func WithSubscriptionOptions(ackWait time.Duration, maxInflight int, queue strin
 }
 
 // ensureStream idempotently creates/verifies the JetStream stream.
-func (c *Client) ensureStream(name string, sc nats.StreamConfig) error {
+func (c *Client) ensureStream(name string, sc nats.StreamConfig, subject string) error {
 	c.setupMutex.Lock()
 	defer c.setupMutex.Unlock()
 
@@ -241,6 +245,18 @@ func (c *Client) ensureStream(name string, sc nats.StreamConfig) error {
 			if !subjectsCover(info.Config.Subjects, sc.Subjects) {
 				return fmt.Errorf("stream %q already exists with incompatible subjects %v (need %v)", name, info.Config.Subjects, sc.Subjects)
 			}
+		} else if streamName, ok := c.findCoveringStream(sc.Subjects); ok {
+			// Another stream already owns overlapping subjects and covers our request.
+			// Reuse it instead of failing hard on AddStream overlap errors.
+			c.streams[streamName] = struct{}{}
+			c.streams[name] = struct{}{}
+			return nil
+		} else if streamName, ok := c.findStreamForSubject(subject); ok {
+			// Fallback for overlap cases where requested stream subjects are broader than an existing stream,
+			// but the concrete subject for this topic is still covered by that existing stream.
+			c.streams[streamName] = struct{}{}
+			c.streams[name] = struct{}{}
+			return nil
 		} else {
 			return err
 		}
@@ -248,6 +264,47 @@ func (c *Client) ensureStream(name string, sc nats.StreamConfig) error {
 
 	c.streams[name] = struct{}{}
 	return nil
+}
+
+func (c *Client) findCoveringStream(required []string) (string, bool) {
+	for streamName := range c.js.StreamNames() {
+		info, err := c.js.StreamInfo(streamName)
+		if err != nil || info == nil {
+			continue
+		}
+		if subjectsCover(info.Config.Subjects, required) {
+			return streamName, true
+		}
+	}
+	return "", false
+}
+
+func (c *Client) findStreamForSubject(subject string) (string, bool) {
+	subject = strings.TrimSpace(subject)
+	if subject == "" {
+		return "", false
+	}
+	for streamName := range c.js.StreamNames() {
+		info, err := c.js.StreamInfo(streamName)
+		if err != nil || info == nil {
+			continue
+		}
+		for _, s := range info.Config.Subjects {
+			if subjectPatternMatches(s, subject) {
+				return streamName, true
+			}
+		}
+	}
+	return "", false
+}
+
+func (c *Client) keepSub(sub *nats.Subscription) {
+	if c == nil || sub == nil {
+		return
+	}
+	c.setupMutex.Lock()
+	c.subs = append(c.subs, sub)
+	c.setupMutex.Unlock()
 }
 
 // Publish sends an event of type T.
@@ -264,7 +321,7 @@ func (t *Topic[T]) Publish(ctx context.Context, event *T) (string, error) {
 
 	if t.cfg.DeliveryGuarantee == AtLeastOnce {
 		sc := t.streamConfig()
-		if err := t.client.ensureStream(sc.Name, sc); err != nil {
+		if err := t.client.ensureStream(sc.Name, sc, t.subject); err != nil {
 			t.client.metrics.errorCounter.WithLabelValues(t.subject, "stream_setup").Inc()
 			return "", err
 		}
@@ -311,14 +368,25 @@ func (t *Topic[T]) Subscribe(durable string, cfg SubscriptionConfig[T]) error {
 		var e T
 		if err := json.Unmarshal(msg.Data, &e); err != nil {
 			t.client.metrics.errorCounter.WithLabelValues(t.subject, "unmarshal").Inc()
+			t.client.logger.Warn("nats subscriber unmarshal failed",
+				zap.String("subject", t.subject),
+				zap.Error(err),
+			)
 			if isJS {
 				_ = msg.Term()
 			}
 			return
 		}
+		t.client.logger.Info("nats subscriber received message",
+			zap.String("subject", t.subject),
+		)
 
 		if err := cfg.Handler(ctx, &e); err != nil {
 			t.client.metrics.errorCounter.WithLabelValues(t.subject, "handler").Inc()
+			t.client.logger.Warn("nats subscriber handler failed",
+				zap.String("subject", t.subject),
+				zap.Error(err),
+			)
 			if isJS {
 				_ = msg.Nak()
 			}
@@ -333,7 +401,7 @@ func (t *Topic[T]) Subscribe(durable string, cfg SubscriptionConfig[T]) error {
 
 	if t.cfg.DeliveryGuarantee == AtLeastOnce {
 		sc := t.streamConfig()
-		if err := t.client.ensureStream(sc.Name, sc); err != nil {
+		if err := t.client.ensureStream(sc.Name, sc, t.subject); err != nil {
 			return err
 		}
 
@@ -347,19 +415,66 @@ func (t *Topic[T]) Subscribe(durable string, cfg SubscriptionConfig[T]) error {
 		}
 
 		if t.cfg.QueueGroup != "" {
-			_, err := t.client.js.QueueSubscribe(t.subject, t.cfg.QueueGroup, handler, subOpts...)
+			sub, err := t.client.js.QueueSubscribe(t.subject, t.cfg.QueueGroup, handler, subOpts...)
+			if err != nil && isConsumerMaxAckPendingMismatch(err) && durable != "" {
+				relaxed := []nats.SubOpt{nats.ManualAck(), nats.Durable(durable)}
+				sub, err = t.client.js.QueueSubscribe(t.subject, t.cfg.QueueGroup, handler, relaxed...)
+			}
+			if err != nil {
+				return err
+			}
+			t.client.keepSub(sub)
+			t.client.logger.Info("nats queue subscription registered",
+				zap.String("subject", t.subject),
+				zap.String("queue_group", t.cfg.QueueGroup),
+				zap.String("durable", durable),
+			)
+			return nil
+		}
+		sub, err := t.client.js.Subscribe(t.subject, handler, subOpts...)
+		if err != nil && isConsumerMaxAckPendingMismatch(err) && durable != "" {
+			relaxed := []nats.SubOpt{nats.ManualAck(), nats.Durable(durable)}
+			sub, err = t.client.js.Subscribe(t.subject, handler, relaxed...)
+		}
+		if err != nil {
 			return err
 		}
-		_, err := t.client.js.Subscribe(t.subject, handler, subOpts...)
-		return err
+		t.client.keepSub(sub)
+		t.client.logger.Info("nats subscription registered",
+			zap.String("subject", t.subject),
+			zap.String("durable", durable),
+		)
+		return nil
 	}
 
 	if t.cfg.QueueGroup != "" {
-		_, err := t.client.nc.QueueSubscribe(t.subject, t.cfg.QueueGroup, handler)
+		sub, err := t.client.nc.QueueSubscribe(t.subject, t.cfg.QueueGroup, handler)
+		if err != nil {
+			return err
+		}
+		t.client.keepSub(sub)
+		t.client.logger.Info("nats core queue subscription registered",
+			zap.String("subject", t.subject),
+			zap.String("queue_group", t.cfg.QueueGroup),
+		)
+		return nil
+	}
+	sub, err := t.client.nc.Subscribe(t.subject, handler)
+	if err != nil {
 		return err
 	}
-	_, err := t.client.nc.Subscribe(t.subject, handler)
-	return err
+	t.client.keepSub(sub)
+	t.client.logger.Info("nats core subscription registered",
+		zap.String("subject", t.subject),
+	)
+	return nil
+}
+
+func isConsumerMaxAckPendingMismatch(err error) bool {
+	if err == nil {
+		return false
+	}
+	return strings.Contains(err.Error(), "configuration requests max ack pending")
 }
 
 // PartitionedTopic publishes/consumes a base subject with user-scoped subject suffixes.

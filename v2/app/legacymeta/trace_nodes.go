@@ -13,6 +13,7 @@ import (
 	"encr.dev/v2/parser/apis/api"
 	"encr.dev/v2/parser/apis/authhandler"
 	"encr.dev/v2/parser/apis/middleware"
+	"encr.dev/v2/parser/apis/nats"
 	"encr.dev/v2/parser/apis/servicestruct"
 	"encr.dev/v2/parser/infra/pubsub"
 )
@@ -23,6 +24,7 @@ func newTraceNodes(b *builder) *TraceNodes {
 		nodes:       make(map[paths.Pkg][]*meta.TraceNode),
 		middlewares: make(map[*middleware.Middleware]*meta.TraceNode),
 		subs:        make(map[*pubsub.Subscription]*meta.TraceNode),
+		natsSubs:    make(map[*nats.Subscription]*meta.TraceNode),
 		svcStructs:  make(map[*servicestruct.ServiceStruct]*meta.TraceNode),
 		endpoints:   make(map[*api.Endpoint]*meta.TraceNode),
 	}
@@ -38,6 +40,7 @@ type TraceNodes struct {
 	authHandler *meta.TraceNode
 	middlewares map[*middleware.Middleware]*meta.TraceNode
 	subs        map[*pubsub.Subscription]*meta.TraceNode
+	natsSubs    map[*nats.Subscription]*meta.TraceNode
 	svcStructs  map[*servicestruct.ServiceStruct]*meta.TraceNode
 	endpoints   map[*api.Endpoint]*meta.TraceNode
 }
@@ -61,6 +64,13 @@ func (n *TraceNodes) Sub(sub *pubsub.Subscription) uint32 {
 		return 0
 	}
 	return nodeID(n.subs[sub])
+}
+
+func (n *TraceNodes) NATSSub(sub *nats.Subscription) uint32 {
+	if n == nil {
+		return 0
+	}
+	return nodeID(n.natsSubs[sub])
 }
 
 func (n *TraceNodes) SvcStruct(svcStruct *servicestruct.ServiceStruct) uint32 {
@@ -112,6 +122,19 @@ func (n *TraceNodes) addSub(sub *pubsub.Subscription, svcName, topicName string)
 		},
 	}
 	n.subs[sub] = traceNode
+}
+
+func (n *TraceNodes) addNATSSub(sub *nats.Subscription, svcName, topicName string) {
+	traceNode, context := n.alloc(sub.File, sub.Decl)
+	traceNode.Context = &meta.TraceNode_PubsubSubscriber{
+		PubsubSubscriber: &meta.PubSubSubscriberNode{
+			TopicName:      topicName,
+			SubscriberName: sub.Name,
+			ServiceName:    svcName,
+			Context:        string(context),
+		},
+	}
+	n.natsSubs[sub] = traceNode
 }
 
 func (n *TraceNodes) addMiddleware(mw *middleware.Middleware) {

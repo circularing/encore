@@ -12,8 +12,10 @@ import (
 	"encr.dev/v2/app/apiframework"
 	"encr.dev/v2/codegen"
 	"encr.dev/v2/internals/pkginfo"
+	"encr.dev/v2/parser"
 	"encr.dev/v2/parser/apis/api"
 	"encr.dev/v2/parser/apis/middleware"
+	"encr.dev/v2/parser/apis/nats"
 )
 
 type GenParams struct {
@@ -58,6 +60,14 @@ func genMain(p GenParams) *config.Static {
 
 	file := p.Gen.InjectFile(mainPkgPath, "main", mainPkgDir, "main.go", "main")
 	f := file.Jen
+	imported := map[string]bool{}
+	importAnon := func(path string) {
+		if path == mainPkgPath.String() || imported[path] {
+			return
+		}
+		imported[path] = true
+		f.Anon(path)
+	}
 
 	// All services should be imported by the main package so they get initialized on system startup
 	// Services may not have API handlers as they could be purely operating on PubSub subscriptions
@@ -65,19 +75,22 @@ func genMain(p GenParams) *config.Static {
 	for _, svc := range p.Desc.Services {
 		if fw, ok := svc.Framework.Get(); ok {
 			rootPkg := fw.RootPkg
-			if rootPkg.ImportPath != mainPkgPath {
-				f.Anon(rootPkg.ImportPath.String())
-			}
+			importAnon(rootPkg.ImportPath.String())
 		}
+	}
+	// NATS subscriptions may live in subpackages that are not otherwise imported by service roots.
+	// Ensure those packages are imported so generated init-based subscriptions are registered.
+	for _, sub := range parser.Resources[*nats.Subscription](p.Desc.Parse) {
+		importAnon(sub.File.Pkg.ImportPath.String())
 	}
 	// Make sure auth handlers and global middleware are imported as well so they get registered.
 	if fw, ok := p.Desc.Framework.Get(); ok {
 		if ah, ok := fw.AuthHandler.Get(); ok {
-			f.Anon(ah.Decl.File.Pkg.ImportPath.String())
+			importAnon(ah.Decl.File.Pkg.ImportPath.String())
 		}
 
 		for _, mw := range fw.GlobalMiddleware {
-			f.Anon(mw.Decl.File.Pkg.ImportPath.String())
+			importAnon(mw.Decl.File.Pkg.ImportPath.String())
 		}
 	}
 
@@ -98,6 +111,14 @@ func genExecScriptMain(p GenParams, mainPkgPath paths.Pkg) *config.Static {
 
 	file := p.Gen.InjectFile(mainPkgPath, "main", mainPkgDir, "encore_internal__execscript.go", "execscript")
 	f := file.Jen
+	imported := map[string]bool{}
+	importAnon := func(path string) {
+		if path == mainPkgPath.String() || imported[path] {
+			return
+		}
+		imported[path] = true
+		f.Anon(path)
+	}
 
 	// All services should be imported by the main package so they get initialized on system startup
 	// Services may not have API handlers as they could be purely operating on PubSub subscriptions
@@ -105,19 +126,20 @@ func genExecScriptMain(p GenParams, mainPkgPath paths.Pkg) *config.Static {
 	for _, svc := range p.Desc.Services {
 		svc.Framework.ForAll(func(svcDesc *apiframework.ServiceDesc) {
 			rootPkg := svcDesc.RootPkg
-			if rootPkg.ImportPath != mainPkgPath {
-				f.Anon(rootPkg.ImportPath.String())
-			}
+			importAnon(rootPkg.ImportPath.String())
 		})
+	}
+	for _, sub := range parser.Resources[*nats.Subscription](p.Desc.Parse) {
+		importAnon(sub.File.Pkg.ImportPath.String())
 	}
 
 	// Make sure auth handlers and global middleware are imported as well so they get registered.
 	if fw, ok := p.Desc.Framework.Get(); ok {
 		if ah, ok := fw.AuthHandler.Get(); ok {
-			f.Anon(ah.Decl.File.Pkg.ImportPath.String())
+			importAnon(ah.Decl.File.Pkg.ImportPath.String())
 		}
 		for _, mw := range fw.GlobalMiddleware {
-			f.Anon(mw.Decl.File.Pkg.ImportPath.String())
+			importAnon(mw.Decl.File.Pkg.ImportPath.String())
 		}
 	}
 

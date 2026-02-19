@@ -75,6 +75,12 @@ func TestParse_Valid(t *testing.T) {
 	if sub.Subject != "orders.created" {
 		t.Fatalf("unexpected subject %q", sub.Subject)
 	}
+	if sub.Name != "handle-order-created" {
+		t.Fatalf("unexpected subscription name %q", sub.Name)
+	}
+	if sub.HandlerName != "HandleOrderCreated" {
+		t.Fatalf("unexpected handler name %q", sub.HandlerName)
+	}
 }
 
 func handlerDecl() *ast.FuncDecl {
