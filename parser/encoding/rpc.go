@@ -277,19 +277,31 @@ func DescribeService(meta *meta.Data, svc *meta.Service) *ServiceEncoding {
 
 // DescribeRPC expresses how to encode an RPCs request and response objects for the wire.
 func DescribeRPC(appMetaData *meta.Data, rpc *meta.RPC, options *Options) (*RPCEncoding, error) {
+	isNATS := isNATSRPC(rpc)
+	defaultMethod := DefaultClientHttpMethod(rpc)
+	protoName := rpc.Proto.String()
+	if isNATS {
+		defaultMethod = "NATS"
+		protoName = "NATS"
+	}
+
 	encoding := &RPCEncoding{
-		DefaultMethod: DefaultClientHttpMethod(rpc),
+		DefaultMethod: defaultMethod,
 		Name:          rpc.Name,
 		AccessType:    rpc.AccessType.String(),
-		Proto:         rpc.Proto.String(),
+		Proto:         protoName,
 		Path:          rpc.Path,
 		Doc:           rpc.GetDoc(),
 	}
 	var err error
 	// Work out the request encoding
-	encoding.RequestEncoding, err = DescribeRequest(appMetaData, rpc.RequestSchema, options, rpc.HttpMethods...)
-	if err != nil {
-		return nil, errors.Wrap(err, "request encoding")
+	if !isNATS {
+		encoding.RequestEncoding, err = DescribeRequest(appMetaData, rpc.RequestSchema, options, rpc.HttpMethods...)
+		if err != nil {
+			return nil, errors.Wrap(err, "request encoding")
+		}
+	} else {
+		encoding.HttpMethods = []string{"NATS"}
 	}
 
 	// Work out the response encoding
@@ -532,12 +544,27 @@ func resolveTypeParams(typ *schema.Type, typeArgs []*schema.Type) *schema.Type {
 // then is a selection of methods and POST is one of them. If POST is not allowed as a method then
 // we will use the first specified method.
 func DefaultClientHttpMethod(rpc *meta.RPC) string {
+	if rpc == nil || len(rpc.HttpMethods) == 0 {
+		return "POST"
+	}
 	// Default to POST if we have a wildcard method or if POST is one of the allowed methods.
 	if rpc.HttpMethods[0] == "*" || slices.Contains(rpc.HttpMethods, "POST") {
 		return "POST"
 	}
 	return rpc.HttpMethods[0]
 
+}
+
+func isNATSRPC(rpc *meta.RPC) bool {
+	if rpc == nil {
+		return false
+	}
+	for _, tag := range rpc.Tags {
+		if tag != nil && tag.Type == meta.Selector_TAG && strings.EqualFold(tag.Value, "nats") {
+			return true
+		}
+	}
+	return false
 }
 
 // DescribeAuth generates a ParameterEncoding per field of the auth struct and returns it as

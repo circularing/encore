@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/nats-io/nats.go"
 	"github.com/rs/zerolog/log"
 	"github.com/tailscale/hujson"
 
@@ -39,6 +40,14 @@ func CallAPI(ctx context.Context, run *Run, p *ApiCallParams) (map[string]any, e
 	if proc == nil {
 		log.Error().Str("app_id", p.AppID).Msg("dash: cannot make api call: app not running")
 		return nil, fmt.Errorf("app not running")
+	}
+
+	rpc := findRPC(proc.Meta, p.Service, p.Endpoint)
+	if rpc == nil {
+		return nil, fmt.Errorf("unknown service/endpoint: %s/%s", p.Service, p.Endpoint)
+	}
+	if isNATSCatalogEntry(rpc) {
+		return callNATS(ctx, rpc, p)
 	}
 
 	baseURL := "http://" + run.ListenAddr
@@ -156,6 +165,110 @@ func prepareRequest(ctx context.Context, baseURL string, md *v1.Data, p *ApiCall
 		req.AddCookie(c)
 	}
 	return req, nil
+}
+
+func callNATS(ctx context.Context, rpc *v1.RPC, p *ApiCallParams) (map[string]any, error) {
+	subject, err := natsSubjectFromRPC(rpc)
+	if err != nil {
+		return nil, err
+	}
+	payload, err := normalizeNATSPayload(p.Payload)
+	if err != nil {
+		return nil, err
+	}
+
+	nc, err := nats.Connect(nats.DefaultURL, nats.MaxReconnects(-1))
+	if err != nil {
+		return nil, err
+	}
+	defer nc.Close()
+
+	if rpc.ResponseSchema != nil {
+		msg, err := nc.RequestWithContext(ctx, subject, payload)
+		if err != nil {
+			return nil, err
+		}
+		return map[string]interface{}{
+			"status":      "200 OK",
+			"status_code": 200,
+			"body":        formatJSONForViewer(msg.Data),
+			"trace_id":    "",
+		}, nil
+	}
+
+	if err := nc.Publish(subject, payload); err != nil {
+		return nil, err
+	}
+	if err := nc.Flush(); err != nil {
+		return nil, err
+	}
+	return map[string]interface{}{
+		"status":      "202 Accepted",
+		"status_code": 202,
+		"body":        []byte(fmt.Sprintf("{\"published\":true,\"subject\":%q}", subject)),
+		"trace_id":    "",
+	}, nil
+}
+
+func normalizeNATSPayload(raw []byte) ([]byte, error) {
+	if len(raw) == 0 {
+		return []byte("{}"), nil
+	}
+	payload, err := hujson.Parse(raw)
+	if err != nil {
+		return nil, fmt.Errorf("invalid payload: %v", err)
+	}
+	if _, ok := payload.Value.(*hujson.Object); !ok {
+		return nil, fmt.Errorf("invalid payload: expected JSON object")
+	}
+	payload.Standardize()
+	return payload.Pack(), nil
+}
+
+func formatJSONForViewer(body []byte) []byte {
+	hValue, err := hujson.Parse(body)
+	if err == nil {
+		hValue.Format()
+		return hValue.Pack()
+	}
+	return body
+}
+
+func isNATSCatalogEntry(rpc *v1.RPC) bool {
+	if rpc == nil {
+		return false
+	}
+	for _, tag := range rpc.Tags {
+		if tag != nil && tag.Type == v1.Selector_TAG && strings.EqualFold(tag.Value, "nats") {
+			return true
+		}
+	}
+	return false
+}
+
+func natsSubjectFromRPC(rpc *v1.RPC) (string, error) {
+	if rpc == nil {
+		return "", fmt.Errorf("missing rpc")
+	}
+	for _, tag := range rpc.Tags {
+		if tag == nil || tag.Type != v1.Selector_TAG {
+			continue
+		}
+		if subject, ok := strings.CutPrefix(tag.Value, "nats-subject:"); ok {
+			subject = strings.TrimSpace(subject)
+			if subject != "" {
+				return subject, nil
+			}
+		}
+	}
+	const docPrefix = "NATS subscription on subject "
+	if doc := strings.TrimSpace(rpc.GetDoc()); strings.HasPrefix(doc, docPrefix) {
+		subject := strings.TrimSpace(strings.TrimPrefix(doc, docPrefix))
+		if subject != "" {
+			return subject, nil
+		}
+	}
+	return "", fmt.Errorf("unable to determine NATS subject for %s", rpc.Name)
 }
 
 func handleResponse(md *v1.Data, p *ApiCallParams, headers http.Header, body []byte) []byte {

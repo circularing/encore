@@ -114,7 +114,7 @@ func pubsubTopics(gen *codegen.Generator, appDesc *app.Desc) map[string]*config.
 	}
 
 	for _, sub := range natsSubs {
-		if sub == nil || sub.MessageType == nil {
+		if sub == nil {
 			continue
 		}
 		topic, ok := result[sub.Subject]
@@ -123,10 +123,13 @@ func pubsubTopics(gen *codegen.Generator, appDesc *app.Desc) map[string]*config.
 			if gen.Build.DisableSensitiveScrubbing {
 				scrubMode |= typescrub.DisableScrubbing
 			}
-			scrubDesc := gen.TypeScrubber.Compute(sub.MessageType.ToType(), scrubMode)
 			topic = &config.StaticPubsubTopic{
 				Subscriptions: map[string]*config.StaticPubsubSubscription{},
-				ScrubPaths:    scrubDesc.Payload,
+				ScrubPaths:    nil,
+			}
+			if sub.MessageType != nil {
+				scrubDesc := gen.TypeScrubber.Compute(sub.MessageType.ToType(), scrubMode)
+				topic.ScrubPaths = scrubDesc.Payload
 			}
 			result[sub.Subject] = topic
 		}

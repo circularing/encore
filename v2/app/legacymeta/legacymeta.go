@@ -69,6 +69,17 @@ func (b *builder) Build() *meta.Data {
 	}
 	md := b.md
 
+	natsSubsByService := make(map[string][]*nats.Subscription)
+	for _, r := range b.app.Parse.Resources() {
+		sub, ok := r.(*nats.Subscription)
+		if !ok || sub == nil {
+			continue
+		}
+		if svc, ok := b.app.ServiceForPath(sub.File.Pkg.FSPath); ok {
+			natsSubsByService[svc.Name] = append(natsSubsByService[svc.Name], sub)
+		}
+	}
+
 	for _, gw := range b.app.Gateways {
 		b.md.Gateways = append(b.md.Gateways, &meta.Gateway{
 			EncoreName: gw.EncoreName,
@@ -121,6 +132,35 @@ func (b *builder) Build() *meta.Data {
 
 				out.Rpcs = append(out.Rpcs, rpc)
 				b.nodes.addEndpoint(ep, svc.Name)
+			}
+
+			for _, sub := range natsSubsByService[svc.Name] {
+				rpc := &meta.RPC{
+					Name:           sub.Name + "-" + strings.ToLower(sub.HandlerName),
+					Doc:            zeroNil("NATS subscription on subject " + sub.Subject),
+					ServiceName:    svc.Name,
+					RequestSchema:  b.schemaTypeUnwrapPointer(typeFromDeclRef(sub.MessageType)),
+					ResponseSchema: b.schemaTypeUnwrapPointer(typeFromDeclRef(sub.ReplyType)),
+					Proto:          meta.RPC_REGULAR,
+					Loc:            b.schemaLoc(sub.File, sub.Decl),
+					Path:           natsPseudoPath(sub.Subject),
+					AccessType:     meta.RPC_PRIVATE,
+					HttpMethods:    []string{"NATS"},
+					Tags: []*meta.Selector{
+						{
+							Type:  meta.Selector_TAG,
+							Value: "nats",
+						},
+						{
+							Type:  meta.Selector_TAG,
+							Value: "nats-subject:" + sub.Subject,
+						},
+					},
+					Sensitive:      false,
+					Expose:         make(map[string]*meta.RPC_ExposeOptions),
+				}
+				rpc.AllowUnauthenticated = true
+				out.Rpcs = append(out.Rpcs, rpc)
 			}
 
 			// Sort the RPCs for deterministic output.
@@ -583,6 +623,22 @@ func (b *builder) Build() *meta.Data {
 	}
 
 	return md
+}
+
+func typeFromDeclRef(ref *schema.TypeDeclRef) schema.Type {
+	if ref == nil {
+		return nil
+	}
+	return ref.ToType()
+}
+
+func natsPseudoPath(_ string) *meta.Path {
+	// Keep a defined (but empty) URL path so dashboard components that expect
+	// path.segments don't crash, while avoiding a misleading synthetic endpoint path.
+	return &meta.Path{
+		Type:     meta.Path_URL,
+		Segments: []*meta.PathSegment{},
+	}
 }
 
 func (b *builder) apiPath(pos gotoken.Pos, path *resourcepaths.Path) *meta.Path {
