@@ -136,7 +136,7 @@ func (b *builder) Build() *meta.Data {
 
 			for _, sub := range natsSubsByService[svc.Name] {
 				rpc := &meta.RPC{
-					Name:           sub.Name + "-" + strings.ToLower(sub.HandlerName),
+					Name:           "nats-" + sub.Name + "-" + strings.ToLower(sub.HandlerName),
 					Doc:            zeroNil("NATS subscription on subject " + sub.Subject),
 					ServiceName:    svc.Name,
 					RequestSchema:  b.schemaTypeUnwrapPointer(typeFromDeclRef(sub.MessageType)),

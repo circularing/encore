@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"slices"
 	"strings"
 
 	"github.com/nats-io/nats.go"
@@ -238,10 +239,16 @@ func isNATSCatalogEntry(rpc *v1.RPC) bool {
 	if rpc == nil {
 		return false
 	}
+	if slices.Contains(rpc.HttpMethods, "NATS") {
+		return true
+	}
 	for _, tag := range rpc.Tags {
 		if tag != nil && tag.Type == v1.Selector_TAG && strings.EqualFold(tag.Value, "nats") {
 			return true
 		}
+	}
+	if strings.HasPrefix(strings.TrimSpace(rpc.GetDoc()), "NATS subscription on subject ") {
+		return true
 	}
 	return false
 }
@@ -266,6 +273,27 @@ func natsSubjectFromRPC(rpc *v1.RPC) (string, error) {
 		subject := strings.TrimSpace(strings.TrimPrefix(doc, docPrefix))
 		if subject != "" {
 			return subject, nil
+		}
+	}
+	if rpc.Path != nil && len(rpc.Path.Segments) > 0 {
+		var toks []string
+		for _, seg := range rpc.Path.Segments {
+			if seg == nil {
+				continue
+			}
+			v := strings.TrimSpace(seg.Value)
+			if v == "" {
+				continue
+			}
+			toks = append(toks, v)
+		}
+		if len(toks) > 0 {
+			if strings.EqualFold(toks[0], "nats") {
+				toks = toks[1:]
+			}
+			if len(toks) > 0 {
+				return strings.Join(toks, "."), nil
+			}
 		}
 	}
 	return "", fmt.Errorf("unable to determine NATS subject for %s", rpc.Name)

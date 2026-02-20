@@ -232,9 +232,12 @@ type APIEncoding struct {
 }
 
 type ServiceEncoding struct {
-	Name string         `json:"name"`
-	Doc  string         `json:"doc"`
-	RPCs []*RPCEncoding `json:"rpcs"`
+	Name                        string         `json:"name"`
+	Doc                         string         `json:"doc"`
+	RPCs                        []*RPCEncoding `json:"rpcs"`
+	BrokerEndpoints             int            `json:"broker_endpoints,omitempty"`
+	BrokerRequestReplyEndpoints int            `json:"broker_request_reply_endpoints,omitempty"`
+	BrokerPublishEndpoints      int            `json:"broker_publish_endpoints,omitempty"`
 }
 
 func DescribeAPI(meta *meta.Data) *APIEncoding {
@@ -265,6 +268,29 @@ func findDoc(relPath string, meta *meta.Data) string {
 
 func DescribeService(meta *meta.Data, svc *meta.Service) *ServiceEncoding {
 	service := &ServiceEncoding{Name: svc.Name, Doc: findDoc(svc.RelPath, meta), RPCs: make([]*RPCEncoding, len(svc.Rpcs))}
+	for _, r := range svc.Rpcs {
+		if isNATSRPC(r) {
+			service.BrokerEndpoints++
+			if r.GetResponseSchema() != nil {
+				service.BrokerRequestReplyEndpoints++
+			} else {
+				service.BrokerPublishEndpoints++
+			}
+		}
+	}
+	if service.BrokerEndpoints > 0 {
+		natsInfo := fmt.Sprintf(
+			"NATS broker endpoints: %d (%d request/reply, %d publish)",
+			service.BrokerEndpoints,
+			service.BrokerRequestReplyEndpoints,
+			service.BrokerPublishEndpoints,
+		)
+		if service.Doc == "" {
+			service.Doc = natsInfo
+		} else {
+			service.Doc += "\n\n" + natsInfo
+		}
+	}
 	for i, r := range svc.Rpcs {
 		rpc, err := DescribeRPC(meta, r, nil)
 		if err != nil {
