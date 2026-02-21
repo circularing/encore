@@ -1,4 +1,4 @@
-.PHONY: help build build-encore build-git-remote rebuild clean uninstall install-complete reinstall-complete
+.PHONY: help build build-encore build-git-remote rebuild clean uninstall install-complete reinstall-complete test-dashboard-contracts test-dashboard-e2e test-dashboard-visual dashboard-iso-inventory
 
 # Override at invocation time if needed:
 #   make build ENCORE_INSTALL=/custom/path
@@ -15,6 +15,10 @@ help:
 	@echo "  make uninstall      Remove encore binaries from $(BIN_DIR)"
 	@echo "  make install-complete  Build binaries and sync runtimes into $(ENCORE_INSTALL)"
 	@echo "  make reinstall-complete  Remove runtimes then run install-complete"
+	@echo "  make dashboard-iso-inventory  Generate local dashboard route/contract inventory"
+	@echo "  make test-dashboard-contracts  Run local dashboard backend contract-oriented tests"
+	@echo "  make test-dashboard-e2e  Run dashboard Playwright tests if configured"
+	@echo "  make test-dashboard-visual  Run dashboard visual regression tests if configured"
 
 build: build-encore build-git-remote
 
@@ -59,4 +63,24 @@ install-complete: build
 reinstall-complete:
 	@rm -rf "$(ENCORE_INSTALL)/runtimes"
 	$(MAKE) install-complete
+
+dashboard-iso-inventory:
+	./scripts/dashboard/inventory.sh
+
+test-dashboard-contracts:
+	go test ./cli/daemon/dash/...
+
+test-dashboard-e2e:
+	@if [ -f package.json ] && grep -q '"test:dashboard:e2e"' package.json; then \
+		npm run test:dashboard:e2e; \
+	else \
+		echo "No dashboard e2e script configured yet (expected in Sprint 1)."; \
+	fi
+
+test-dashboard-visual:
+	@if [ -f package.json ] && grep -q '"test:dashboard:visual"' package.json; then \
+		npm run test:dashboard:visual; \
+	else \
+		echo "No dashboard visual script configured yet (expected in Sprint 1)."; \
+	fi
 
