@@ -784,18 +784,21 @@ func makeProtoReplier(rep jsonrpc2.Replier) jsonrpc2.Replier {
 // appStatus is the the shared data structure to communicate app status to the client.
 //
 // It is mirrored in the frontend at src/lib/client/dev-dash-client.ts as `AppStatus`.
+const dashboardStatusSchemaVersion = "1"
+
 type appStatus struct {
-	Running      bool                  `json:"running"`
-	Tutorial     string                `json:"tutorial,omitempty"`
-	AppID        string                `json:"appID"`
-	PlatformID   string                `json:"platformID,omitempty"`
-	AppRoot      string                `json:"appRoot"`
-	PID          string                `json:"pid,omitempty"`
-	Meta         json.RawMessage       `json:"meta,omitempty"`
-	Addr         string                `json:"addr,omitempty"`
-	APIEncoding  *encoding.APIEncoding `json:"apiEncoding,omitempty"`
-	Compiling    bool                  `json:"compiling"`
-	CompileError string                `json:"compileError,omitempty"`
+	SchemaVersion string                `json:"schemaVersion"`
+	Running       bool                  `json:"running"`
+	Tutorial      string                `json:"tutorial,omitempty"`
+	AppID         string                `json:"appID"`
+	PlatformID    string                `json:"platformID,omitempty"`
+	AppRoot       string                `json:"appRoot"`
+	PID           string                `json:"pid,omitempty"`
+	Meta          json.RawMessage       `json:"meta,omitempty"`
+	Addr          string                `json:"addr,omitempty"`
+	APIEncoding   *encoding.APIEncoding `json:"apiEncoding,omitempty"`
+	Compiling     bool                  `json:"compiling"`
+	CompileError  string                `json:"compileError,omitempty"`
 }
 
 type dbMigrationHistory struct {
@@ -843,13 +846,14 @@ func buildAppStatus(app *apps.Instance, runInstance *run.Run) (s appStatus, err 
 
 	// Build the response
 	resp := appStatus{
-		Running:     false,
-		Tutorial:    app.Tutorial(),
-		AppID:       app.PlatformOrLocalID(),
-		PlatformID:  app.PlatformID(),
-		Meta:        json.RawMessage(mdStr),
-		AppRoot:     app.Root(),
-		APIEncoding: apiEnc,
+		SchemaVersion: dashboardStatusSchemaVersion,
+		Running:       false,
+		Tutorial:      app.Tutorial(),
+		AppID:         app.PlatformOrLocalID(),
+		PlatformID:    app.PlatformID(),
+		Meta:          json.RawMessage(mdStr),
+		AppRoot:       app.Root(),
+		APIEncoding:   apiEnc,
 	}
 	if runInstance != nil {
 		resp.Running = true
